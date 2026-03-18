@@ -1,1 +1,0 @@
--- Full lambda optimization logic goes here
