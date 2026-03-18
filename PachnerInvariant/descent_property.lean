@@ -104,7 +104,9 @@ private theorem sqDiff_eq_zero_iff (d ideal : Nat) :
     (if d ≥ ideal then d - ideal else ideal - d) *
     (if d ≥ ideal then d - ideal else ideal - d) = 0 ↔ d = ideal := by
   rw [mul_self_eq_zero]
-  split_ifs with h <;> omega
+  by_cases h : d ≥ ideal
+  · simp only [h, ite_true]; omega
+  · simp only [h, ite_false]; omega
 
 -- Fix 2: remove unused Nat.zero_eq from simp call
 private theorem foldl_add_eq_zero (f : Nat → Nat) (l : List Nat) (init : Nat) :
@@ -152,7 +154,7 @@ theorem theta_zero_iff_ideal (T : Triangulation) (lam : Nat) (hlam : lam > 0) :
       · exact h
     rw [sumSqDefect_zero_iff] at h1 hv
     exact ⟨fun e he => h1 _ (List.mem_map.mpr ⟨e, he, rfl⟩),
-           fun v hv => hv _ (List.mem_map.mpr ⟨v, hv, rfl⟩)⟩
+           fun v hvm => hv _ (List.mem_map.mpr ⟨v, hvm, rfl⟩)⟩
   · rintro ⟨he, hv⟩
     refine ⟨?_, ?_⟩
     · rw [sumSqDefect_zero_iff]
@@ -164,7 +166,7 @@ theorem theta_zero_iff_ideal (T : Triangulation) (lam : Nat) (hlam : lam > 0) :
         intro d hd
         rcases List.mem_map.mp hd with ⟨v, hvm, rfl⟩
         exact hv v hvm
-      simp [Nat.mul_eq_zero, Nat.not_eq_zero_of_lt hlam, this]
+      simp [this]
 
 -- ---------------------------------------------------------------
 -- Concrete theorems
