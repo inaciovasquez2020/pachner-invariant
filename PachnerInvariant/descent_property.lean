@@ -74,7 +74,7 @@ theorem pachner23_adds_new_tets
     (T'.tets.contains (a, b, p, q)) = true ∧
     (T'.tets.contains (a, c, p, q)) = true ∧
     (T'.tets.contains (b, c, p, q)) = true := by
-  simp [pachner23, List.contains_iff_exists_eq, List.mem_append, List.mem_cons]
+  native_decide
 
 -- ---------------------------------------------------------------
 -- Concrete descent: proved by computation
