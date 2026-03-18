@@ -84,7 +84,6 @@ def isImproving32 (T : Triangulation) (a b c p q : Vert) (lam : Nat) : Bool :=
 def eulerChar (T : Triangulation) : Int :=
   (T.numVerts : Int) - (allEdges T).length + (allFaces T).length - T.tets.length
 
--- Concrete triangulations
 def twoTets : Triangulation :=
   { numVerts := 5, tets := [(0,1,2,3),(0,1,2,4)] }
 
@@ -94,21 +93,20 @@ def threeTets : Triangulation :=
 def afterMove23 : Triangulation := pachner23 twoTets 0 1 2 3 4
 
 -- ---------------------------------------------------------------
--- Helper lemmas for sumSqDefect_zero_iff
+-- Helper lemmas
 -- ---------------------------------------------------------------
 
 private theorem mul_self_eq_zero (n : Nat) : n * n = 0 ↔ n = 0 := by
-  constructor
-  · intro h; rcases Nat.mul_eq_zero.mp h with h | h <;> exact h
-  · intro h; subst h; rfl
+  simp [Nat.mul_eq_zero]
 
+-- Fix 1: use simp to reduce to n=0 form, then split_ifs + omega
 private theorem sqDiff_eq_zero_iff (d ideal : Nat) :
     (if d ≥ ideal then d - ideal else ideal - d) *
     (if d ≥ ideal then d - ideal else ideal - d) = 0 ↔ d = ideal := by
-  split_ifs with h
-  · rw [mul_self_eq_zero]; omega
-  · rw [mul_self_eq_zero]; omega
+  rw [mul_self_eq_zero]
+  split_ifs with h <;> omega
 
+-- Fix 2: remove unused Nat.zero_eq from simp call
 private theorem foldl_add_eq_zero (f : Nat → Nat) (l : List Nat) (init : Nat) :
     l.foldl (fun acc x => acc + f x) init = 0 ↔
     init = 0 ∧ ∀ x ∈ l, f x = 0 := by
@@ -123,31 +121,29 @@ private theorem foldl_add_eq_zero (f : Nat → Nat) (l : List Nat) (init : Nat) 
         cases hx with
         | inl heq => subst heq; omega
         | inr hmem => exact ht x hmem⟩
-    · rintro ⟨hinit, hhd⟩
-      exact ⟨by have := hhd hd (.inl rfl); omega,
-             fun x hx => hhd x (.inr hx)⟩
+    · rintro ⟨hinit, hall⟩
+      exact ⟨by have := hall hd (.inl rfl); omega,
+             fun x hx => hall x (.inr hx)⟩
 
 theorem sumSqDefect_zero_iff (vals : List Nat) (ideal : Nat) :
     sumSqDefect vals ideal = 0 ↔ ∀ d ∈ vals, d = ideal := by
   simp only [sumSqDefect]
-  have step : (fun acc d =>
+  rw [show (fun acc d =>
       let diff := if d ≥ ideal then d - ideal else ideal - d
       acc + diff * diff) =
     (fun acc d => acc +
       (if d ≥ ideal then d - ideal else ideal - d) *
-      (if d ≥ ideal then d - ideal else ideal - d)) := rfl
-  rw [step, foldl_add_eq_zero _ vals 0]
-  simp only [Nat.zero_eq, true_and, sqDiff_eq_zero_iff]
+      (if d ≥ ideal then d - ideal else ideal - d)) from rfl]
+  rw [foldl_add_eq_zero _ vals 0]
+  simp [sqDiff_eq_zero_iff]
 
--- ---------------------------------------------------------------
--- theta = 0 iff all degrees ideal
--- ---------------------------------------------------------------
-
+-- Fix 3: theta_zero_iff_ideal — use Nat.add_eq_zero_iff (not deprecated),
+-- handle lam*x=0 via Nat.mul_eq_zero, fix membership proof usage
 theorem theta_zero_iff_ideal (T : Triangulation) (lam : Nat) (hlam : lam > 0) :
     theta T lam = 0 ↔
     (∀ e ∈ allEdges T, edgeDeg T e = 3) ∧
     (∀ v ∈ List.range T.numVerts, vertDeg T v = 6) := by
-  simp only [theta, Nat.add_eq_zero]
+  simp only [theta, Nat.add_eq_zero_iff]
   constructor
   · rintro ⟨h1, h2⟩
     have hv : sumSqDefect ((List.range T.numVerts).map (vertDeg T)) 6 = 0 := by
@@ -155,28 +151,23 @@ theorem theta_zero_iff_ideal (T : Triangulation) (lam : Nat) (hlam : lam > 0) :
       · omega
       · exact h
     rw [sumSqDefect_zero_iff] at h1 hv
-    constructor
-    · intro e he
-      have := h1 (edgeDeg T e) (List.mem_map.mpr ⟨e, he, rfl⟩)
-      exact this
-    · intro v hv
-      have := hv (vertDeg T v) (List.mem_map.mpr ⟨v, hv, rfl⟩)
-      exact this
+    exact ⟨fun e he => h1 _ (List.mem_map.mpr ⟨e, he, rfl⟩),
+           fun v hv => hv _ (List.mem_map.mpr ⟨v, hv, rfl⟩)⟩
   · rintro ⟨he, hv⟩
-    constructor
+    refine ⟨?_, ?_⟩
     · rw [sumSqDefect_zero_iff]
       intro d hd
-      rcases List.mem_map.mp hd with ⟨e, he, rfl⟩
-      exact he e he
+      rcases List.mem_map.mp hd with ⟨e, hem, rfl⟩
+      exact he e hem
     · have : sumSqDefect ((List.range T.numVerts).map (vertDeg T)) 6 = 0 := by
         rw [sumSqDefect_zero_iff]
         intro d hd
-        rcases List.mem_map.mp hd with ⟨v, hv, rfl⟩
-        exact hv v hv
-      omega
+        rcases List.mem_map.mp hd with ⟨v, hvm, rfl⟩
+        exact hv v hvm
+      simp [Nat.mul_eq_zero, Nat.not_eq_zero_of_lt hlam, this]
 
 -- ---------------------------------------------------------------
--- Concrete descent, inverse move, Euler char
+-- Concrete theorems
 -- ---------------------------------------------------------------
 
 theorem twoTets_move_improves :
