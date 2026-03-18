@@ -11,7 +11,6 @@ def singleTet : Triangulation :=
 
 -- Two tets sharing face (0,1,2), apices at 3 and 4
 -- Shared edges (0,1),(0,2),(1,2) have deg 2; outer edges have deg 1
-def twoTets : Triangulation :=
   { numVerts := 5
     tets     := [(0, 1, 2, 3), (0, 1, 2, 4)] }
 
@@ -19,7 +18,6 @@ def twoTets : Triangulation :=
 def afterMove : Triangulation := pachner23 twoTets 0 1 2 3 4
 
 -- Larger triangulation: 3 tets, more varied degrees
-def threeTets : Triangulation :=
   { numVerts := 6
     tets     := [(0,1,2,3), (0,1,2,4), (0,1,3,5)] }
 

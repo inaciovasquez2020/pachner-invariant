@@ -14,7 +14,7 @@ def can_apply_pachner23 (T : Triangulation) (a b c p q : Vert) : Bool :=
 
 /-- Apply n sequential 2→3 moves on the same face, adding new apex vertices. -/
 def apply_moves (T : Triangulation) (a b c : Vert) (n : Nat) : Triangulation :=
-  (List.range n).foldl (fun acc i =>
+  (List.range n).foldl (fun acc _ =>
     let p := acc.tets.length      -- use tet count as a fresh vertex proxy
     let q := acc.tets.length + 1
     pachner23 acc a b c p q) T
