@@ -4,76 +4,70 @@ import PachnerInvariant.helpers
 
 open PachnerInvariant
 
--- Standard tetrahedron: all edges deg 2, all verts deg 3
-def tetrahedron : Triangulation :=
-  { vertices    := 4,  edges := 6,  faces := 4,  is_sphere := true
-    edge_degs   := [2, 2, 2, 2, 2, 2]
-    vertex_degs := [3, 3, 3, 3] }
+-- Single tetrahedron: 1 tet, 4 verts, 6 edges all with deg 1
+def singleTet : Triangulation :=
+  { numVerts := 4
+    tets     := [(0, 1, 2, 3)] }
 
--- Regular-ish: edges near deg 3, verts near deg 6 (low Θ)
-def nearIdeal : Triangulation :=
-  { vertices    := 6,  edges := 9,  faces := 6,  is_sphere := false
-    edge_degs   := [3, 3, 3, 3, 3, 3, 3, 3, 3]
-    vertex_degs := [6, 6, 6, 6, 6, 6] }
+-- Two tets sharing face (0,1,2), apices at 3 and 4
+-- Shared edges (0,1),(0,2),(1,2) have deg 2; outer edges have deg 1
+def twoTets : Triangulation :=
+  { numVerts := 5
+    tets     := [(0, 1, 2, 3), (0, 1, 2, 4)] }
 
--- Highly irregular: large degree variance (high Θ)
-def irregular : Triangulation :=
-  { vertices    := 8,  edges := 14, faces := 8,  is_sphere := false
-    edge_degs   := [3, 3, 4, 2, 3, 5, 2, 3, 3, 4, 2, 3, 3, 2]
-    vertex_degs := [5, 6, 7, 4, 6, 6, 5, 7] }
+-- After 2→3 move on twoTets: new edge (3,4) has deg 3 (ideal!)
+def afterMove : Triangulation := pachner23 twoTets 0 1 2 3 4
 
--- Extreme: all edges and verts far from ideal
-def extreme : Triangulation :=
-  { vertices    := 4,  edges := 6,  faces := 4,  is_sphere := false
-    edge_degs   := [1, 1, 7, 7, 1, 7]
-    vertex_degs := [1, 1, 12, 12] }
+-- Larger triangulation: 3 tets, more varied degrees
+def threeTets : Triangulation :=
+  { numVerts := 6
+    tets     := [(0,1,2,3), (0,1,2,4), (0,1,3,5)] }
 
 def separator := IO.println "---"
 
 def main : IO Unit := do
-  IO.println "=== Theta values at lam=1 ==="
-  IO.println s!"tetrahedron   = {theta tetrahedron 1}"
-  IO.println s!"nearIdeal     = {theta nearIdeal 1}"
-  IO.println s!"irregular     = {theta irregular 1}"
-  IO.println s!"extreme       = {theta extreme 1}"
+  IO.println "=== Edge and vertex degrees ==="
+  IO.println s!"singleTet edges         = {allEdges singleTet}"
+  IO.println s!"singleTet edge degs     = {(allEdges singleTet).map (edgeDeg singleTet)}"
+  IO.println s!"singleTet vert degs     = {(List.range 4).map (vertDeg singleTet)}"
+  IO.println s!"twoTets   edge degs     = {(allEdges twoTets).map (edgeDeg twoTets)}"
+  IO.println s!"twoTets   vert degs     = {(List.range 5).map (vertDeg twoTets)}"
   separator
 
-  IO.println "=== Lambda sensitivity on irregular ==="
+  IO.println "=== Theta values lam=1 ==="
+  IO.println s!"singleTet  = {theta singleTet 1}"
+  IO.println s!"twoTets    = {theta twoTets 1}"
+  IO.println s!"afterMove  = {theta afterMove 1}"
+  IO.println s!"threeTets  = {theta threeTets 1}"
+  separator
+
+  IO.println "=== Effect of 2→3 move on twoTets ==="
+  IO.println s!"before     = {theta twoTets 1}"
+  IO.println s!"after      = {theta afterMove 1}"
+  IO.println s!"improving? = {isImproving twoTets 0 1 2 3 4 1}"
+  IO.println s!"new edges  = {allEdges afterMove}"
+  IO.println s!"new edge degs = {(allEdges afterMove).map (edgeDeg afterMove)}"
+  IO.println s!"new vert degs = {(List.range 5).map (vertDeg afterMove)}"
+  separator
+
+  IO.println "=== Move precondition check ==="
+  IO.println s!"can apply on twoTets (0,1,2,3,4) = {can_apply_pachner23 twoTets 0 1 2 3 4}"
+  IO.println s!"can apply on singleTet (0,1,2,3,4) = {can_apply_pachner23 singleTet 0 1 2 3 4}"
+  separator
+
+  IO.println "=== Lambda sensitivity ==="
   for lam in [1, 2, 3, 5, 10] do
-    IO.println s!"  lam={lam}  Θ={theta irregular lam}"
+    IO.println s!"  twoTets lam={lam}  Θ={theta twoTets lam}"
   separator
 
-  IO.println "=== Single Pachner move ==="
-  IO.println s!"tetrahedron before={theta tetrahedron 1}  after={theta (pachner_move tetrahedron) 1}"
-  IO.println s!"nearIdeal   before={theta nearIdeal 1}    after={theta (pachner_move nearIdeal) 1}"
-  IO.println s!"irregular   before={theta irregular 1}    after={theta (pachner_move irregular) 1}"
-  IO.println s!"extreme     before={theta extreme 1}      after={theta (pachner_move extreme) 1}"
+  IO.println "=== Optimal lambda ==="
+  IO.println s!"singleTet  = {optimize_lam singleTet}"
+  IO.println s!"twoTets    = {optimize_lam twoTets}"
+  IO.println s!"afterMove  = {optimize_lam afterMove}"
   separator
 
-  IO.println "=== Descent holds after single move ==="
-  IO.println s!"tetrahedron = {decide (theta (pachner_move tetrahedron) 1 > theta tetrahedron 1)}"
-  IO.println s!"nearIdeal   = {decide (theta (pachner_move nearIdeal) 1 > theta nearIdeal 1)}"
-  IO.println s!"irregular   = {decide (theta (pachner_move irregular) 1 > theta irregular 1)}"
-  IO.println s!"extreme     = {decide (theta (pachner_move extreme) 1 > theta extreme 1)}"
-  separator
-
-  IO.println "=== Theta after sequence of moves ==="
-  for n in [1, 2, 3, 5, 10] do
-    IO.println s!"  tetrahedron after {n} moves = {theta (apply_moves tetrahedron n) 1}"
-  separator
-
-  IO.println "=== Monotone growth across 5 moves ==="
-  let steps := (List.range 6).map (fun n => theta (apply_moves irregular n) 1)
-  IO.println s!"  irregular Θ sequence: {steps}"
-  separator
-
-  IO.println "=== Optimal lambda per triangulation ==="
-  IO.println s!"tetrahedron = {optimize_lam tetrahedron}"
-  IO.println s!"nearIdeal   = {optimize_lam nearIdeal}"
-  IO.println s!"irregular   = {optimize_lam irregular}"
-  IO.println s!"extreme     = {optimize_lam extreme}"
-  separator
-
-  IO.println "=== Validity checks ==="
-  IO.println s!"tetrahedron valid = {is_valid tetrahedron}"
-  IO.println s!"empty       valid = {is_valid { vertices := 0, edges := 0, faces := 0, is_sphere := false, edge_degs := [], vertex_degs := [] }}"
+  IO.println "=== Validity ==="
+  IO.println s!"singleTet valid = {is_valid singleTet}"
+  IO.println s!"empty     valid = {is_valid { numVerts := 0, tets := [] }}"
+  IO.println s!"total simplices singleTet = {total_simplices singleTet}"
+  IO.println s!"total simplices twoTets   = {total_simplices twoTets}"
