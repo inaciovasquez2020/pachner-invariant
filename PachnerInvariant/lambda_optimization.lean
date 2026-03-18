@@ -3,7 +3,7 @@ import PachnerInvariant.descent_property
 namespace PachnerInvariant
 
 def theta_with_lam (T : Triangulation) (lam : Nat) : Nat :=
-  theta T + lam
+  theta T lam
 
 def optimize_lam (T : Triangulation) : Nat :=
   [1, 2, 3, 4, 5].foldl (fun best lam =>
