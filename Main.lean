@@ -11,7 +11,7 @@ def main : IO Unit := do
   IO.println s!"theta T1            = {theta T1}"
   IO.println s!"theta T2            = {theta T2}"
   IO.println s!"theta (move T1)     = {theta (pachner_move T1)}"
-  IO.println s!"descent holds T1    = {theta (pachner_move T1) > theta T1}"
+  IO.println s!"descent holds T1    = {decide (theta (pachner_move T1) > theta T1)}"
   IO.println s!"total_simplices T1  = {total_simplices T1}"
   IO.println s!"is_valid T1         = {is_valid T1}"
   IO.println s!"is_valid empty      = {is_valid { vertices := 0, edges := 0, faces := 0, is_sphere := false }}"
