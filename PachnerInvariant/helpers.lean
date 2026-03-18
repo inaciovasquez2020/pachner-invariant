@@ -1,1 +1,1 @@
--- Full helper functions go here
+-- Replace placeholders with full helper functions

@@ -7,15 +7,15 @@ structure Triangulation where
   is_sphere : Bool
 
 def theta (T : Triangulation) : Nat :=
-  -- Implement full Pachner invariant computation here
-  T.vertices + T.edges + T.faces  -- placeholder, replace with actual formula
+  -- Replace placeholder with actual Pachner invariant formula
+  T.vertices + T.edges + T.faces
 
 def pachner_move (T : Triangulation) : Triangulation :=
-  -- Implement full Pachner move logic here
-  { T with vertices := T.vertices + 1, edges := T.edges + 1, faces := T.faces + 1 }  -- placeholder
+  -- Replace placeholder with actual Pachner move logic
+  { T with vertices := T.vertices + 1, edges := T.edges + 1, faces := T.faces + 1 }
 
 theorem strict_descent (T : Triangulation) (h : ¬T.is_sphere) :
     theta (pachner_move T) > theta T := by
-  -- Implement the actual proof of strict descent here
+  -- Replace placeholder with actual proof of strict descent
   simp [theta, pachner_move]
   omega
