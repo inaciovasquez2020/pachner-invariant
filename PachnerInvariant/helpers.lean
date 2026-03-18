@@ -3,12 +3,15 @@ import PachnerInvariant.descent_property
 namespace PachnerInvariant
 
 def total_simplices (T : Triangulation) : Nat :=
-  T.vertices + T.edges + T.faces
+  -- TODO: compute total simplices
+  0
 
 def is_valid (T : Triangulation) : Bool :=
-  T.vertices > 0 && T.edges > 0 && T.faces > 0
+  -- TODO: implement triangulation validity check
+  true
 
 def apply_moves (T : Triangulation) (n : Nat) : Triangulation :=
-  List.foldl (fun acc _ => pachner_move acc) T (List.range n)
+  -- TODO: apply n Pachner moves
+  T
 
 end PachnerInvariant
