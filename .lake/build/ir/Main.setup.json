@@ -1,0 +1,13 @@
+{"plugins": [],
+ "package": "pachner_invariant",
+ "options": {},
+ "name": "Main",
+ "isModule": false,
+ "importArts":
+ {"PachnerInvariant.lambda_optimization":
+  ["/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean/PachnerInvariant/lambda_optimization.olean"],
+  "PachnerInvariant.helpers":
+  ["/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean/PachnerInvariant/helpers.olean"],
+  "PachnerInvariant.descent_property":
+  ["/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean/PachnerInvariant/descent_property.olean"]},
+ "dynlibs": []}

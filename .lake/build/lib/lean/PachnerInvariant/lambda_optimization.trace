@@ -1,0 +1,32 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["a870249fff4cccd0.olean"],
+  "i": "fe67410c31c84675.ilean",
+  "c": "71835a46ed693fd7.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/Cli/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/batteries/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/Qq/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/aesop/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/importGraph/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/plausible/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/packages/mathlib/.lake/build/lib/lean:/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean /Users/inaciof.vasquez/.elan/toolchains/leanprover--lean4---v4.28.0/bin/lean /Users/inaciof.vasquez/github-audit/pachner-invariant/PachnerInvariant/lambda_optimization.lean -o /Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean/PachnerInvariant/lambda_optimization.olean -i /Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean/PachnerInvariant/lambda_optimization.ilean -c /Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/ir/PachnerInvariant/lambda_optimization.c --setup /Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/ir/PachnerInvariant/lambda_optimization.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["PachnerInvariant.lambda_optimization:deps",
+   [["deps",
+     [["pachner_invariant/PachnerInvariant:extraDep",
+       [["@pachner_invariant:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["PachnerInvariant.descent_property transitive imports (legacy)",
+         "00000000000006bb"],
+        ["PachnerInvariant.descent_property:importAllArts",
+         "b87841752f558566"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["/Users/inaciof.vasquez/github-audit/pachner-invariant/PachnerInvariant/lambda_optimization.lean",
+   "22064bbc44b64c40"],
+  ["options", "00000000000006bb"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "ecdd6005324aeecd"}

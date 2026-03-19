@@ -1,0 +1,18 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs": "e57e68110dd7e0f4.o",
+ "log":
+ [{"message":
+   ".> /Users/inaciof.vasquez/.elan/toolchains/leanprover--lean4---v4.28.0/bin/clang -c -o /Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/ir/PachnerInvariant/helpers.c.o.export /Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/ir/PachnerInvariant/helpers.c -I /Users/inaciof.vasquez/.elan/toolchains/leanprover--lean4---v4.28.0/include -fstack-clash-protection -fwrapv -fdata-sections -ffunction-sections -fvisibility=hidden -Wno-unused-command-line-argument --sysroot /Users/inaciof.vasquez/.elan/toolchains/leanprover--lean4---v4.28.0 -nostdinc -isystem /Users/inaciof.vasquez/.elan/toolchains/leanprover--lean4---v4.28.0/include/clang -O3 -DNDEBUG -DLEAN_EXPORTING",
+   "level": "trace"}],
+ "inputs":
+ [["PachnerInvariant.helpers:c",
+   [["/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/ir/PachnerInvariant/helpers.c",
+     "232a339a3d424530"],
+    ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+     "a96bc04a2e5e9630"]]],
+  ["Lean 4.28.0, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+   "a96bc04a2e5e9630"],
+  ["traceArgs: #[-O3, -DNDEBUG, -DLEAN_EXPORTING]", "c1efb66122fb2b9a"],
+  ["arm64-apple-darwin24.6.0", "77c16133d139df5a"]],
+ "depHash": "5e1553f67e4e7e3d"}
