@@ -38,6 +38,10 @@ lake build
 ## Conditional note
 - `docs/COMBINATORIAL_FIDELITY_NOTE_2026_04.md` — conditional note isolating the abstract-vs-full combinatorial fidelity gap in the current Pachner move model.
 
+
+## Conditional note
+- `docs/REFINEMENT_LIFT_NOTE_2026_04.md` — conditional note isolating the weakest sufficient lifting theorem from the current abstract move model to a full adjacency-faithful Pachner \(2\to3\) model.
+
 ## Abstraction note
 
 `pachner_move` models a 2→3 move by appending a new degree-1 edge and vertex.
