@@ -34,6 +34,10 @@ lake build
 ./.lake/build/bin/Main
 ```
 
+
+## Conditional note
+- `docs/COMBINATORIAL_FIDELITY_NOTE_2026_04.md` — conditional note isolating the abstract-vs-full combinatorial fidelity gap in the current Pachner move model.
+
 ## Abstraction note
 
 `pachner_move` models a 2→3 move by appending a new degree-1 edge and vertex.
