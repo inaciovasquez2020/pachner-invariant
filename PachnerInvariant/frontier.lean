@@ -122,6 +122,13 @@ theorem Valid23.q_lt_numVerts
   rcases h with ⟨_, _, _, _, hq, _, _, _, _, _, _, _⟩
   exact hq
 
+theorem Valid23.p_ne_q
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    p ≠ q := by
+  rcases Valid23.distinct h with ⟨_, _, _, _, _, _, _, _, _, hpq⟩
+  exact hpq
+
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
   native_decide
