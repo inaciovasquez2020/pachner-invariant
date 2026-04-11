@@ -143,6 +143,13 @@ theorem Valid23.a_ne_c
   rcases Valid23.distinct h with ⟨_, hac, _, _, _, _, _, _, _, _⟩
   exact hac
 
+theorem Valid23.a_ne_p
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    a ≠ p := by
+  rcases Valid23.distinct h with ⟨_, _, hap, _, _, _, _, _, _, _⟩
+  exact hap
+
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
   native_decide
