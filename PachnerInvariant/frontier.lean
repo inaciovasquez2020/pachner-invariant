@@ -289,13 +289,21 @@ theorem edgeDeg_eq_count_allEdges
       List.count (normalizeEdge e) (allEdges T) := by
   sorry
 
+theorem count_zero_of_newEdgeAbsent
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    List.count (normalizeEdge (p,q)) (allEdges T) = 0 := by
+  sorry
+
 theorem Valid23.newEdgeCase
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
     List.count (normalizeEdge (p,q)) (allEdges T) = 0 ∧
     (boundaryEdges23 a b c).contains (normalizeEdge (p,q)) = false ∧
     (crossEdges23 a b c p q).contains (normalizeEdge (p,q)) = false := by
-  sorry
+  refine ⟨count_zero_of_newEdgeAbsent h, ?_, ?_⟩
+  · sorry
+  · sorry
 
 theorem edgeDeg_pachner23_eq_expected
     {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
