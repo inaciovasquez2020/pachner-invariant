@@ -192,6 +192,14 @@ theorem Valid23.c_ne_q
   rcases Valid23.distinct h with ⟨_, _, _, _, _, _, _, _, hcq, _⟩
   exact hcq
 
+theorem Valid23.targetPatchFresh
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    ¬ tetMemMod (a,b,p,q) T.tets ∧
+    ¬ tetMemMod (a,c,p,q) T.tets ∧
+    ¬ tetMemMod (b,c,p,q) T.tets := by
+  exact ⟨Valid23.noTargetTet₁ h, Valid23.noTargetTet₂ h, Valid23.noTargetTet₃ h⟩
+
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
   native_decide
