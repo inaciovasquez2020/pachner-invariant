@@ -1,50 +1,33 @@
 # PachnerInvariant
 
-A Lean 4 formalization of a combinatorial invariant for 3-manifold triangulations,
-based on Pachner moves and degree-defect energy functions.
+A Lean 4 formalization of a combinatorial invariant for 3-manifold triangulations.
 
 ## Invariant
 
-For a triangulation T with edge degrees `deg_e` and vertex degrees `deg_v`:
+\[\Theta(T,\lambda)=\sum_e(\deg_e-3)^2+\lambda\sum_v(\deg_v-6)^2.\]
 
-    Θ(T, λ) = Σ_e (deg_e − 3)² + λ · Σ_v (deg_v − 6)²
+## Current theorem status
 
-Lower Θ means T is closer to the ideal regular triangulation
-(all edges degree 3, all vertices degree 6).
+Visible proved theorems in `PachnerInvariant/descent_property.lean` are concrete strict-improvement instances.
 
-## Theorem
+## Frontier
 
-Every Pachner 2→3 move strictly increases Θ:
-
-    theta (pachner_move T) > theta T
-
-This is formally proved in `PachnerInvariant/descent_property.lean` using `omega`.
-
-## Modules
-
-| File | Contents |
-|------|----------|
-| `descent_property.lean` | `Triangulation`, `theta`, `pachner_move`, `strict_descent` |
-| `lambda_optimization.lean` | `theta_with_lam`, `optimize_lam` |
-| `helpers.lean` | `total_simplices`, `is_valid`, `apply_moves` |
+Valid23 -> edge-degree update -> vertex-degree update -> exact Delta-Theta identity -> Theta-descent criterion.
 
 ## Build
-```
-lake build
-./.lake/build/bin/Main
-```
 
+`lake build`
 
-## Conditional note
-- `docs/COMBINATORIAL_FIDELITY_NOTE_2026_04.md` — conditional note isolating the abstract-vs-full combinatorial fidelity gap in the current Pachner move model.
+## Current frontier notes
 
+* `docs/VALID23_SPEC_2026_04.md`
+* `docs/EDGE_DEGREE_UPDATE_2026_04.md`
+* `docs/VERTEX_DEGREE_UPDATE_2026_04.md`
+* `docs/THETA_DELTA_IDENTITY_2026_04.md`
+* `docs/THETA_DESCENT_CRITERION_2026_04.md`
+* `docs/CURRENT_FRONTIER_2026_04.md`
 
-## Conditional note
-- `docs/REFINEMENT_LIFT_NOTE_2026_04.md` — conditional note isolating the weakest sufficient lifting theorem from the current abstract move model to a full adjacency-faithful Pachner \(2\to3\) model.
+## Conditional notes
 
-## Abstraction note
-
-`pachner_move` models a 2→3 move by appending a new degree-1 edge and vertex.
-This correctly captures the energy increase but does not redistribute degrees
-among existing simplices. Full combinatorial fidelity would require an adjacency
-structure tracking all simplicial connections explicitly.
+* `docs/COMBINATORIAL_FIDELITY_NOTE_2026_04.md`
+* `docs/REFINEMENT_LIFT_NOTE_2026_04.md`
