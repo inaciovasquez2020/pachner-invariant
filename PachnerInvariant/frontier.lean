@@ -270,12 +270,69 @@ theorem Valid23.ready
      ¬ edgeMemNorm (p,q) (allEdges T)) := by
   exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
 
+theorem allEdges_pachner23_count_delta
+    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+    (h : Valid23 T a b c p q) :
+    let e' := normalizeEdge e
+    List.count e' (allEdges (pachner23 T a b c p q)) =
+      List.count e' (allEdges T) +
+        (if e' = normalizeEdge (p,q) then 3
+         else if (boundaryEdges23 a b c).contains e' then 0
+         else if (crossEdges23 a b c p q).contains e' then 1
+         else 0) -
+        (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  sorry
+
+theorem edgeDeg_eq_count_allEdges
+    (T : Triangulation) (e : Vert × Vert) :
+    edgeDeg T (normalizeEdge e) =
+      List.count (normalizeEdge e) (allEdges T) := by
+  sorry
+
+theorem Valid23.newEdgeCase
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    List.count (normalizeEdge (p,q)) (allEdges T) = 0 ∧
+    (boundaryEdges23 a b c).contains (normalizeEdge (p,q)) = false ∧
+    (crossEdges23 a b c p q).contains (normalizeEdge (p,q)) = false := by
+  sorry
+
 theorem edgeDeg_pachner23_eq_expected
     {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
     (h : Valid23 T a b c p q) :
     edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
       expectedEdgeDeg23 T a b c p q e := by
-  sorry
+  rw [edgeDeg_eq_count_allEdges (T := pachner23 T a b c p q) (e := e)]
+  have hcountT : edgeDeg T (normalizeEdge e) = List.count (normalizeEdge e) (allEdges T) :=
+    edgeDeg_eq_count_allEdges (T := T) (e := e)
+  have hΔ := allEdges_pachner23_count_delta
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
+  dsimp [expectedEdgeDeg23]
+  by_cases hEq : normalizeEdge e = normalizeEdge (p, q)
+  · rcases Valid23.newEdgeCase h with ⟨h0, hB, hC⟩
+    have hB' : normalizeEdge (p, q) ∉ boundaryEdges23 a b c := by
+      simpa using hB
+    have hC' : normalizeEdge (p, q) ∉ crossEdges23 a b c p q := by
+      simpa using hC
+    rw [hEq] at hΔ ⊢
+    simp [h0, hB', hC'] at hΔ ⊢
+    omega
+  · by_cases hB : normalizeEdge e ∈ boundaryEdges23 a b c
+    · have hBtrue : (boundaryEdges23 a b c).contains (normalizeEdge e) = true := by
+        simpa using hB
+      simp [hEq, hB, hBtrue, hcountT] at hΔ ⊢
+      omega
+    · have hBfalse : (boundaryEdges23 a b c).contains (normalizeEdge e) = false := by
+        simpa using hB
+      by_cases hC : normalizeEdge e ∈ crossEdges23 a b c p q
+      · have hCtrue : (crossEdges23 a b c p q).contains (normalizeEdge e) = true := by
+          simpa using hC
+        simp [hEq, hB, hBfalse, hC, hCtrue, hcountT] at hΔ ⊢
+        omega
+      · have hCfalse : (crossEdges23 a b c p q).contains (normalizeEdge e) = false := by
+          simpa using hC
+        simp [hEq, hB, hBfalse, hC, hCfalse, hcountT] at hΔ ⊢
+        omega
 
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
