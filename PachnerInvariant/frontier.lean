@@ -38,6 +38,18 @@ def Valid23 (T : Triangulation) (a b c p q : Vert) : Prop :=
   ¬ tetMemMod (b,c,p,q) T.tets ∧
   ¬ edgeMemNorm (p,q) (allEdges T)
 
+def expectedEdgeDeg23
+    (T : Triangulation) (a b c p q : Vert) (e : Vert × Vert) : Nat :=
+  let e' := normalizeEdge e
+  if e' = normalizeEdge (p,q) then
+    3
+  else if (boundaryEdges23 a b c).contains e' then
+    edgeDeg T e' - 1
+  else if (crossEdges23 a b c p q).contains e' then
+    edgeDeg T e' + 1
+  else
+    edgeDeg T e'
+
 theorem Valid23.newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
