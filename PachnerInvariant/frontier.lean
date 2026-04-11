@@ -52,6 +52,13 @@ theorem Valid23.sourceTet₁
   rcases h with ⟨_, _, _, _, _, _, hTet₁, _, _, _, _, _⟩
   exact hTet₁
 
+theorem Valid23.sourceTet₂
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    tetMemMod (a,b,c,q) T.tets := by
+  rcases h with ⟨_, _, _, _, _, _, _, hTet₂, _, _, _, _⟩
+  exact hTet₂
+
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
   native_decide
