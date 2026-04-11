@@ -289,6 +289,12 @@ theorem edgeDeg_eq_count_allEdges
       List.count (normalizeEdge e) (allEdges T) := by
   sorry
 
+theorem edgeDeg_zero_of_newEdgeAbsent
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    edgeDeg T (normalizeEdge (p,q)) = 0 := by
+  sorry
+
 theorem count_zero_of_newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
