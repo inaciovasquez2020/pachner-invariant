@@ -87,6 +87,13 @@ theorem Valid23.distinct
   rcases h with ⟨_, _, _, _, _, hDistinct, _, _, _, _, _, _⟩
   exact hDistinct
 
+theorem Valid23.a_lt_numVerts
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    a < T.numVerts := by
+  rcases h with ⟨ha, _, _, _, _, _, _, _, _, _, _, _⟩
+  exact ha
+
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
   native_decide
