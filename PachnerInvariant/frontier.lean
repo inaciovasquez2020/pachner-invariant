@@ -16,6 +16,47 @@ def pairwiseDistinct5 (a b c p q : Vert) : Prop :=
   c ≠ p ∧ c ≠ q ∧
   p ≠ q
 
+def boundaryEdges23 (a b c : Vert) : List (Vert × Vert) :=
+  [normalizeEdge (a, b), normalizeEdge (b, c), normalizeEdge (c, a)]
+
+def crossEdges23 (a b c p q : Vert) : List (Vert × Vert) :=
+  [ normalizeEdge (a,p), normalizeEdge (b,p), normalizeEdge (c,p)
+  , normalizeEdge (a,q), normalizeEdge (b,q), normalizeEdge (c,q)
+  ]
+
+def Valid23 (T : Triangulation) (a b c p q : Vert) : Prop :=
+  a < T.numVerts ∧
+ecause this term is being applied to the argument
+  a
+
+Hint: The identifier `boundaryEdges23` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+warning: PachnerInvariant/frontier.lean:304:8: declaration uses `sorry`
+warning: PachnerInvariant/frontier.lean:310:8: declaration uses `sorry`
+warning: PachnerInvariant/frontier.lean:316:8: declaration uses `sorry`
+error: PachnerInvariant/frontier.lean:326:5: Function expected at
+  boundaryEdges23
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  a
+
+Hint: The identifier `boundaryEdges23` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: Lean exited with code 1
+Some required targets logged failures:
+- PachnerInvariant.frontier
+error: build failed
+inaciof.vasquez@Inacios-MacBook-Air pachner-invariant % nano PachnerInvariant/frontier.lean
+
+  UW PICO 5.09           File: PachnerInvariant/frontier.lean             
+
+
+def pairwiseDistinct5 (a b c p q : Vert) : Prop :=
+  a ≠ b ∧ a ≠ c ∧ a ≠ p ∧ a ≠ q ∧
+  b ≠ c ∧ b ≠ p ∧ b ≠ q ∧
+  c ≠ p ∧ c ≠ q ∧
+  p ≠ q
+
 def crossEdges23 (a b c p q : Vert) : List (Vert × Vert) :=
   [ normalizeEdge (a,p), normalizeEdge (b,p), normalizeEdge (c,p)
   , normalizeEdge (a,q), normalizeEdge (b,q), normalizeEdge (c,q)
