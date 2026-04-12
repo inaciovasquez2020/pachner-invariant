@@ -59,8 +59,6 @@ axiom vertDeg_pachner23_eq_expected
         (if v = p then 2
          else if v = q then 2
          else 0)
-
-
 theorem theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
