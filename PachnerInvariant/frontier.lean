@@ -539,3 +539,16 @@ theorem normalizeEdge_eq_iff
           | inl hab' => exact False.elim (hab hab')
           | inr hba  => exact False.elim (hcd hba)
 
+
+theorem tetToEdges_normalized_no_collision
+    {a b c d : Vert}
+    (hpair :
+      a ≠ b ∧ a ≠ c ∧ a ≠ d ∧
+      b ≠ c ∧ b ≠ d ∧
+      c ≠ d) :
+    let t : Tet := (a,b,c,d)
+    let es := (tetToEdges t).map normalizeEdge
+    List.Pairwise (· ≠ ·) es := by
+  rcases hpair with ⟨hab, hac, had, hbc, hbd, hcd⟩
+  simp [tetToEdges, normalizeEdge_eq_iff, hab, hac, had, hbc, hbd, hcd]
+
