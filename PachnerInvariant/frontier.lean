@@ -483,13 +483,13 @@ theorem normalizeEdge_eq_iff
         · rcases h with ⟨hac, hbd⟩
           subst hac
           subst hbd
-          simp [hab, hcd]
+          simp [hab]
         · rcases h with ⟨had, hbc⟩
           subst had
           subst hbc
           have hab' : a = b := Nat.le_antisymm hab hcd
           subst hab'
-          simp [hab, hcd]
+          simp [hab]
     · constructor
       · intro h
         have h' : (a = d ∧ b = c) := by
@@ -531,7 +531,7 @@ theorem normalizeEdge_eq_iff
         · rcases h with ⟨hac, hbd⟩
           subst hac
           subst hbd
-          simp [hab, hcd]
+          simp [hab]
         · rcases h with ⟨had, hbc⟩
           subst had
           subst hbc
