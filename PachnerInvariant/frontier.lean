@@ -16,6 +16,9 @@ def pairwiseDistinct5 (a b c p q : Vert) : Prop :=
   c ≠ p ∧ c ≠ q ∧
   p ≠ q
 
+def boundaryEdges23 (a b c : Vert) : List (Vert × Vert) :=
+  [normalizeEdge (a, b), normalizeEdge (b, c), normalizeEdge (c, a)]
+
 def crossEdges23 (a b c p q : Vert) : List (Vert × Vert) :=
   [ normalizeEdge (a,p), normalizeEdge (b,p), normalizeEdge (c,p)
   , normalizeEdge (a,q), normalizeEdge (b,q), normalizeEdge (c,q)
