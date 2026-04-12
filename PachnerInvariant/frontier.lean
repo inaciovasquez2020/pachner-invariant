@@ -560,6 +560,14 @@ theorem mem_filter_ne [DecidableEq α] (x a : α) (xs : List α) :
   simp [beq_iff_eq]
 
 
+
+theorem edgeEq_true_iff
+    (e d : Vert × Vert) :
+    edgeEq e d = true ↔
+      (e.1 = d.1 ∧ e.2 = d.2) ∨ (e.1 = d.2 ∧ e.2 = d.1) := by
+  simp [edgeEq]
+
+
 axiom edgeMem_allEdges_iff_exists_tet
     (T : Triangulation) (e : Vert × Vert) :
     ((allEdges T).contains (normalizeEdge e) = true) ↔
