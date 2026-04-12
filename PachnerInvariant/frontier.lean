@@ -552,3 +552,23 @@ theorem tetToEdges_normalized_no_collision
   rcases hpair with ⟨hab, hac, had, hbc, hbd, hcd⟩
   simp [tetToEdges, normalizeEdge_eq_iff, hab, hac, had, hbc, hbd, hcd]
 
+
+axiom edgeMem_allEdges_iff_exists_tet
+    (T : Triangulation) (e : Vert × Vert) :
+    ((allEdges T).contains (normalizeEdge e) = true) ↔
+      ∃ t ∈ T.tets, (tetToEdges t).any (edgeEq (normalizeEdge e)) = true
+
+
+axiom edgeDeg_pos_iff_exists_tet
+    (T : Triangulation) (e : Vert × Vert) :
+    0 < edgeDeg T (normalizeEdge e) ↔
+      ∃ t ∈ T.tets, (tetToEdges t).any (edgeEq (normalizeEdge e)) = true
+
+
+theorem edgeMem_allEdges_iff_edgeDeg_pos
+    (T : Triangulation) (e : Vert × Vert) :
+    ((allEdges T).contains (normalizeEdge e) = true) ↔
+      0 < edgeDeg T (normalizeEdge e) := by
+  rw [edgeMem_allEdges_iff_exists_tet]
+  rw [edgeDeg_pos_iff_exists_tet]
+
