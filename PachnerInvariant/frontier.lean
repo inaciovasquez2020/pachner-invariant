@@ -329,43 +329,6 @@ theorem Valid23.newEdgeCase
   · sorry
   · sorry
 
-theorem edgeDeg_pachner23_eq_expected
-    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
-    (h : Valid23 T a b c p q) :
-    edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
-      expectedEdgeDeg23 T a b c p q e := by
-  rw [edgeDeg_eq_count_allEdges (T := pachner23 T a b c p q) (e := e)]
-  have hcountT : edgeDeg T (normalizeEdge e) = List.count (normalizeEdge e) (allEdges T) :=
-    edgeDeg_eq_count_allEdges (T := T) (e := e)
-  have hΔ := allEdges_pachner23_count_delta
-    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
-  dsimp [expectedEdgeDeg23]
-  by_cases hEq : normalizeEdge e = normalizeEdge (p, q)
-  · rcases Valid23.newEdgeCase h with ⟨h0, hB, hC⟩
-    have hB' : normalizeEdge (p, q) ∉ boundaryEdges23 a b c := by
-      simpa using hB
-    have hC' : normalizeEdge (p, q) ∉ crossEdges23 a b c p q := by
-      simpa using hC
-    rw [hEq] at hΔ ⊢
-    simp [h0, hB', hC'] at hΔ ⊢
-    omega
-  · by_cases hB : normalizeEdge e ∈ boundaryEdges23 a b c
-    · have hBtrue : (boundaryEdges23 a b c).contains (normalizeEdge e) = true := by
-        simpa using hB
-      simp [hEq, hB, hBtrue, hcountT] at hΔ ⊢
-      omega
-    · have hBfalse : (boundaryEdges23 a b c).contains (normalizeEdge e) = false := by
-        simpa using hB
-      by_cases hC : normalizeEdge e ∈ crossEdges23 a b c p q
-      · have hCtrue : (crossEdges23 a b c p q).contains (normalizeEdge e) = true := by
-          simpa using hC
-        simp [hEq, hB, hBfalse, hC, hCtrue, hcountT] at hΔ ⊢
-        omega
-      · have hCfalse : (crossEdges23 a b c p q).contains (normalizeEdge e) = false := by
-          simpa using hC
-        simp [hEq, hB, hBfalse, hC, hCfalse, hcountT] at hΔ ⊢
-        omega
-
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
   native_decide
