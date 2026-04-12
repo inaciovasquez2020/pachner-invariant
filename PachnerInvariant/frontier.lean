@@ -457,3 +457,16 @@ theorem Valid23.newEdgeCase
           subst hq
           subst hp
           contradiction
+
+
+theorem List.count_bind
+    {α β : Type} [BEq α]
+    (x : α) (L : List β) (f : β → List α) :
+    List.count x (List.foldr (fun t acc => f t ++ acc) [] L) =
+      (L.map (fun t => List.count x (f t))).sum := by
+  induction L with
+  | nil =>
+      simp
+  | cons h t ih =>
+      simp [ih, List.count_append]
+
