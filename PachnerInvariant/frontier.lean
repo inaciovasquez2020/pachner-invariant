@@ -312,10 +312,6 @@ theorem edgeDeg_eq_count_tets
       T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
   rfl
 
-axiom edgeDeg_zero_of_newEdgeAbsent
-{T : Triangulation} {a b c p q : Vert}
-(h : Valid23 T a b c p q) :
-edgeDeg T (normalizeEdge (p,q)) = 0
 theorem count_zero_of_newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
@@ -335,6 +331,15 @@ theorem count_zero_of_newEdgeAbsent
     have heq : normalizeEdge (q, p) = normalizeEdge (p, q) := by
       simp [normalizeEdge, hpq0, hqp]
     exact (habs q p hmem) heq
+
+
+theorem edgeDeg_zero_of_newEdgeAbsent
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q) :
+edgeDeg T (normalizeEdge (p,q)) = 0 := by
+rw [edgeDeg_eq_count_tets]
+rw [← allEdges_count_eq_edgeDeg_countP T (p, q)]
+exact count_zero_of_newEdgeAbsent h
 
 theorem Valid23.newEdgeCase
     {T : Triangulation} {a b c p q : Vert}
