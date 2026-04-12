@@ -3,10 +3,16 @@
 ## Selected theorem
 
 ```lean
-theorem tetToEdges_normalized_has_length_six :
-  ∀ (t : Tet),
-  ((tetToEdges t).map normalizeEdge).length = 6
+theorem tetToEdges_normalized_mem_characterization :
+  ∀ (v1 v2 v3 v4 : Vert) (e : Vert × Vert),
+  e ∈ (tetToEdges (v1, v2, v3, v4)).map normalizeEdge ↔
+    e = normalizeEdge (v1, v2) ∨
+    e = normalizeEdge (v1, v3) ∨
+    e = normalizeEdge (v1, v4) ∨
+    e = normalizeEdge (v2, v3) ∨
+    e = normalizeEdge (v2, v4) ∨
+    e = normalizeEdge (v3, v4)
 Backtrack role
-This fixes the ambient finite shape before proving the single-tetrahedron uniqueness bound.
+This fixes the exact normalized membership description before proving distinctness.
 Immediate closure objective
-Prove the normalized tetrahedron edge list has exactly six entries.
+Prove the normalized tetrahedron edge-list membership characterization.
