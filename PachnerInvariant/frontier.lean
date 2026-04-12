@@ -466,8 +466,76 @@ axiom List.count_bind
       (L.map (fun t => List.count x (f t))).sum
 
 
-axiom normalizeEdge_eq_iff
+theorem normalizeEdge_eq_iff
     {a b c d : Vert} :
     normalizeEdge (a,b) = normalizeEdge (c,d) ↔
-      ((a = c ∧ b = d) ∨ (a = d ∧ b = c))
+      ((a = c ∧ b = d) ∨ (a = d ∧ b = c)) := by
+  unfold normalizeEdge
+  by_cases hab : a ≤ b
+  · by_cases hcd : c ≤ d
+    · constructor
+      · intro h
+        have h' : (a = c ∧ b = d) := by
+          simpa [hab, hcd, Prod.mk.injEq] using h
+        exact Or.inl h'
+      · intro h
+        rcases h with h | h
+        · rcases h with ⟨hac, hbd⟩
+          subst hac
+          subst hbd
+          simp [hab, hcd]
+        · rcases h with ⟨had, hbc⟩
+          subst had
+          subst hbc
+          have hab' : a = b := Nat.le_antisymm hab hcd
+          subst hab'
+          simp [hab, hcd]
+    · constructor
+      · intro h
+        have h' : (a = d ∧ b = c) := by
+          simpa [hab, hcd, Prod.mk.injEq] using h
+        exact Or.inr h'
+      · intro h
+        rcases h with h | h
+        · rcases h with ⟨hac, hbd⟩
+          subst hac
+          subst hbd
+          exact False.elim (hcd hab)
+        · rcases h with ⟨had, hbc⟩
+          subst had
+          subst hbc
+          simp [hab, hcd]
+  · by_cases hcd : c ≤ d
+    · constructor
+      · intro h
+        have h' : (b = c ∧ a = d) := by
+          simpa [hab, hcd, Prod.mk.injEq] using h
+        exact Or.inr ⟨h'.2, h'.1⟩
+      · intro h
+        rcases h with h | h
+        · rcases h with ⟨hac, hbd⟩
+          subst hac
+          subst hbd
+          exact False.elim (hab hcd)
+        · rcases h with ⟨had, hbc⟩
+          subst had
+          subst hbc
+          simp [hab, hcd]
+    · constructor
+      · intro h
+        have h' : (b = d ∧ a = c) := by
+          simpa [hab, hcd, Prod.mk.injEq] using h
+        exact Or.inl ⟨h'.2, h'.1⟩
+      · intro h
+        rcases h with h | h
+        · rcases h with ⟨hac, hbd⟩
+          subst hac
+          subst hbd
+          simp [hab, hcd]
+        · rcases h with ⟨had, hbc⟩
+          subst had
+          subst hbc
+          cases Nat.le_total a b with
+          | inl hab' => exact False.elim (hab hab')
+          | inr hba  => exact False.elim (hcd hba)
 
