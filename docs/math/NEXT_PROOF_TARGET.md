@@ -3,16 +3,12 @@
 ## Selected theorem
 
 ```lean
-theorem tetToEdges_normalized_mem_characterization :
-  ∀ (v1 v2 v3 v4 : Vert) (e : Vert × Vert),
-  e ∈ (tetToEdges (v1, v2, v3, v4)).map normalizeEdge ↔
-    e = normalizeEdge (v1, v2) ∨
-    e = normalizeEdge (v1, v3) ∨
-    e = normalizeEdge (v1, v4) ∨
-    e = normalizeEdge (v2, v3) ∨
-    e = normalizeEdge (v2, v4) ∨
-    e = normalizeEdge (v3, v4)
+theorem pairwiseDistinct4_normalizeEdge_injective_on_tetToEdges :
+  ∀ (v1 v2 v3 v4 : Vert),
+  pairwiseDistinct4 v1 v2 v3 v4 →
+  let es := (tetToEdges (v1, v2, v3, v4)).map normalizeEdge
+  es.Nodup
 Backtrack role
-This fixes the exact normalized membership description before proving distinctness.
+This upgrades the membership characterization to the exact no-collision statement needed for the single-tetrahedron count bound.
 Immediate closure objective
-Prove the normalized tetrahedron edge-list membership characterization.
+Prove the normalized tetrahedron edge list is duplicate-free under pairwiseDistinct4.
