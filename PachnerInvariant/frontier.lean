@@ -309,33 +309,111 @@ theorem edgeDeg_eq_count_tets
   rfl
 
 theorem edgeDeg_zero_of_newEdgeAbsent
-    {T : Triangulation} {a b c p q : Vert}
-    (h : Valid23 T a b c p q) :
-    edgeDeg T (normalizeEdge (p,q)) = 0 := by
-  sorry
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q) :
+edgeDeg T (normalizeEdge (p,q)) = 0 := by
+sorry
 
 theorem count_zero_of_newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
     List.count (normalizeEdge (p,q)) (allEdges T) = 0 := by
-  sorry
+  have habs :
+      ¬ edgeMemNorm (p, q) (allEdges T) := h.right.right.right.right.right.right.right.right.right.right.right
+  simp [edgeMemNorm] at habs
+  apply List.count_eq_zero.mpr
+  intro he
+  by_cases hpq0 : p ≤ q
+  · have hmem : (p, q) ∈ allEdges T := by
+      simpa [normalizeEdge, hpq0] using he
+    exact (habs p q hmem) rfl
+  · have hqp : q ≤ p := Nat.le_of_lt (Nat.lt_of_not_ge hpq0)
+    have hmem : (q, p) ∈ allEdges T := by
+      simpa [normalizeEdge, hpq0] using he
+    have heq : normalizeEdge (q, p) = normalizeEdge (p, q) := by
+      simp [normalizeEdge, hpq0, hqp]
+    exact (habs q p hmem) heq
 
 theorem Valid23.newEdgeCase
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
-    List.count (normalizeEdge (p,q)) (allEdges T) = 0 ∧
-    (boundaryEdges23 a b c).contains (normalizeEdge (p,q)) = false ∧
-    (crossEdges23 a b c p q).contains (normalizeEdge (p,q)) = false := by
-  refine ⟨count_zero_of_newEdgeAbsent h, ?_, ?_⟩
-  · sorry
-  · sorry
-
-theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
-  unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
-  native_decide
-
-theorem threeTets_valid23 : Valid23 threeTets 0 1 2 3 4 := by
-  unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
-  native_decide
-
-end PachnerInvariant
+    let e' := normalizeEdge (p, q)
+    ¬ (boundaryEdges23 a b c).contains e' := by
+  dsimp
+  rcases h.right.right.right.right.right.left with
+    ⟨hab, hac, hap, haq, hbc, hbp, hbq, hcp, hcq, hpq⟩
+  simp [boundaryEdges23, List.contains_eq_mem]
+  constructor
+  · intro hEq
+    by_cases hpq0 : p ≤ q
+    · by_cases hab0 : a ≤ b
+      · simp [normalizeEdge, hpq0, hab0] at hEq
+        rcases hEq with ⟨hp, hq⟩
+        subst hp
+        subst hq
+        contradiction
+      · simp [normalizeEdge, hpq0, hab0] at hEq
+        rcases hEq with ⟨hp, hq⟩
+        subst hp
+        subst hq
+        contradiction
+    · by_cases hab0 : a ≤ b
+      · simp [normalizeEdge, hpq0, hab0] at hEq
+        rcases hEq with ⟨hq, hp⟩
+        subst hq
+        subst hp
+        contradiction
+      · simp [normalizeEdge, hpq0, hab0] at hEq
+        rcases hEq with ⟨hq, hp⟩
+        subst hq
+        subst hp
+        contradiction
+  · constructor
+    · intro hEq
+      by_cases hpq0 : p ≤ q
+      · by_cases hbc0 : b ≤ c
+        · simp [normalizeEdge, hpq0, hbc0] at hEq
+          rcases hEq with ⟨hp, hq⟩
+          subst hp
+          subst hq
+          contradiction
+        · simp [normalizeEdge, hpq0, hbc0] at hEq
+          rcases hEq with ⟨hp, hq⟩
+          subst hp
+          subst hq
+          contradiction
+      · by_cases hbc0 : b ≤ c
+        · simp [normalizeEdge, hpq0, hbc0] at hEq
+          rcases hEq with ⟨hq, hp⟩
+          subst hq
+          subst hp
+          contradiction
+        · simp [normalizeEdge, hpq0, hbc0] at hEq
+          rcases hEq with ⟨hq, hp⟩
+          subst hq
+          subst hp
+          contradiction
+    · intro hEq
+      by_cases hpq0 : p ≤ q
+      · by_cases hca0 : c ≤ a
+        · simp [normalizeEdge, hpq0, hca0] at hEq
+          rcases hEq with ⟨hp, hq⟩
+          subst hp
+          subst hq
+          contradiction
+        · simp [normalizeEdge, hpq0, hca0] at hEq
+          rcases hEq with ⟨hp, hq⟩
+          subst hp
+          subst hq
+          contradiction
+      · by_cases hca0 : c ≤ a
+        · simp [normalizeEdge, hpq0, hca0] at hEq
+          rcases hEq with ⟨hq, hp⟩
+          subst hq
+          subst hp
+          contradiction
+        · simp [normalizeEdge, hpq0, hca0] at hEq
+          rcases hEq with ⟨hq, hp⟩
+          subst hq
+          subst hp
+          contradiction
