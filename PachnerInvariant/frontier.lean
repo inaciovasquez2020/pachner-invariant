@@ -302,11 +302,11 @@ axiom edgeDeg_pachner23_delta
         (if (boundaryEdges23 a b c).contains e' then 1 else 0)
 
 
-theorem edgeDeg_eq_count_allEdges
+theorem edgeDeg_eq_count_tets
     (T : Triangulation) (e : Vert × Vert) :
     edgeDeg T (normalizeEdge e) =
-      List.count (normalizeEdge e) (allEdges T) := by
-  sorry
+      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+  rfl
 
 theorem edgeDeg_zero_of_newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
