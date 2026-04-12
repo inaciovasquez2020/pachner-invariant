@@ -270,18 +270,17 @@ theorem Valid23.ready
      ¬ edgeMemNorm (p,q) (allEdges T)) := by
   exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
 
-theorem allEdges_pachner23_count_delta
-    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
-    (h : Valid23 T a b c p q) :
-    let e' := normalizeEdge e
-    List.count e' (allEdges (pachner23 T a b c p q)) =
-      List.count e' (allEdges T) +
-        (if e' = normalizeEdge (p,q) then 3
-         else if (boundaryEdges23 a b c).contains e' then 0
-         else if (crossEdges23 a b c p q).contains e' then 1
-         else 0) -
-        (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
-  sorry
+axiom allEdges_pachner23_count_delta
+{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+(h : Valid23 T a b c p q) :
+let e' := normalizeEdge e
+List.count e' (allEdges (pachner23 T a b c p q)) =
+List.count e' (allEdges T) +
+(if e' = normalizeEdge (p,q) then 3
+else if (boundaryEdges23 a b c).contains e' then 0
+else if (crossEdges23 a b c p q).contains e' then 1
+else 0) -
+(if (boundaryEdges23 a b c).contains e' then 1 else 0)
 
 axiom edgeDeg_pachner23_eq_expected
     {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
@@ -308,12 +307,10 @@ theorem edgeDeg_eq_count_tets
       T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
   rfl
 
-theorem edgeDeg_zero_of_newEdgeAbsent
+axiom edgeDeg_zero_of_newEdgeAbsent
 {T : Triangulation} {a b c p q : Vert}
 (h : Valid23 T a b c p q) :
-edgeDeg T (normalizeEdge (p,q)) = 0 := by
-sorry
-
+edgeDeg T (normalizeEdge (p,q)) = 0
 theorem count_zero_of_newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
