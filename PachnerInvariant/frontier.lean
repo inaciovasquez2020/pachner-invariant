@@ -301,6 +301,11 @@ axiom edgeDeg_pachner23_delta
         (if (boundaryEdges23 a b c).contains e' then 1 else 0)
 
 
+axiom allEdges_count_eq_edgeDeg_countP
+    (T : Triangulation) (e : Vert × Vert) :
+    List.count (normalizeEdge e) (allEdges T) =
+      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
+
 theorem edgeDeg_eq_count_tets
     (T : Triangulation) (e : Vert × Vert) :
     edgeDeg T (normalizeEdge e) =
