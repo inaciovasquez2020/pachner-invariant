@@ -16,9 +16,6 @@ def pairwiseDistinct5 (a b c p q : Vert) : Prop :=
   c ≠ p ∧ c ≠ q ∧
   p ≠ q
 
-def boundaryEdges23 (a b c : Vert) : List (Vert × Vert) :=
-  [normalizeEdge (a,b), normalizeEdge (a,c), normalizeEdge (b,c)]
-
 def crossEdges23 (a b c p q : Vert) : List (Vert × Vert) :=
   [ normalizeEdge (a,p), normalizeEdge (b,p), normalizeEdge (c,p)
   , normalizeEdge (a,q), normalizeEdge (b,q), normalizeEdge (c,q)
@@ -301,9 +298,8 @@ theorem edgeDeg_pachner23_delta
          else 0) -
         (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
   dsimp
-  simpa [expectedEdgeDeg23] using
-    (edgeDeg_pachner23_eq_expected
-      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h)
+  rw [edgeDeg_pachner23_eq_expected h]
+  split_ifs <;> omega
 
 theorem edgeDeg_eq_count_allEdges
     (T : Triangulation) (e : Vert × Vert) :
