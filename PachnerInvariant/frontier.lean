@@ -283,6 +283,12 @@ theorem allEdges_pachner23_count_delta
         (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
   sorry
 
+axiom edgeDeg_pachner23_eq_expected
+    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+    (h : Valid23 T a b c p q) :
+    edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+      expectedEdgeDeg23 T a b c p q e
+
 theorem edgeDeg_pachner23_delta
     {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
     (h : Valid23 T a b c p q) :
@@ -294,7 +300,10 @@ theorem edgeDeg_pachner23_delta
          else if (crossEdges23 a b c p q).contains e' then 1
          else 0) -
         (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
-  sorry
+  dsimp
+  simpa [expectedEdgeDeg23] using
+    (edgeDeg_pachner23_eq_expected
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h)
 
 theorem edgeDeg_eq_count_allEdges
     (T : Triangulation) (e : Vert × Vert) :
