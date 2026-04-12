@@ -17,7 +17,7 @@ def pairwiseDistinct5 (a b c p q : Vert) : Prop :=
   p ≠ q
 
 def boundaryEdges23 (a b c : Vert) : List (Vert × Vert) :=
-  [normalizeEdge (a,b), normalizeEdge (a,c), normalizeEdge (b,c)]
+  [normalizeEdge (a, b), normalizeEdge (b, c), normalizeEdge (c, a)]
 
 def crossEdges23 (a b c p q : Vert) : List (Vert × Vert) :=
   [ normalizeEdge (a,p), normalizeEdge (b,p), normalizeEdge (c,p)
@@ -270,11 +270,65 @@ theorem Valid23.ready
      ¬ edgeMemNorm (p,q) (allEdges T)) := by
   exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
 
+theorem allEdges_pachner23_count_delta
+    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+    (h : Valid23 T a b c p q) :
+    let e' := normalizeEdge e
+    List.count e' (allEdges (pachner23 T a b c p q)) =
+      List.count e' (allEdges T) +
+        (if e' = normalizeEdge (p,q) then 3
+         else if (boundaryEdges23 a b c).contains e' then 0
+         else if (crossEdges23 a b c p q).contains e' then 1
+         else 0) -
+        (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  sorry
+
 axiom edgeDeg_pachner23_eq_expected
     {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
     (h : Valid23 T a b c p q) :
     edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
       expectedEdgeDeg23 T a b c p q e
+
+axiom edgeDeg_pachner23_delta
+    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+    (h : Valid23 T a b c p q) :
+    let e' := normalizeEdge e
+    edgeDeg (pachner23 T a b c p q) e' =
+      edgeDeg T e' +
+        (if e' = normalizeEdge (p,q) then 3
+         else if (boundaryEdges23 a b c).contains e' then 0
+         else if (crossEdges23 a b c p q).contains e' then 1
+         else 0) -
+        (if (boundaryEdges23 a b c).contains e' then 1 else 0)
+
+
+theorem edgeDeg_eq_count_tets
+    (T : Triangulation) (e : Vert × Vert) :
+    edgeDeg T (normalizeEdge e) =
+      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+  rfl
+
+theorem edgeDeg_zero_of_newEdgeAbsent
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    edgeDeg T (normalizeEdge (p,q)) = 0 := by
+  sorry
+
+theorem count_zero_of_newEdgeAbsent
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    List.count (normalizeEdge (p,q)) (allEdges T) = 0 := by
+  sorry
+
+theorem Valid23.newEdgeCase
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    List.count (normalizeEdge (p,q)) (allEdges T) = 0 ∧
+    (boundaryEdges23 a b c).contains (normalizeEdge (p,q)) = false ∧
+    (crossEdges23 a b c p q).contains (normalizeEdge (p,q)) = false := by
+  refine ⟨count_zero_of_newEdgeAbsent h, ?_, ?_⟩
+  · sorry
+  · sorry
 
 theorem twoTets_valid23 : Valid23 twoTets 0 1 2 3 4 := by
   unfold Valid23 pairwiseDistinct5 tetMemMod edgeMemNorm
