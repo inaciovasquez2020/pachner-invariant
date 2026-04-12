@@ -12,7 +12,6 @@ def test_frontier_registry_sync():
     ]
     for item in expected:
         assert item in s, item
-
     reg = Path("docs/status/PACHNER_FRONTIER_REGISTRY.md").read_text()
     for name in [
         "vertDeg_pachner23_eq_expected",
