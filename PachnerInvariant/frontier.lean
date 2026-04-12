@@ -50,6 +50,17 @@ def expectedEdgeDeg23
   else
     edgeDeg T e'
 
+
+axiom vertDeg_pachner23_eq_expected
+    {T : Triangulation} {a b c p q v : Vert}
+    (h : Valid23 T a b c p q) :
+    vertDeg (pachner23 T a b c p q) v =
+      vertDeg T v +
+        (if v = p then 2
+         else if v = q then 2
+         else 0)
+
+
 theorem Valid23.newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
