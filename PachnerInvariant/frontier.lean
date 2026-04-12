@@ -553,6 +553,13 @@ theorem tetToEdges_normalized_no_collision
   simp [tetToEdges, normalizeEdge_eq_iff, hab, hac, had, hbc, hbd, hcd]
 
 
+
+theorem mem_filter_ne [DecidableEq α] (x a : α) (xs : List α) :
+    x ∈ xs.filter (fun b => ¬ (b == a)) ↔ x ∈ xs ∧ x ≠ a := by
+  rw [List.mem_filter]
+  simp [beq_iff_eq]
+
+
 axiom edgeMem_allEdges_iff_exists_tet
     (T : Triangulation) (e : Vert × Vert) :
     ((allEdges T).contains (normalizeEdge e) = true) ↔
