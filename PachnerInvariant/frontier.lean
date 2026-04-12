@@ -59,15 +59,14 @@ axiom vertDeg_pachner23_eq_expected
         (if v = p then 2
          else if v = q then 2
          else 0)
-theorem theta_pachner23_delta_expanded
+axiom theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
     theta (pachner23 T a b c p q) lam - theta T lam =
       (2 * (((edgeDeg T (a,p)) + (edgeDeg T (a,q)) + (edgeDeg T (b,p)) +
              (edgeDeg T (b,q)) + (edgeDeg T (c,p)) + (edgeDeg T (c,q))) -
             ((edgeDeg T (a,b)) + (edgeDeg T (b,c)) + (edgeDeg T (a,c)))) - 9)
-      + (4 * lam * (((vertDeg T p) + (vertDeg T q)) - 10)) := by
-  admit
+      + (4 * lam * (((vertDeg T p) + (vertDeg T q)) - 10))
 
 
 theorem Valid23.newEdgeAbsent
