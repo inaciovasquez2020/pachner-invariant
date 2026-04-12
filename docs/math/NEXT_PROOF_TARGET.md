@@ -3,10 +3,10 @@
 ## Selected theorem
 
 ```lean
-theorem tetToEdges_count_normalizeEdge_le_one :
-  ∀ (t : Tet) (e : Vert × Vert),
-  List.count (normalizeEdge e) ((tetToEdges t).map normalizeEdge) ≤ 1
+theorem tetToEdges_normalized_has_length_six :
+  ∀ (t : Tet),
+  ((tetToEdges t).map normalizeEdge).length = 6
 Backtrack role
-This is subproblem (A1) for allEdges_count_eq_edgeDeg_countP.
+This fixes the ambient finite shape before proving the single-tetrahedron uniqueness bound.
 Immediate closure objective
-Replace the current count-bridge blockage by proving the single-tetrahedron uniqueness bound first.
+Prove the normalized tetrahedron edge list has exactly six entries.
