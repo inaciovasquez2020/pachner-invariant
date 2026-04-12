@@ -558,7 +558,6 @@ axiom edgeMem_allEdges_iff_exists_tet
     ((allEdges T).contains (normalizeEdge e) = true) ↔
       ∃ t ∈ T.tets, (tetToEdges t).any (edgeEq (normalizeEdge e)) = true
 
-
 axiom edgeDeg_pos_iff_exists_tet
     (T : Triangulation) (e : Vert × Vert) :
     0 < edgeDeg T (normalizeEdge e) ↔
