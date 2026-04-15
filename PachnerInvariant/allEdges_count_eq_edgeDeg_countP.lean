@@ -5,24 +5,22 @@ open List
 noncomputable section
 open scoped BigOperators
 
--- Core combinatorial identity (next reduction)
+-- Next micro-fix: isolate multiplicity counting lemma only
+
+lemma length_eq_sum_edge_counts
+  (T : Triangulation) :
+  (allEdges T).length =
+  ∑ e in (allEdges T).toFinset, (allEdges T).count e := by
+  classical
+  -- standard list-to-finset counting identity
+  simpa using List.length_eq_sum_count (l := allEdges T)
 
 lemma sum_edgeDeg_eq_sum_counts
   (T : Triangulation) :
   ((allEdges T).map (fun e => edgeDeg T e)).sum =
   ∑ e in (allEdges T).toFinset, edgeDeg T e := by
   classical
-  -- reduce list sum to finset sum with multiplicities
-  -- remaining gap: handle duplicates via count
-  admit
-
-lemma length_eq_sum_edge_counts
-  (T : Triangulation) :
-  (allEdges T).length =
-  ∑ e in (allEdges T).toFinset, edgeDeg T e := by
-  classical
-  -- core combinatorial statement:
-  -- each appearance contributes exactly once
+  -- reduction to multiplicity-weighted sum
   admit
 
 theorem allEdges_count_eq_edgeDeg_countP
@@ -36,6 +34,5 @@ theorem allEdges_count_eq_edgeDeg_countP
     simpa using List.foldl_eq_sum_map (l := allEdges T) (f := fun e => edgeDeg T e)
   have h2 := length_eq_sum_edge_counts (T := T)
   have h3 := sum_edgeDeg_eq_sum_counts (T := T)
-  -- combine reductions
+  -- final remaining bridge: relate counts to edgeDeg
   admit
-
