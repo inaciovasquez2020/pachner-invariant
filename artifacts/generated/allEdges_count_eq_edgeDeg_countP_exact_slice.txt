@@ -1,0 +1,25 @@
+331:(h : Valid23 T a b c p q) :
+332:edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+333:expectedEdgeDeg23 T a b c p q e := by
+334:rw [edgeDeg_pachner23_delta (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
+335:exact expectedEdgeDeg23_delta_normal_form (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
+336:
+337:axiom allEdges_count_eq_edgeDeg_countP
+338:    (T : Triangulation) (e : Vert × Vert) :
+339:    List.count (normalizeEdge e) (allEdges T) =
+340:      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
+341:
+342:theorem edgeDeg_eq_count_tets
+343:    (T : Triangulation) (e : Vert × Vert) :
+344:    edgeDeg T (normalizeEdge e) =
+345:      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+346:  rfl
+347:
+348:theorem count_zero_of_newEdgeAbsent
+349:    {T : Triangulation} {a b c p q : Vert}
+350:    (h : Valid23 T a b c p q) :
+351:    List.count (normalizeEdge (p,q)) (allEdges T) = 0 := by
+352:  have habs :
+353:      ¬ edgeMemNorm (p, q) (allEdges T) := h.right.right.right.right.right.right.right.right.right.right.right
+354:  simp [edgeMemNorm] at habs
+355:  apply List.count_eq_zero.mpr
