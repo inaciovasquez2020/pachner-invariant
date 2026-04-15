@@ -2,22 +2,30 @@ import PachnerInvariant.frontier
 
 open List
 
--- Replace axiom with theorem (weakest structural bridge)
+noncomputable section
+open scoped BigOperators
+
+-- Replace axiom with theorem (first real reduction step)
 
 theorem allEdges_count_eq_edgeDeg_countP
   (T : Triangulation) :
   (allEdges T).length =
   (allEdges T).foldl (fun acc e => acc + edgeDeg T e) 0 := by
   classical
-  -- structural reduction: rewrite as sum over counts
-  have h :
+
+  -- Step 1: convert foldl to sum
+  have h_fold :
     (allEdges T).foldl (fun acc e => acc + edgeDeg T e) 0
-    = ∑ e in (allEdges T).toFinset, edgeDeg T e := by
+    = (allEdges T).map (fun e => edgeDeg T e) |>.sum := by
+    simpa using List.foldl_eq_sum_map (l := allEdges T) (f := fun e => edgeDeg T e)
+
+  -- Step 2: rewrite sum over list as sum over multiplicities
+  -- This is the key combinatorial identity to finish:
+  have h_count :
+    (allEdges T).length =
+    (allEdges T).map (fun e => edgeDeg T e) |>.sum := by
+    -- remaining core combinatorial step
     admit
-  -- target identity reduces to counting multiplicities
-  have h2 :
-    (allEdges T).length
-    = ∑ e in (allEdges T).toFinset, edgeDeg T e := by
-    admit
-  exact by simpa [h, h2]
+
+  simpa [h_fold] using h_count
 
