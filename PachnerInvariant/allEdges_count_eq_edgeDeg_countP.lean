@@ -1,4 +1,6 @@
 import PachnerInvariant.frontier
+import PachnerInvariant.count_eq_edgeDeg_step1
+import PachnerInvariant.count_eq_edgeDeg_step2
 
 open List
 
@@ -16,7 +18,7 @@ lemma count_eq_edgeDeg
   have h :
     (allEdges T).count e =
     (List.filter (fun t => e ∈ edgesOfTet t) (allTets T)).length := by
-    admit
+    simpa using count_allEdges_eq_filter_tets_len (T := T) (e := e)
   have h2 :
     edgeDeg T e =
     (List.filter (fun t => e ∈ edgesOfTet t) (allTets T)).length := by
