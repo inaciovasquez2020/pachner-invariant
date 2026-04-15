@@ -1,3 +1,4 @@
+import PachnerInvariant.allEdges_count_eq_edgeDeg_countP
 import PachnerInvariant.descent_property
 
 namespace PachnerInvariant
