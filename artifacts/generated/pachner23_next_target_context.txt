@@ -1,0 +1,154 @@
+===== axiom allEdges_pachner23_count_delta @ 292 =====
+284:     (p ≠ q)) ∧
+285:    ((tetMemMod (a,b,c,p) T.tets ∧ tetMemMod (a,b,c,q) T.tets) ∧
+286:     (¬ tetMemMod (a,b,p,q) T.tets ∧
+287:      ¬ tetMemMod (a,c,p,q) T.tets ∧
+288:      ¬ tetMemMod (b,c,p,q) T.tets) ∧
+289:     ¬ edgeMemNorm (p,q) (allEdges T)) := by
+290:  exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
+291:
+292:axiom allEdges_pachner23_count_delta
+293:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+294:(h : Valid23 T a b c p q) :
+295:let e' := normalizeEdge e
+296:List.count e' (allEdges (pachner23 T a b c p q)) =
+297:List.count e' (allEdges T) +
+298:(if e' = normalizeEdge (p,q) then 3
+299:else if (boundaryEdges23 a b c).contains e' then 0
+300:else if (crossEdges23 a b c p q).contains e' then 1
+301:else 0) -
+302:(if (boundaryEdges23 a b c).contains e' then 1 else 0)
+303:
+304:axiom expectedEdgeDeg23_delta_normal_form
+305:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+306:(h : Valid23 T a b c p q) :
+307:let e' := normalizeEdge e
+308:edgeDeg T e' +
+309:(if e' = normalizeEdge (p,q) then 3
+310:else if (boundaryEdges23 a b c).contains e' then 0
+311:else if (crossEdges23 a b c p q).contains e' then 1
+312:else 0) -
+
+===== axiom expectedEdgeDeg23_delta_normal_form @ 304 =====
+296:List.count e' (allEdges (pachner23 T a b c p q)) =
+297:List.count e' (allEdges T) +
+298:(if e' = normalizeEdge (p,q) then 3
+299:else if (boundaryEdges23 a b c).contains e' then 0
+300:else if (crossEdges23 a b c p q).contains e' then 1
+301:else 0) -
+302:(if (boundaryEdges23 a b c).contains e' then 1 else 0)
+303:
+304:axiom expectedEdgeDeg23_delta_normal_form
+305:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+306:(h : Valid23 T a b c p q) :
+307:let e' := normalizeEdge e
+308:edgeDeg T e' +
+309:(if e' = normalizeEdge (p,q) then 3
+310:else if (boundaryEdges23 a b c).contains e' then 0
+311:else if (crossEdges23 a b c p q).contains e' then 1
+312:else 0) -
+313:(if (boundaryEdges23 a b c).contains e' then 1 else 0)
+314:=
+315:expectedEdgeDeg23 T a b c p q e
+316:
+317:axiom edgeDeg_pachner23_delta
+318:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+319:(h : Valid23 T a b c p q) :
+320:let e' := normalizeEdge e
+321:edgeDeg (pachner23 T a b c p q) e' =
+322:edgeDeg T e' +
+323:(if e' = normalizeEdge (p,q) then 3
+324:else if (boundaryEdges23 a b c).contains e' then 0
+
+===== axiom edgeDeg_pachner23_delta @ 317 =====
+309:(if e' = normalizeEdge (p,q) then 3
+310:else if (boundaryEdges23 a b c).contains e' then 0
+311:else if (crossEdges23 a b c p q).contains e' then 1
+312:else 0) -
+313:(if (boundaryEdges23 a b c).contains e' then 1 else 0)
+314:=
+315:expectedEdgeDeg23 T a b c p q e
+316:
+317:axiom edgeDeg_pachner23_delta
+318:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+319:(h : Valid23 T a b c p q) :
+320:let e' := normalizeEdge e
+321:edgeDeg (pachner23 T a b c p q) e' =
+322:edgeDeg T e' +
+323:(if e' = normalizeEdge (p,q) then 3
+324:else if (boundaryEdges23 a b c).contains e' then 0
+325:else if (crossEdges23 a b c p q).contains e' then 1
+326:else 0) -
+327:(if (boundaryEdges23 a b c).contains e' then 1 else 0)
+328:
+329:theorem edgeDeg_pachner23_eq_expected
+330:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+331:(h : Valid23 T a b c p q) :
+332:edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+333:expectedEdgeDeg23 T a b c p q e := by
+334:rw [edgeDeg_pachner23_delta (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
+335:exact expectedEdgeDeg23_delta_normal_form (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
+336:
+337:axiom allEdges_count_eq_edgeDeg_countP
+
+===== theorem edgeDeg_pachner23_eq_expected @ 329 =====
+321:edgeDeg (pachner23 T a b c p q) e' =
+322:edgeDeg T e' +
+323:(if e' = normalizeEdge (p,q) then 3
+324:else if (boundaryEdges23 a b c).contains e' then 0
+325:else if (crossEdges23 a b c p q).contains e' then 1
+326:else 0) -
+327:(if (boundaryEdges23 a b c).contains e' then 1 else 0)
+328:
+329:theorem edgeDeg_pachner23_eq_expected
+330:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+331:(h : Valid23 T a b c p q) :
+332:edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+333:expectedEdgeDeg23 T a b c p q e := by
+334:rw [edgeDeg_pachner23_delta (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
+335:exact expectedEdgeDeg23_delta_normal_form (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
+336:
+337:axiom allEdges_count_eq_edgeDeg_countP
+338:    (T : Triangulation) (e : Vert × Vert) :
+339:    List.count (normalizeEdge e) (allEdges T) =
+340:      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
+341:
+342:theorem edgeDeg_eq_count_tets
+343:    (T : Triangulation) (e : Vert × Vert) :
+344:    edgeDeg T (normalizeEdge e) =
+345:      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+346:  rfl
+347:
+348:theorem count_zero_of_newEdgeAbsent
+349:    {T : Triangulation} {a b c p q : Vert}
+
+===== axiom allEdges_count_eq_edgeDeg_countP @ 337 =====
+329:theorem edgeDeg_pachner23_eq_expected
+330:{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+331:(h : Valid23 T a b c p q) :
+332:edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+333:expectedEdgeDeg23 T a b c p q e := by
+334:rw [edgeDeg_pachner23_delta (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
+335:exact expectedEdgeDeg23_delta_normal_form (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
+336:
+337:axiom allEdges_count_eq_edgeDeg_countP
+338:    (T : Triangulation) (e : Vert × Vert) :
+339:    List.count (normalizeEdge e) (allEdges T) =
+340:      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
+341:
+342:theorem edgeDeg_eq_count_tets
+343:    (T : Triangulation) (e : Vert × Vert) :
+344:    edgeDeg T (normalizeEdge e) =
+345:      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+346:  rfl
+347:
+348:theorem count_zero_of_newEdgeAbsent
+349:    {T : Triangulation} {a b c p q : Vert}
+350:    (h : Valid23 T a b c p q) :
+351:    List.count (normalizeEdge (p,q)) (allEdges T) = 0 := by
+352:  have habs :
+353:      ¬ edgeMemNorm (p, q) (allEdges T) := h.right.right.right.right.right.right.right.right.right.right.right
+354:  simp [edgeMemNorm] at habs
+355:  apply List.count_eq_zero.mpr
+356:  intro he
+357:  by_cases hpq0 : p ≤ q
