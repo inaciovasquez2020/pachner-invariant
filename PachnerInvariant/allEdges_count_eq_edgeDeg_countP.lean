@@ -22,7 +22,7 @@ lemma count_eq_edgeDeg
   have h2 :
     edgeDeg T e =
     (List.filter (fun t => e ∈ edgesOfTet t) (allTets T)).length := by
-    admit
+    simpa using edgeDeg_eq_filter_tets_len (T := T) (e := e)
   simpa [h, h2]
 
 lemma sum_edgeDeg_eq_sum_counts
