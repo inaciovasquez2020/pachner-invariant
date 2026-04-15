@@ -7,4 +7,5 @@ lemma edgeDeg_eq_filter_tets_len
   edgeDeg T e =
   (List.filter (fun t => e ∈ edgesOfTet t) (allTets T)).length := by
   classical
+  -- reduce edgeDeg definition to counting incident tetrahedra
   admit
