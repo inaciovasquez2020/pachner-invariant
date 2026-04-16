@@ -52,14 +52,13 @@ def expectedEdgeDeg23
     edgeDeg T e'
 
 
-axiom vertDeg_pachner23_eq_expected
-    {T : Triangulation} {a b c p q v : Vert}
-    (h : Valid23 T a b c p q) :
-    vertDeg (pachner23 T a b c p q) v =
-      vertDeg T v +
-        (if v = p then 2
-         else if v = q then 2
-         else 0)
+theorem vertDeg_pachner23_eq_expected
+{T : Triangulation} {a b c p q : Vert} {v : Vert}
+(h : Valid23 T a b c p q) :
+vertexDeg (pachner23 T a b c p q) v =
+vertexDeg T v + expectedVertexDeg23Delta a b c p q v := by
+  admit
+
 axiom theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
