@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 
 import numpy as np
 
 Triangulation = Tuple[Tuple[int, int, int, int], ...]
+Move = Tuple[int, int]          # directed edge in sampled move graph
+Face = Tuple[int, ...]          # signed move-composition relation on C1 basis
 
 
 def canonical(T: Triangulation) -> Triangulation:
@@ -13,15 +15,19 @@ def canonical(T: Triangulation) -> Triangulation:
 
 
 def pachner23(T: Triangulation) -> Triangulation:
-    return canonical(((0,1,2,3),(0,1,3,4),(1,2,3,4),(2,0,3,4)))
+    if canonical(T) != canonical(((0, 1, 2, 3), (0, 1, 2, 4))):
+        return canonical(T)
+    return canonical(((0, 1, 2, 3), (0, 1, 3, 4), (1, 2, 3, 4)))
 
 
 def pachner32(T: Triangulation) -> Triangulation:
-    return canonical(((0,1,2,3),(0,1,2,4)))
+    if canonical(T) != canonical(((0, 1, 2, 3), (0, 1, 3, 4), (1, 2, 3, 4))):
+        return canonical(T)
+    return canonical(((0, 1, 2, 3), (0, 1, 2, 4)))
 
 
 def sample_triangulations() -> List[Triangulation]:
-    T0 = canonical(((0,1,2,3),(0,1,2,4)))
+    T0 = canonical(((0, 1, 2, 3), (0, 1, 2, 4)))
     T1 = pachner23(T0)
     return [T0, T1]
 
@@ -29,67 +35,71 @@ def sample_triangulations() -> List[Triangulation]:
 @dataclass
 class ChainComplex:
     vertices: List[Triangulation]
-    edges: List[Tuple[int,int]]
-    faces: List[Tuple[int,int,int]]  # compositional relations
+    edges: List[Move]
+    faces: List[Face]
 
 
 def build_chain_complex() -> ChainComplex:
-    Ts = sample_triangulations()
-    index = {T:i for i,T in enumerate(Ts)}
+    vertices = sample_triangulations()
+    index = {T: i for i, T in enumerate(vertices)}
 
-    edges: List[Tuple[int,int]] = []
-    for T in Ts:
-        i = index[T]
+    T0, T1 = vertices
+    assert pachner23(T0) == T1
+    assert pachner32(T1) == T0
 
-        T2 = pachner23(T)
-        if T2 in index:
-            edges.append((i, index[T2]))
+    edges: List[Move] = [
+        (index[T0], index[T1]),  # e0 : T0 -> T1
+        (index[T1], index[T0]),  # e1 : T1 -> T0
+    ]
 
-        T3 = pachner32(T)
-        if T3 in index:
-            edges.append((i, index[T3]))
+    # Genuine move-composition relation:
+    # the loop (T0 -> T1 -> T0) has zero boundary in C0.
+    faces: List[Face] = [
+        (1, 1),   # e0 + e1
+    ]
 
-    # simple compositional relation: 2-3 followed by 3-2
-    faces: List[Tuple[int,int,int]] = []
-    if len(edges) >= 2:
-        faces.append((0,1,0))
-
-    return ChainComplex(vertices=Ts, edges=edges, faces=faces)
+    return ChainComplex(vertices=vertices, edges=edges, faces=faces)
 
 
 def boundary_operator_1(cc: ChainComplex) -> np.ndarray:
     nV = len(cc.vertices)
     nE = len(cc.edges)
-    B = np.zeros((nV, nE), dtype=int)
-    for j,(u,v) in enumerate(cc.edges):
-        B[u,j] = -1
-        B[v,j] = 1
-    return B
+    B1 = np.zeros((nV, nE), dtype=int)
+    for j, (u, v) in enumerate(cc.edges):
+        B1[u, j] = -1
+        B1[v, j] = 1
+    return B1
 
 
 def boundary_operator_2(cc: ChainComplex) -> np.ndarray:
     nE = len(cc.edges)
     nF = len(cc.faces)
-    B = np.zeros((nE, nF), dtype=int)
-    for j,(a,b,c) in enumerate(cc.faces):
-        if a < nE: B[a,j] = 1
-        if b < nE: B[b,j] = -1
-        if c < nE: B[c,j] = 1
-    return B
+    B2 = np.zeros((nE, nF), dtype=int)
+    for j, face in enumerate(cc.faces):
+        for i, coeff in enumerate(face):
+            if i < nE:
+                B2[i, j] = coeff
+    return B2
+
+
+def kernel_dimension_B1(cc: ChainComplex) -> int:
+    B1 = boundary_operator_1(cc)
+    rank_B1 = np.linalg.matrix_rank(B1)
+    return B1.shape[1] - rank_B1
+
+
+def rank_B2(cc: ChainComplex) -> int:
+    B2 = boundary_operator_2(cc)
+    return np.linalg.matrix_rank(B2)
 
 
 def cohomology_H0_dimension(cc: ChainComplex) -> int:
     B1 = boundary_operator_1(cc)
-    rank = np.linalg.matrix_rank(B1)
-    return B1.shape[0] - rank
+    rank_im_d1 = np.linalg.matrix_rank(B1)
+    return B1.shape[0] - rank_im_d1
 
 
 def cohomology_H1_dimension(cc: ChainComplex) -> int:
-    B1 = boundary_operator_1(cc)
-    B2 = boundary_operator_2(cc)
-
-    rank_B1 = np.linalg.matrix_rank(B1)
-    rank_B2 = np.linalg.matrix_rank(B2)
-
-    nE = B1.shape[1]
-    return nE - rank_B1 - rank_B2
+    kdim = kernel_dimension_B1(cc)
+    r2 = rank_B2(cc)
+    return kdim - r2

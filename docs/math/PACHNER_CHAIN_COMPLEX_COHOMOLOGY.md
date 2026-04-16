@@ -1,16 +1,32 @@
 # Conditional: Extended Pachner chain complex
 
 Chain groups:
-C0 = triangulations
-C1 = Pachner moves
-C2 = move relations
+- \(C_0\): sampled triangulations
+- \(C_1\): directed Pachner moves
+- \(C_2\): genuine move-composition relations
 
 Boundary maps:
-∂1: C1 → C0
-∂2: C2 → C1
+\[
+\partial_1 : C_1 \to C_0,
+\qquad
+\partial_2 : C_2 \to C_1
+\]
 
-Cohomology:
-H0 = ker(∂0)/im(∂1)
-H1 = ker(∂1)/im(∂2)
+Chain-complex identity:
+\[
+\partial_1 \partial_2 = 0
+\]
 
-This extends the system from local kernel detection to true cohomological structure.
+Degree-one cohomology dimension is formed by
+\[
+\dim H^1 = \dim \ker(\partial_1) - \operatorname{rank}(\partial_2),
+\]
+provided
+\[
+\operatorname{im}(\partial_2)\subseteq \ker(\partial_1).
+\]
+
+In this sampled model, the \(C_2\) generator is a genuine move-composition loop:
+\[
+(T_0 \to T_1) + (T_1 \to T_0).
+\]
