@@ -569,7 +569,11 @@ e ∈ allEdges T ↔ ∃ t ∈ T.tets, e ∈ t.edges := by
 theorem edgeDeg_pos_iff_exists_tet
 {T : Triangulation} {e : Vert × Vert} :
 edgeDeg T e > 0 ↔ ∃ t ∈ T.tets, e ∈ t.edges := by
-  admit
+  constructor
+  · intro h
+    admit
+  · intro h
+    admit
 
 theorem edgeMem_allEdges_iff_edgeDeg_pos
     (T : Triangulation) (e : Vert × Vert) :
