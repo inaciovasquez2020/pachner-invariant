@@ -599,4 +599,5 @@ theorem allEdges_pachner23_count_delta
      else if (crossEdges23 a b c p q).contains e' then 1
      else 0) -
     (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  dsimp
   admit
