@@ -302,19 +302,16 @@ theorem Valid23.ready
   exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
 
 
-axiom expectedEdgeDeg23_delta_normal_form
+theorem expectedEdgeDeg23_delta_normal_form
 {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
 (h : Valid23 T a b c p q) :
-let e' := normalizeEdge e
-edgeDeg T e' +
-(if e' = normalizeEdge (p,q) then 3
-else if (boundaryEdges23 a b c).contains e' then 0
-else if (crossEdges23 a b c p q).contains e' then 1
-else 0) -
-(if (boundaryEdges23 a b c).contains e' then 1 else 0)
-=
-expectedEdgeDeg23 T a b c p q e
-
+expectedEdgeDeg23 T a b c p q e =
+edgeDeg T (normalizeEdge e) +
+(if normalizeEdge e = normalizeEdge (p,q) then 3
+ else if (crossEdges23 a b c p q).contains (normalizeEdge e) then 1
+ else 0) -
+(if (boundaryEdges23 a b c).contains (normalizeEdge e) then 1 else 0) := by
+  simp [expectedEdgeDeg23]
 
 theorem edgeDeg_pachner23_delta
   {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
