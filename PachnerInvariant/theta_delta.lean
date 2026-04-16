@@ -1,5 +1,6 @@
 import PachnerInvariant.frontier
 import PachnerInvariant.edge_incidence_delta
+import PachnerInvariant.edge_degree_delta
 
 namespace PachnerInvariant
 
