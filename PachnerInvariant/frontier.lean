@@ -446,12 +446,6 @@ theorem Valid23.newEdgeCase
           contradiction
 
 
-axiom List.count_bind
-    {α β : Type} [BEq α]
-    (x : α) (L : List β) (f : β → List α) :
-    List.count x ((List.map f L).flatten) =
-      (L.map (fun t => List.count x (f t))).sum
-
 
 theorem normalizeEdge_eq_iff
     {a b c d : Vert} :
