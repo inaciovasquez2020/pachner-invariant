@@ -1,4 +1,5 @@
 import PachnerInvariant.frontier
+import PachnerInvariant.structural_identities
 import PachnerInvariant.count_eq_edgeDeg_step1
 import PachnerInvariant.count_eq_edgeDeg_step2
 
