@@ -17,7 +17,7 @@ lemma count_edgesOfTet_eq_indicator
   classical
   by_cases h : e ∈ edgesOfTet t
   · have hnodup : (edgesOfTet t).Nodup := by
-      admit
+      exact edgesOfTet_nodup t
     have hmem : e ∈ edgesOfTet t := h
     simpa [h] using List.count_eq_one_of_mem hnodup hmem
   · have hnotmem : e ∉ edgesOfTet t := h
