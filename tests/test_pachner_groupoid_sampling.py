@@ -5,13 +5,15 @@ from PachnerInvariant.pachner_groupoid_sampling import (
     kernel_dimension,
     rank,
     connected_components,
+    cycle_space_dimension,
+    H1_dimension,
 )
 
 def test_groupoid_build():
     sample = build_groupoid_sample()
-    assert len(sample.vertices) >= 5
-    assert len(sample.edges) >= 10
-    assert len(sample.paths2) >= 1
+    assert len(sample.vertices) >= 7
+    assert len(sample.edges) >= 20
+    assert len(sample.paths2) >= 5
 
 def test_incidence_matrix():
     sample = build_groupoid_sample()
@@ -38,3 +40,13 @@ def test_connected_components_positive():
     sample = build_groupoid_sample()
     c = connected_components(sample)
     assert c >= 1
+
+def test_cycle_space_dimension():
+    sample = build_groupoid_sample()
+    d = cycle_space_dimension(sample)
+    assert d >= 0
+
+def test_H1_dimension_nonnegative():
+    sample = build_groupoid_sample()
+    h1 = H1_dimension(sample)
+    assert h1 >= 0

@@ -17,10 +17,10 @@ Chain identity:
 \partial_1 \partial_2 = 0
 \]
 
-All \(C_2\) generators are filtered by the exact condition
-\[
-\partial_1(f)=0.
-\]
+The sampled model now includes:
+- a distinct extra triangulation vertex type,
+- higher-length closed Pachner loops,
+- comparison of \(H_1\) over \(\mathbb Z\) and \(\mathbb Q\).
 
 Structural objects:
 \[
@@ -28,4 +28,8 @@ Structural objects:
 H_1 = \ker(\partial_1)/\operatorname{im}(\partial_2).
 \]
 
-Integral analysis is performed via Smith normal form over \(\mathbb{Z}\), after removing every face that violates the chain identity.
+Smith normal form of the induced presentation on \(\ker(\partial_1)\) extracts:
+- invariant factors of \(H_1\),
+- free rank over \(\mathbb Z\),
+- torsion data,
+- comparison with rational rank over \(\mathbb Q\).
