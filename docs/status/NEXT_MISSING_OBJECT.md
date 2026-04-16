@@ -2,16 +2,18 @@
 
 Status: OPEN
 
-Immediate missing object:
-Edge-incidence delta lemma:
+Immediate missing objects:
 
-`edge_incidence_delta_lemma`
+O1. Edge-incidence delta theorem
+- witness surface: `edge_incidence_delta_lemma`
 
-Dependency link (still active):
-`theta_pachner23_delta`
+O2. Vertex-incidence delta theorem
+- witness surface: `vertex_incidence_delta_lemma`
+
+Dependency link:
+theta_pachner23_delta
 
 Next targets:
-1. vertex-incidence delta lemma
-2. edge-degree delta formula
-3. vertex-degree delta formula
-4. ΔΘ expansion theorem
+3. edge-degree delta formula
+4. vertex-degree delta formula
+5. ΔΘ expansion theorem
