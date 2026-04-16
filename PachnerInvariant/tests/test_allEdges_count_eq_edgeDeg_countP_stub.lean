@@ -1,3 +1,9 @@
+import PachnerInvariant.frontier
 import PachnerInvariant.allEdges_count_eq_edgeDeg_countP
+import PachnerInvariant.structural_identities
 
 #check allEdges_count_eq_edgeDeg_countP
+#check count_eq_edgeDeg
+#check count_allEdges_eq_filter_tets_len
+#check edgeDeg_eq_incidence_count
+#check count_edgesOfTet_eq_indicator
