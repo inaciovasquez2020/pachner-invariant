@@ -57,7 +57,11 @@ theorem vertDeg_pachner23_eq_expected
 (h : Valid23 T a b c p q) :
 vertexDeg (pachner23 T a b c p q) v =
 vertexDeg T v + expectedVertexDeg23Delta a b c p q v := by
-  admit
+  by_cases hvp : v = p
+  · simp [hvp]
+  · by_cases hvq : v = q
+    · simp [hvp, hvq]
+    · simp [hvp, hvq]
 
 axiom theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
