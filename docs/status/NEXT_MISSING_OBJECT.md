@@ -10,6 +10,7 @@ Witness surfaces:
 - localEdgeClass
 - edge_incidence_delta_lemma
 - edgeDeltaValue
+- nonlocal_edge_incidence_zero
 
 Local edge set:
 {a,b}, {b,c}, {c,a},
