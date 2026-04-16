@@ -2,18 +2,21 @@
 
 Status: OPEN
 
-Immediate missing objects:
+Immediate missing object:
 
-O1. Edge-incidence delta theorem
-- witness surface: `edge_incidence_delta_lemma`
+Explicit classification:
+Edge → Δ_inc(e) ∈ {-2,-1,0,1,2}
 
-O2. Vertex-incidence delta theorem
-- witness surface: `vertex_incidence_delta_lemma`
+Witness surface:
+edge_incidence_delta_lemma
+
+Current state:
+Range proven, classification missing.
 
 Dependency link:
 theta_pachner23_delta
 
 Next targets:
-3. edge-degree delta formula
-4. vertex-degree delta formula
-5. ΔΘ expansion theorem
+- edge-degree delta formula
+- vertex-degree delta formula
+- ΔΘ expansion theorem
