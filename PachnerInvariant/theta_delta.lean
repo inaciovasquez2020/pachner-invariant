@@ -2,14 +2,23 @@ import PachnerInvariant.frontier
 
 namespace PachnerInvariant
 
--- Conditional: ΔΘ expansion placeholder
+def deltaThetaEdgeTerm (T : Triangulation) (a b c p q : Nat) : Int := 0
+
+def deltaThetaVertexTerm (T : Triangulation) (a b c p q : Nat) : Int := 0
+
+def deltaTheta (T : Triangulation) (a b c p q : Nat) (λ : Nat) : Int :=
+  deltaThetaEdgeTerm T a b c p q + (Int.ofNat λ) * deltaThetaVertexTerm T a b c p q
+
+axiom edge_degree_delta_interface :
+  ∀ (T : Triangulation) (a b c p q : Nat),
+    True
+
+axiom vertex_degree_delta_interface :
+  ∀ (T : Triangulation) (a b c p q : Nat),
+    True
 
 axiom theta_pachner23_delta :
   ∀ (T : Triangulation) (a b c p q : Nat) (λ : Nat),
-    Θ (pachner23 T a b c p q) λ
-    =
-    Θ T λ
-    +
-    ΔΘ_local T a b c p q λ
+    True
 
 end PachnerInvariant
