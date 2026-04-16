@@ -335,11 +335,6 @@ expectedEdgeDeg23 T a b c p q e := by
 rw [edgeDeg_pachner23_delta (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
 exact expectedEdgeDeg23_delta_normal_form (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
 
-axiom allEdges_count_eq_edgeDeg_countP
-    (T : Triangulation) (e : Vert × Vert) :
-    List.count (normalizeEdge e) (allEdges T) =
-      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
-
 theorem edgeDeg_eq_count_tets
     (T : Triangulation) (e : Vert × Vert) :
     edgeDeg T (normalizeEdge e) =
