@@ -8,7 +8,7 @@ deriving DecidableEq, Repr
 
 def edgeIncidenceDelta
   (T : Triangulation) (a b c p q : Nat) (e : Edge) : EdgeDelta :=
-EdgeDelta.zero
+  EdgeDelta.zero
 
 theorem edge_incidence_delta_lemma :
   ∀ (T : Triangulation) (a b c p q : Nat) (e : Edge),

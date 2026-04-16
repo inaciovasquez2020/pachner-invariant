@@ -4,19 +4,24 @@ Status: OPEN
 
 Immediate missing object:
 
-Explicit classification:
-Edge → Δ_inc(e) ∈ {-2,-1,0,1,2}
+Explicit local classification:
+Edge -> LocalEdgeClass -> Δ_inc(e) ∈ {-2,-1,0,1,2}
 
-Witness surface:
-edge_incidence_delta_lemma
+Witness surfaces:
+- edge_incidence_delta_lemma
+- localEdgeClass
+- edgeDeltaValue
 
 Current state:
-Range proven, classification missing.
+Range and class surfaces are present.
+Explicit combinatorial assignment is missing.
 
 Dependency link:
 theta_pachner23_delta
 
 Next targets:
+- nonlocal-support theorem
+- exact local edge classification theorem
 - edge-degree delta formula
 - vertex-degree delta formula
 - ΔΘ expansion theorem
