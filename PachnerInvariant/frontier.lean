@@ -591,7 +591,11 @@ lemma List.count_bind
   {α β : Type} [DecidableEq β]
   (f : α → List β) (l : List α) (x : β) :
   (l.bind f).count x = (l.map (fun a => (f a).count x)).sum := by
-  admit
+  induction l with
+  | nil =>
+      simp
+  | cons a t ih =>
+      simp [List.bind, List.count_append, ih, Nat.add_comm, Nat.add_left_comm, Nat.add_assoc]
 
 theorem allEdges_pachner23_count_delta
   {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
