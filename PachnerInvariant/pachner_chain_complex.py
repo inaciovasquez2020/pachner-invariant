@@ -6,30 +6,19 @@ from typing import List, Tuple
 import numpy as np
 
 Triangulation = Tuple[Tuple[int, int, int, int], ...]
-Move = Tuple[int, int]          # directed edge in sampled move graph
-Face = Tuple[int, ...]          # signed move-composition relation on C1 basis
+Move = Tuple[int, int]
+Face = Tuple[int, ...]
 
 
 def canonical(T: Triangulation) -> Triangulation:
     return tuple(sorted(tuple(sorted(t)) for t in T))
 
 
-def pachner23(T: Triangulation) -> Triangulation:
-    if canonical(T) != canonical(((0, 1, 2, 3), (0, 1, 2, 4))):
-        return canonical(T)
-    return canonical(((0, 1, 2, 3), (0, 1, 3, 4), (1, 2, 3, 4)))
-
-
-def pachner32(T: Triangulation) -> Triangulation:
-    if canonical(T) != canonical(((0, 1, 2, 3), (0, 1, 3, 4), (1, 2, 3, 4))):
-        return canonical(T)
-    return canonical(((0, 1, 2, 3), (0, 1, 2, 4)))
-
-
 def sample_triangulations() -> List[Triangulation]:
     T0 = canonical(((0, 1, 2, 3), (0, 1, 2, 4)))
-    T1 = pachner23(T0)
-    return [T0, T1]
+    T1 = canonical(((0, 1, 2, 3), (0, 1, 3, 4), (1, 2, 3, 4)))
+    T2 = canonical(((0, 1, 2, 4), (0, 2, 3, 4), (1, 2, 3, 4)))
+    return [T0, T1, T2]
 
 
 @dataclass
@@ -41,21 +30,20 @@ class ChainComplex:
 
 def build_chain_complex() -> ChainComplex:
     vertices = sample_triangulations()
-    index = {T: i for i, T in enumerate(vertices)}
-
-    T0, T1 = vertices
-    assert pachner23(T0) == T1
-    assert pachner32(T1) == T0
 
     edges: List[Move] = [
-        (index[T0], index[T1]),  # e0 : T0 -> T1
-        (index[T1], index[T0]),  # e1 : T1 -> T0
+        (0, 1),  # e0
+        (1, 0),  # e1
+        (1, 2),  # e2
+        (2, 1),  # e3
+        (0, 2),  # e4
+        (2, 0),  # e5
     ]
 
-    # Genuine move-composition relation:
-    # the loop (T0 -> T1 -> T0) has zero boundary in C0.
     faces: List[Face] = [
-        (1, 1),   # e0 + e1
+        (1, 1, 0, 0, 0, 0),   # e0 + e1
+        (0, 0, 1, 1, 0, 0),   # e2 + e3
+        (0, 0, 0, 0, 1, 1),   # e4 + e5
     ]
 
     return ChainComplex(vertices=vertices, edges=edges, faces=faces)
@@ -82,24 +70,80 @@ def boundary_operator_2(cc: ChainComplex) -> np.ndarray:
     return B2
 
 
-def kernel_dimension_B1(cc: ChainComplex) -> int:
+def integer_nullspace_basis(M: np.ndarray) -> List[np.ndarray]:
+    M = np.asarray(M, dtype=float)
+    u, s, vh = np.linalg.svd(M)
+    rank = int((s > 1e-10).sum())
+    basis: List[np.ndarray] = []
+    for row in vh[rank:]:
+        rounded = np.rint(row).astype(int)
+        if np.allclose(M @ rounded, 0):
+            basis.append(rounded)
+        else:
+            scaled = row / np.max(np.abs(row[np.abs(row) > 1e-12]))
+            candidate = np.rint(10 * scaled).astype(int)
+            if np.allclose(M @ candidate, 0):
+                basis.append(candidate)
+    cleaned: List[np.ndarray] = []
+    for v in basis:
+        if not any(np.array_equal(v, w) for w in cleaned):
+            cleaned.append(v)
+    return cleaned
+
+
+def kernel_basis_B1(cc: ChainComplex) -> List[np.ndarray]:
     B1 = boundary_operator_1(cc)
-    rank_B1 = np.linalg.matrix_rank(B1)
-    return B1.shape[1] - rank_B1
+    return integer_nullspace_basis(B1)
+
+
+def image_basis_B2(cc: ChainComplex) -> List[np.ndarray]:
+    B2 = boundary_operator_2(cc)
+    cols = [B2[:, j].astype(int) for j in range(B2.shape[1])]
+    basis: List[np.ndarray] = []
+    if not cols:
+        return basis
+    current = np.zeros((B2.shape[0], 0), dtype=int)
+    current_rank = 0
+    for col in cols:
+        trial = np.column_stack([current, col]) if current.size else col.reshape(-1, 1)
+        rank = np.linalg.matrix_rank(trial.astype(float))
+        if rank > current_rank:
+            basis.append(col)
+            current = trial
+            current_rank = rank
+    return basis
+
+
+def kernel_dimension_B1(cc: ChainComplex) -> int:
+    return len(kernel_basis_B1(cc))
 
 
 def rank_B2(cc: ChainComplex) -> int:
-    B2 = boundary_operator_2(cc)
-    return np.linalg.matrix_rank(B2)
+    return len(image_basis_B2(cc))
 
 
 def cohomology_H0_dimension(cc: ChainComplex) -> int:
     B1 = boundary_operator_1(cc)
-    rank_im_d1 = np.linalg.matrix_rank(B1)
+    rank_im_d1 = np.linalg.matrix_rank(B1.astype(float))
     return B1.shape[0] - rank_im_d1
 
 
+def vector_in_span(v: np.ndarray, basis: List[np.ndarray]) -> bool:
+    if not basis:
+        return np.all(v == 0)
+    A = np.column_stack(basis).astype(float)
+    x, _, _, _ = np.linalg.lstsq(A, v.astype(float), rcond=None)
+    return np.allclose(A @ x, v.astype(float))
+
+
 def cohomology_H1_dimension(cc: ChainComplex) -> int:
-    kdim = kernel_dimension_B1(cc)
-    r2 = rank_B2(cc)
-    return kdim - r2
+    return kernel_dimension_B1(cc) - rank_B2(cc)
+
+
+def explicit_H1_representative(cc: ChainComplex) -> np.ndarray | None:
+    ker_basis = kernel_basis_B1(cc)
+    im_basis = image_basis_B2(cc)
+    for w in ker_basis:
+        if not vector_in_span(w, im_basis):
+            return w
+    return None

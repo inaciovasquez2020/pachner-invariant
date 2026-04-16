@@ -2,8 +2,8 @@
 
 Chain groups:
 - \(C_0\): sampled triangulations
-- \(C_1\): directed Pachner moves
-- \(C_2\): genuine move-composition relations
+- \(C_1\): directed Pachner paths
+- \(C_2\): independent move-composition relations
 
 Boundary maps:
 \[
@@ -12,21 +12,26 @@ Boundary maps:
 \partial_2 : C_2 \to C_1
 \]
 
-Chain-complex identity:
+Chain identity:
 \[
 \partial_1 \partial_2 = 0
 \]
 
-Degree-one cohomology dimension is formed by
+Explicit cycle space:
 \[
-\dim H^1 = \dim \ker(\partial_1) - \operatorname{rank}(\partial_2),
-\]
-provided
-\[
-\operatorname{im}(\partial_2)\subseteq \ker(\partial_1).
+\ker(\partial_1)
 \]
 
-In this sampled model, the \(C_2\) generator is a genuine move-composition loop:
+Explicit relation space:
 \[
-(T_0 \to T_1) + (T_1 \to T_0).
+\operatorname{im}(\partial_2)
 \]
+
+Degree-one cohomology:
+\[
+H^1 = \ker(\partial_1) / \operatorname{im}(\partial_2),
+\qquad
+\dim H^1 = \dim \ker(\partial_1) - \operatorname{rank}(\partial_2)
+\]
+
+This sampled model now uses at least three non-isomorphic triangulations and multiple independent Pachner path relations.
