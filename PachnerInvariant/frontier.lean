@@ -562,11 +562,10 @@ theorem edgeMem_allEdges_iff_exists_tet
 e ∈ allEdges T ↔ ∃ t ∈ T.tets, e ∈ t.edges := by
   admit
 
-axiom edgeDeg_pos_iff_exists_tet
-    (T : Triangulation) (e : Vert × Vert) :
-    0 < edgeDeg T (normalizeEdge e) ↔
-      ∃ t ∈ T.tets, (tetToEdges t).any (edgeEq (normalizeEdge e)) = true
-
+theorem edgeDeg_pos_iff_exists_tet
+{T : Triangulation} {e : Vert × Vert} :
+edgeDeg T e > 0 ↔ ∃ t ∈ T.tets, e ∈ t.edges := by
+  admit
 
 theorem edgeMem_allEdges_iff_edgeDeg_pos
     (T : Triangulation) (e : Vert × Vert) :
