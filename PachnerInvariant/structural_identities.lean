@@ -4,30 +4,25 @@ open List
 
 noncomputable section
 
--- Identity 1
 lemma allEdges_eq_bind_edgesOfTet
   (T : Triangulation) :
   allEdges T = (allTets T).bind edgesOfTet := by
   classical
   rfl
 
--- Local multiplicity lemma (final remaining local fact)
 lemma count_edgesOfTet_eq_indicator
   (t : Tet) (e : Edge) :
   (edgesOfTet t).count e =
     (if e ∈ edgesOfTet t then 1 else 0) := by
   classical
   by_cases h : e ∈ edgesOfTet t
-  · -- e appears exactly once in the edge list of a tetrahedron
-    have : (edgesOfTet t).count e = 1 := by
+  · have hnodup : (edgesOfTet t).Nodup := by
       admit
-    simp [h, this]
-  · -- e does not appear
-    have : (edgesOfTet t).count e = 0 := by
-      admit
-    simp [h, this]
+    have hmem : e ∈ edgesOfTet t := h
+    simpa [h] using List.count_eq_one_of_mem hnodup hmem
+  · have hnotmem : e ∉ edgesOfTet t := h
+    simpa [h] using List.count_eq_zero_of_not_mem hnotmem
 
--- Identity 2
 lemma edgeDeg_eq_incidence_count
   (T : Triangulation) (e : Edge) :
   edgeDeg T e =
@@ -35,26 +30,45 @@ lemma edgeDeg_eq_incidence_count
   classical
   rfl
 
--- Bind-count reduction
+lemma count_bind_edgesOfTet_eq_sum_indicators
+  (L : List Tet) (e : Edge) :
+  (L.bind edgesOfTet).count e =
+  (L.map (fun t => if e ∈ edgesOfTet t then 1 else 0)).sum := by
+  classical
+  induction L with
+  | nil =>
+      simp
+  | cons t ts ih =>
+      rw [List.bind, List.count_append, ih, count_edgesOfTet_eq_indicator]
+      simp
+
+lemma sum_indicators_eq_filter_length
+  (L : List Tet) (e : Edge) :
+  (L.map (fun t => if e ∈ edgesOfTet t then 1 else 0)).sum =
+  (List.filter (fun t => e ∈ edgesOfTet t) L).length := by
+  classical
+  induction L with
+  | nil =>
+      simp
+  | cons t ts ih =>
+      by_cases h : e ∈ edgesOfTet t
+      · simp [h, ih]
+      · simp [h, ih]
+
 lemma count_allEdges_eq_filter_tets_len
   (T : Triangulation) (e : Edge) :
   (allEdges T).count e =
   (List.filter (fun t => e ∈ edgesOfTet t) (allTets T)).length := by
   classical
-  have h := allEdges_eq_bind_edgesOfTet (T := T)
-  -- count over bind = sum of counts
-  have :
-    (allEdges T).count e =
-    ((allTets T).bind edgesOfTet).count e := by simpa [h]
-  -- reduce to sum over tets using indicator lemma
-  admit
+  rw [allEdges_eq_bind_edgesOfTet]
+  rw [count_bind_edgesOfTet_eq_sum_indicators]
+  exact sum_indicators_eq_filter_length (L := allTets T) (e := e)
 
--- Final bridge
 lemma count_eq_edgeDeg
   (T : Triangulation) (e : Edge) :
   (allEdges T).count e = edgeDeg T e := by
   classical
-  have h1 := count_allEdges_eq_filter_tets_len (T := T) (e := e)
-  have h2 := edgeDeg_eq_incidence_count (T := T) (e := e)
-  simpa [h2] using h1
+  rw [count_allEdges_eq_filter_tets_len]
+  symm
+  exact edgeDeg_eq_incidence_count (T := T) (e := e)
 
