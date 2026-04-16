@@ -3,12 +3,15 @@
 Status: OPEN
 
 Immediate missing object:
-A proved intermediate lemma chain replacing the placeholder axiom
-`theta_pachner23_delta` in `PachnerInvariant/theta_delta.lean`.
+Edge-incidence delta lemma:
 
-Required subchain:
-1. local edge-incidence delta lemma
-2. local vertex-incidence delta lemma
-3. edge-degree delta formula
-4. vertex-degree delta formula
-5. ΔΘ expansion theorem
+`edge_incidence_delta_lemma`
+
+Dependency link (still active):
+`theta_pachner23_delta`
+
+Next targets:
+1. vertex-incidence delta lemma
+2. edge-degree delta formula
+3. vertex-degree delta formula
+4. ΔΘ expansion theorem
