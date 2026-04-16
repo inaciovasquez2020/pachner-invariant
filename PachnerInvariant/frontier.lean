@@ -608,4 +608,7 @@ theorem allEdges_pachner23_count_delta
      else 0) -
     (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
   dsimp
-  admit
+  rw [allEdges_count_eq_edgeDeg_countP (T := pachner23 T a b c p q) (e := normalizeEdge e)]
+  rw [allEdges_count_eq_edgeDeg_countP (T := T) (e := normalizeEdge e)]
+  exact tetIncidence_pachner23_delta
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
