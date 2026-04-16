@@ -315,23 +315,25 @@ else 0) -
 =
 expectedEdgeDeg23 T a b c p q e
 
-axiom edgeDeg_pachner23_delta
-{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
-(h : Valid23 T a b c p q) :
-let e' := normalizeEdge e
-edgeDeg (pachner23 T a b c p q) e' =
-edgeDeg T e' +
-(if e' = normalizeEdge (p,q) then 3
-else if (boundaryEdges23 a b c).contains e' then 0
-else if (crossEdges23 a b c p q).contains e' then 1
-else 0) -
-(if (boundaryEdges23 a b c).contains e' then 1 else 0)
 
-theorem edgeDeg_pachner23_eq_expected
-{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
-(h : Valid23 T a b c p q) :
-edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
-expectedEdgeDeg23 T a b c p q e := by
+theorem edgeDeg_pachner23_delta
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (h : Valid23 T a b c p q) :
+  let e' := normalizeEdge e
+  edgeDeg (pachner23 T a b c p q) e' =
+    edgeDeg T e' +
+    (if e' = normalizeEdge (p,q) then 3
+     else if (crossEdges23 a b c p q).contains e' then 1
+     else 0) -
+    (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  dsimp
+  rw [← allEdges_count_eq_edgeDeg_countP (T := pachner23 T a b c p q) (e := normalizeEdge e)]
+  rw [← allEdges_count_eq_edgeDeg_countP (T := T) (e := normalizeEdge e)]
+  simpa using
+    allEdges_pachner23_count_delta
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
+
+
 rw [edgeDeg_pachner23_delta (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
 exact expectedEdgeDeg23_delta_normal_form (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h
 
