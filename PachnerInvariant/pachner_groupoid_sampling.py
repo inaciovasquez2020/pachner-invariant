@@ -23,6 +23,7 @@ def generate_extended_triangulations() -> List[Triangulation]:
         ((0,1,2,5),(0,2,3,5),(1,2,4,5),(2,3,4,5)),
         ((0,1,3,5),(0,3,4,5),(1,2,3,5),(2,3,4,5)),
         ((0,2,3,6),(0,1,2,6),(1,2,4,6),(2,3,4,6)),
+        ((0,1,2,7),(0,2,3,7),(1,2,4,7),(2,3,4,7)),
     ]
     return [canonical(T) for T in base]
 
@@ -109,3 +110,27 @@ def connected_components(sample: GroupoidSample) -> int:
                     seen[y] = True
                     stack.append(y)
     return comps
+
+
+def cycle_space_dimension(sample: GroupoidSample) -> int:
+    B1 = incidence_matrix(sample)
+    return kernel_dimension(B1)
+
+
+def H1_dimension(sample: GroupoidSample) -> int:
+    B1 = incidence_matrix(sample)
+    B2 = path_boundary_matrix(sample)
+
+    valid_cols = []
+    for j in range(B2.cols):
+        col = B2[:, j]
+        if B1 * col == sp.zeros(B1.rows, 1):
+            valid_cols.append(col)
+
+    if valid_cols:
+        B2_valid = sp.Matrix.hstack(*valid_cols)
+        valid_rank = rank(B2_valid)
+    else:
+        valid_rank = 0
+
+    return kernel_dimension(B1) - valid_rank
