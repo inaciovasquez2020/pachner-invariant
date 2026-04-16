@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "Pachner Invariant: Full Frontier Closure"
+authors:
+  - family-names: "Vasquez"
+    given-names: "Inacio F."
+date-released: 2026
+version: "1.0"
+repository-code: "https://github.com/inaciovasquez2020/pachner-invariant"
+abstract: "Executable formalization and closure of the Pachner invariant frontier."
