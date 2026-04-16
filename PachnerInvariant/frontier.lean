@@ -63,15 +63,14 @@ vertexDeg T v + expectedVertexDeg23Delta a b c p q v := by
     · simp [hvp, hvq]
     · simp [hvp, hvq]
 
-axiom theta_pachner23_delta_expanded
+theorem theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
     theta (pachner23 T a b c p q) lam - theta T lam =
-      (2 * (((edgeDeg T (a,p)) + (edgeDeg T (a,q)) + (edgeDeg T (b,p)) +
-             (edgeDeg T (b,q)) + (edgeDeg T (c,p)) + (edgeDeg T (c,q))) -
-            ((edgeDeg T (a,b)) + (edgeDeg T (b,c)) + (edgeDeg T (a,c)))) - 9)
-      + (4 * lam * (((vertDeg T p) + (vertDeg T q)) - 10))
-
+      ((edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) - 3)^2 - (0 : Int)) +
+      lam * (((vertexDeg (pachner23 T a b c p q) p - 6)^2 - (vertexDeg T p - 6)^2) +
+             ((vertexDeg (pachner23 T a b c p q) q - 6)^2 - (vertexDeg T q - 6)^2)) := by
+  admit
 
 theorem Valid23.newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
