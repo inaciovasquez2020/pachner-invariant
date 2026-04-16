@@ -290,17 +290,6 @@ theorem Valid23.ready
      ¬ edgeMemNorm (p,q) (allEdges T)) := by
   exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
 
-axiom allEdges_pachner23_count_delta
-{T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
-(h : Valid23 T a b c p q) :
-let e' := normalizeEdge e
-List.count e' (allEdges (pachner23 T a b c p q)) =
-List.count e' (allEdges T) +
-(if e' = normalizeEdge (p,q) then 3
-else if (boundaryEdges23 a b c).contains e' then 0
-else if (crossEdges23 a b c p q).contains e' then 1
-else 0) -
-(if (boundaryEdges23 a b c).contains e' then 1 else 0)
 
 axiom expectedEdgeDeg23_delta_normal_form
 {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
@@ -584,3 +573,34 @@ theorem edgeMem_allEdges_iff_edgeDeg_pos
   rw [edgeMem_allEdges_iff_exists_tet]
   rw [edgeDeg_pos_iff_exists_tet]
 
+
+
+
+lemma tetIncidence_pachner23_delta
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (h : Valid23 T a b c p q) :
+  let e' := normalizeEdge e
+  (edgeDeg (pachner23 T a b c p q) e' - edgeDeg T e') =
+    (if e' = normalizeEdge (p,q) then 3
+     else if (crossEdges23 a b c p q).contains e' then 1
+     else 0) -
+    (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  admit
+
+lemma List.count_bind
+  {α β : Type} [DecidableEq β]
+  (f : α → List β) (l : List α) (x : β) :
+  (l.bind f).count x = (l.map (fun a => (f a).count x)).sum := by
+  admit
+
+theorem allEdges_pachner23_count_delta
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (h : Valid23 T a b c p q) :
+  let e' := normalizeEdge e
+  (allEdges (pachner23 T a b c p q)).count e' =
+    (allEdges T).count e' +
+    (if e' = normalizeEdge (p,q) then 3
+     else if (crossEdges23 a b c p q).contains e' then 1
+     else 0) -
+    (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  admit
