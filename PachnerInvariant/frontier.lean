@@ -562,9 +562,11 @@ theorem edgeMem_allEdges_iff_exists_tet
 e ∈ allEdges T ↔ ∃ t ∈ T.tets, e ∈ t.edges := by
   constructor
   · intro h
-    admit
+    rcases h with ⟨t, ht, hmem⟩
+    exact ⟨t, ht, hmem⟩
   · intro h
-    admit
+    rcases h with ⟨t, ht, hmem⟩
+    exact ⟨t, ht, hmem⟩
 
 theorem edgeDeg_pos_iff_exists_tet
 {T : Triangulation} {e : Vert × Vert} :
