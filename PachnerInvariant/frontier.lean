@@ -560,7 +560,11 @@ theorem edgeEq_true_iff
 theorem edgeMem_allEdges_iff_exists_tet
 {T : Triangulation} {e : Vert × Vert} :
 e ∈ allEdges T ↔ ∃ t ∈ T.tets, e ∈ t.edges := by
-  admit
+  constructor
+  · intro h
+    admit
+  · intro h
+    admit
 
 theorem edgeDeg_pos_iff_exists_tet
 {T : Triangulation} {e : Vert × Vert} :
