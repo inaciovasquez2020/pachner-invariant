@@ -581,7 +581,11 @@ lemma tetIncidence_pachner23_delta
     (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
   by_cases hpq : normalizeEdge e = normalizeEdge (p,q)
   · simp [hpq]
-  · admit
+  · by_cases hcross : (crossEdges23 a b c p q).contains (normalizeEdge e)
+    · simp [hpq, hcross]
+    · by_cases hbdry : (boundaryEdges23 a b c).contains (normalizeEdge e)
+      · simp [hpq, hcross, hbdry]
+      · simp [hpq, hcross, hbdry]
 
 lemma List.count_bind
   {α β : Type} [DecidableEq β]
