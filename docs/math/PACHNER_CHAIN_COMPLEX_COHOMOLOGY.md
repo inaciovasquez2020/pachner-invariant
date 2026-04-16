@@ -1,9 +1,9 @@
-# Conditional: Extended Pachner chain complex
+# Conditional: Integral Pachner chain complex
 
 Chain groups:
 - \(C_0\): sampled triangulations
 - \(C_1\): directed Pachner paths
-- \(C_2\): independent move-composition relations
+- \(C_2\): closed signed cycles in the move graph
 
 Boundary maps:
 \[
@@ -17,21 +17,15 @@ Chain identity:
 \partial_1 \partial_2 = 0
 \]
 
-Explicit cycle space:
+All \(C_2\) generators are filtered by the exact condition
 \[
-\ker(\partial_1)
+\partial_1(f)=0.
 \]
 
-Explicit relation space:
+Structural objects:
 \[
-\operatorname{im}(\partial_2)
+\ker(\partial_1), \qquad \operatorname{im}(\partial_2), \qquad
+H_1 = \ker(\partial_1)/\operatorname{im}(\partial_2).
 \]
 
-Degree-one cohomology:
-\[
-H^1 = \ker(\partial_1) / \operatorname{im}(\partial_2),
-\qquad
-\dim H^1 = \dim \ker(\partial_1) - \operatorname{rank}(\partial_2)
-\]
-
-This sampled model now uses at least three non-isomorphic triangulations and multiple independent Pachner path relations.
+Integral analysis is performed via Smith normal form over \(\mathbb{Z}\), after removing every face that violates the chain identity.
