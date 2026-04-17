@@ -1,0 +1,23 @@
+{
+  "status": "conditional",
+  "claim_level": "evidence_only",
+  "generator_family": [
+    "square_commutation",
+    "pentagon"
+  ],
+  "F6": {
+    "cycle_rank": 8,
+    "known_local_generators": 5,
+    "pending_long_cycles": 3,
+    "conditional_full_generation_supported": true
+  },
+  "F7": {
+    "cycle_rank": 43,
+    "basis_4_cycles": 5,
+    "basis_5_cycles": 13,
+    "basis_long_cycles": 25,
+    "conditional_hypothesis": "Longer basis cycles likely decompose into square/pentagon relations; proof not yet written."
+  },
+  "next_theorem": "Prove every long basis cycle in F6,F7 decomposes into square/pentagon generators.",
+  "note": "This file is evidence, not theorem certification."
+}
