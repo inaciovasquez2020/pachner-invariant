@@ -1,7 +1,7 @@
 # Theta Delta Closure Plan
 
 Goal:
-Replace the active dependency link `general descent criterion` by a proved lemma.
+Replace the active dependency link `general descent theorem not yet formalized` by a proved lemma.
 
 Chain:
 
