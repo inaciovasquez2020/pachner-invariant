@@ -124,6 +124,14 @@ edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) = 3 := by
   have h_nobdry := Valid23.newEdgeCase (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h
   simpa [h_zero, h_nobdry] using h_edge
 
+theorem vertSqDefect_p_strict
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hp : vertexDeg T p ≤ 5) :
+(vertexDeg (pachner23 T a b c p q) p - 6)^2 < (vertexDeg T p - 6)^2 := by
+  rw [vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
 theorem theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
