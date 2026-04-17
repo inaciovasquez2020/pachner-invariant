@@ -1,0 +1,134 @@
+{
+  "status": "conditional",
+  "n": 6,
+  "cycle_rank": 8,
+  "classified_cycles": [
+    {
+      "index": 0,
+      "cycle_length": 5,
+      "type": "pentagon",
+      "generated_by_G2": true,
+      "cycle_vertices": [
+        3,
+        2,
+        0,
+        1,
+        4,
+        3
+      ]
+    },
+    {
+      "index": 1,
+      "cycle_length": 4,
+      "type": "square_commutation",
+      "generated_by_G2": true,
+      "cycle_vertices": [
+        5,
+        0,
+        1,
+        6,
+        5
+      ]
+    },
+    {
+      "index": 2,
+      "cycle_length": 5,
+      "type": "pentagon",
+      "generated_by_G2": true,
+      "cycle_vertices": [
+        7,
+        5,
+        0,
+        2,
+        8,
+        7
+      ]
+    },
+    {
+      "index": 3,
+      "cycle_length": 7,
+      "type": "derived_candidate",
+      "generated_by_G2": null,
+      "cycle_vertices": [
+        9,
+        7,
+        5,
+        0,
+        1,
+        6,
+        10,
+        9
+      ]
+    },
+    {
+      "index": 4,
+      "cycle_length": 7,
+      "type": "derived_candidate",
+      "generated_by_G2": null,
+      "cycle_vertices": [
+        9,
+        7,
+        5,
+        0,
+        2,
+        8,
+        11,
+        9
+      ]
+    },
+    {
+      "index": 5,
+      "cycle_length": 5,
+      "type": "pentagon",
+      "generated_by_G2": true,
+      "cycle_vertices": [
+        10,
+        6,
+        1,
+        4,
+        13,
+        10
+      ]
+    },
+    {
+      "index": 6,
+      "cycle_length": 5,
+      "type": "pentagon",
+      "generated_by_G2": true,
+      "cycle_vertices": [
+        11,
+        8,
+        2,
+        3,
+        12,
+        11
+      ]
+    },
+    {
+      "index": 7,
+      "cycle_length": 7,
+      "type": "derived_candidate",
+      "generated_by_G2": null,
+      "cycle_vertices": [
+        12,
+        3,
+        2,
+        0,
+        1,
+        4,
+        13,
+        12
+      ]
+    }
+  ],
+  "counts": {
+    "square_commutation": 1,
+    "pentagon": 4,
+    "derived_candidate": 3
+  },
+  "coverage_known": {
+    "local_generators_verified": 5,
+    "pending": 3
+  },
+  "note": "4- and 5-cycles classified as local G2 generators; 7-cycles require explicit decomposition proof."
+}
