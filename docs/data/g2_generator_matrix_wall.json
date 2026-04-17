@@ -1,0 +1,25 @@
+{
+  "status": "conditional",
+  "field": "F2",
+  "generator_types": [
+    "square_commutation",
+    "pentagon"
+  ],
+  "targets": {
+    "F6": {
+      "vertices": 14,
+      "edges": 21,
+      "cycle_rank_required": 8,
+      "matrix_shape_goal": "num_generators x 21",
+      "certificate_condition": "rank(generator_matrix)=8"
+    },
+    "F7": {
+      "vertices": 42,
+      "edges": 84,
+      "cycle_rank_required": 43,
+      "matrix_shape_goal": "num_generators x 84",
+      "certificate_condition": "rank(generator_matrix)=43"
+    }
+  },
+  "single_remaining_wall": "Enumerate every square/pentagon generator as an edge-incidence row vector."
+}
