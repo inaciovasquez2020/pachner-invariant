@@ -19,11 +19,18 @@ theorem allEdges_mem_of_pachner23_new_edge
     normalizeEdge (p,q) ∈ allEdges (pachner23 T a b c p q) := by
   sorry
 
-theorem allEdges_pachner23_eq
-    {T : Triangulation} {a b c p q : Vert}
-    (h : Valid23 T a b c p q) :
-    allEdges (pachner23 T a b c p q) =
-      F (allEdges T) a b c p q := by
+theorem sq_step_identity (d : Int) :
+    ((d + 1 - 6)^2 - (d - 6)^2) = 2*d - 11 := by
+  ring
+
+def DeltaThetaZ (T : Triangulation) (a b c p q : Vert) (lam : Int) : Int :=
+  ((edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) - 3)^2 : Int) +
+  lam * ((((vertexDeg (pachner23 T a b c p q) p - 6)^2 : Int) - (vertexDeg T p - 6)^2) +
+         (((vertexDeg (pachner23 T a b c p q) q - 6)^2 : Int) - (vertexDeg T q - 6)^2))
+
+theorem thetaZ_eq_theta_cast
+    (T : Triangulation) (lam : Int) :
+    thetaZ T lam = (theta T lam : Int) := by
   sorry
 
 theorem List_foldl_congr_sub_eq_changed_terms
@@ -39,14 +46,23 @@ theorem thetaZ_pachner23_delta_expanded
     (h : Valid23 T a b c p q) :
     thetaZ (pachner23 T a b c p q) lam - thetaZ T lam =
       DeltaThetaZ T a b c p q lam := by
-  sorry
+  rw [thetaZ_eq_theta_cast, thetaZ_eq_theta_cast]
+  rw [theta_pachner23_delta_expanded (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (lam := lam) h]
+  rfl
 
 theorem pachner23_descent_iff_vertex_sum_le_ten
     {T : Triangulation} {a b c p q : Vert} {lam : Int}
     (h : Valid23 T a b c p q) (hlam : 0 < lam) :
     thetaZ (pachner23 T a b c p q) lam < thetaZ T lam ↔
       vertexDeg T p + vertexDeg T q ≤ 10 := by
-  sorry
+  rw [← sub_lt_zero]
+  rw [thetaZ_pachner23_delta_expanded h]
+  rw [DeltaThetaZ]
+  rw [frontier.edgeDeg_pachner23_new_edge_three (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  rw [frontier.vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  rw [frontier.vertDeg_pachner23_at_q (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  rw [sq_step_identity, sq_step_identity]
+  omega
 
 theorem pachner23_descent_of_vertex_sum
     {T : Triangulation} {a b c p q : Vert} {lam : Int}
