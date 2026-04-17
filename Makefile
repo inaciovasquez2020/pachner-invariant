@@ -1,7 +1,7 @@
 .PHONY: verify test
 
 verify:
-	python3 -m pytest -q
+	python3 scripts/verify_repo.py
 
 test:
-	python3 -m pytest -q
+	python3 scripts/verify_repo.py
