@@ -17,7 +17,16 @@ theorem allEdges_mem_of_pachner23_new_edge
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
     normalizeEdge (p,q) ∈ allEdges (pachner23 T a b c p q) := by
-  sorry
+  have hdeg :
+      edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) = 3 := by
+    simpa using edgeDeg_pachner23_new_edge_three
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h
+  have hpos :
+      0 < edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) := by
+    omega
+  simpa [edgeMemNorm] using
+    (edgeMem_allEdges_iff_edgeDeg_pos
+      (T := pachner23 T a b c p q) (e := (p,q))).2 hpos
 
 theorem sq_step_identity (d : Int) :
     ((d + 1 - 6)^2 - (d - 6)^2) = 2*d - 11 := by
@@ -31,7 +40,7 @@ def DeltaThetaZ (T : Triangulation) (a b c p q : Vert) (lam : Int) : Int :=
 theorem thetaZ_eq_theta_cast
     (T : Triangulation) (lam : Int) :
     thetaZ T lam = (theta T lam : Int) := by
-  sorry
+  rfl
 
 theorem List_foldl_congr_sub_eq_changed_terms
     {α : Type} (l : List α) (f g : α → Int) :
