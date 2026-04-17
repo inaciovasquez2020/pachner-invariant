@@ -51,6 +51,9 @@ def expectedEdgeDeg23
   else
     edgeDeg T e'
 
+def expectedVertexDeg23Delta (a b c p q : Vert) (v : Vert) : Nat :=
+  if v = p then 1 else if v = q then 1 else 0
+
 
 theorem vertDeg_pachner23_eq_expected
 {T : Triangulation} {a b c p q : Vert} {v : Vert}
