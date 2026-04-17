@@ -7,17 +7,21 @@
     7
   ],
   "cycles_found": {
-    "4": null,
+    "4": 0,
     "5": null,
     "6": null,
     "7": null
   },
   "generated_by_candidate_G2": {
-    "4": null,
+    "4": true,
     "5": null,
     "6": null,
     "7": null
   },
-  "certificates": {},
-  "note": "replace None by actual enumeration outputs"
+  "certificates": {
+    "4": {
+      "reason": "quadrilateral flip graph has no nontrivial closed circuit"
+    }
+  },
+  "note": "n=4 seeded; replace remaining None by actual outputs"
 }
