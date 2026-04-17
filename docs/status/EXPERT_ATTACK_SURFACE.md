@@ -10,7 +10,7 @@ Primary expert attacks:
 
 2. Delta-closure attack
    Current issue:
-   `theta_pachner23_delta` is still an active dependency, not a proved general theorem.
+   the general ΔΘ expansion is proved, but the general descent theorem is not yet formalized.
 
 3. Toy-to-general attack
    Current issue:
