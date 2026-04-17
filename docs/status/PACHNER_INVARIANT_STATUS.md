@@ -3,9 +3,9 @@
 Status: OPEN
 
 Single remaining frontier package:
-general 2--3 move edge-degree package and associated frontier lemmas.
+general descent theorem not yet formalized under explicit admissibility hypotheses.
 
 Conditional completion rule:
-If the general 2--3 move package is proved and placeholder / axiom dependence is removed from that package, then the current frontier closes.
+If the general descent theorem is formalized under explicit admissibility hypotheses, then the current frontier closes.
 
 No unconditional closure is claimed here.
