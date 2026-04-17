@@ -8,20 +8,30 @@
   ],
   "cycles_found": {
     "4": 0,
-    "5": null,
+    "5": {
+      "known_minimal_candidate": "pentagon",
+      "count_verified": null
+    },
     "6": null,
     "7": null
   },
   "generated_by_candidate_G2": {
     "4": true,
-    "5": null,
+    "5": {
+      "pentagon_present": true,
+      "full_coverage_verified": null
+    },
     "6": null,
     "7": null
   },
   "certificates": {
     "4": {
       "reason": "quadrilateral flip graph has no nontrivial closed circuit"
+    },
+    "5": {
+      "candidate_cycle": "5-cycle associahedron pentagon",
+      "status": "partial seed only"
     }
   },
-  "note": "n=4 seeded; replace remaining None by actual outputs"
+  "note": "n=4 seeded; n=5 partial seed added; replace placeholders by actual outputs"
 }
