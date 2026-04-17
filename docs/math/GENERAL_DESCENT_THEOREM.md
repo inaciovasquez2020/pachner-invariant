@@ -1,6 +1,6 @@
 # General Descent Theorem
 
-Status: NOT FORMALIZED
+Status: Conditional.
 
 Target statement:
 
@@ -21,12 +21,16 @@ Weakest sufficient strategy:
 4. show total ΔΘ < 0 under explicit H
 5. transfer to Lean theorem
 
+Conditional theorem proved in Lean:
+
+For lam > 0, vertexDeg T p <= 5, and vertexDeg T q <= 5,
+
+theta (pachner23 T a b c p q) lam < theta T lam.
+
 Canonical weakest first candidate H:
 
 H1. lam > 0
 H2. vertexDeg T p <= 5
 H3. vertexDeg T q <= 5
-H4. new edge (p,q) contributes zero defect after move
-H5. no hidden degree inflation outside p,q
 
 Do not promote beyond NOT FORMALIZED until theorem exists.

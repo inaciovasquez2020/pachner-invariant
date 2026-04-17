@@ -20,4 +20,4 @@ A Pachner 2→3 move is represented by:
 → edge/vertex incidence update
 → degree update formulas
 → ΔΘ formula
-→ general descent theorem not yet formalized
+→ conditional general descent theorem under <=5 vertex hypotheses
