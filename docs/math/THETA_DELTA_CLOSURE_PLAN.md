@@ -9,8 +9,8 @@ Chain:
 2. local vertex-incidence delta
 3. edge-degree delta formula
 4. vertex-degree delta formula
-5. ΔΘ expansion identity
-6. descent criterion
+5. ΔΘ expansion identity (closed)
+6. general descent criterion (active frontier)
 
 Output condition:
-`theta_pachner23_delta` no longer appears as an unresolved dependency object.
+`general descent criterion` is the sole remaining dependency object in this chain.
