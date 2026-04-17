@@ -1,0 +1,82 @@
+{
+  "status": "conditional",
+  "n": 5,
+  "vertices": 5,
+  "edges": 5,
+  "cycle_rank": 1,
+  "triangulations": [
+    [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    [
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ]
+  ],
+  "adjacency": {
+    "0": [
+      1,
+      2
+    ],
+    "1": [
+      0,
+      4
+    ],
+    "2": [
+      0,
+      3
+    ],
+    "3": [
+      2,
+      4
+    ],
+    "4": [
+      1,
+      3
+    ]
+  },
+  "note": "Exact finite graph surface for F5. Next step: explicit cycle basis + G2 coverage."
+}
