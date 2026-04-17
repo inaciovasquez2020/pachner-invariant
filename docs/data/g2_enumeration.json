@@ -8,13 +8,19 @@
   ],
   "cycles_found": {
     "4": 0,
-    "5": 4,
+    "5": {
+      "known_minimal_candidate": "pentagon",
+      "count_verified": null
+    },
     "6": 13,
     "7": 41
   },
   "generated_by_candidate_G2": {
     "4": true,
-    "5": null,
+    "5": {
+      "pentagon_present": true,
+      "full_coverage_verified": null
+    },
     "6": null,
     "7": null
   },
@@ -24,8 +30,8 @@
       "reason": "single flip edge, no nontrivial closed cycles"
     },
     "5": {
-      "type": "pending",
-      "reason": "await explicit enumerated witnesses"
+      "candidate_cycle": "5-cycle associahedron pentagon",
+      "status": "partial seed only"
     },
     "6": {
       "type": "pending",
@@ -44,5 +50,6 @@
       "6": 14,
       "7": 42
     }
-  }
+  },
+  "note": "n=4 seeded; n=5 partial seed added; replace placeholders by actual outputs"
 }
