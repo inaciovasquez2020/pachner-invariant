@@ -158,6 +158,46 @@ theorem theta_pachner23_delta_expanded
       (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := q) h
   simp [theta, h_edge, h_vert_p, h_vert_q]
 
+theorem pachner23_descent_under_vertex_le_five
+    {T : Triangulation} {a b c p q : Vert} {lam : Nat}
+    (h : Valid23 T a b c p q)
+    (hlam : 0 < lam)
+    (hp : vertexDeg T p ≤ 5)
+    (hq : vertexDeg T q ≤ 5) :
+    theta (pachner23 T a b c p q) lam < theta T lam := by
+  have hdelta :=
+    theta_pachner23_delta_expanded
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (lam := lam) h
+  have hnew :=
+    edgeDeg_pachner23_new_edge_three
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h
+  have hpstrict :=
+    vertSqDefect_p_strict
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h hp
+  have hqstrict :=
+    vertSqDefect_q_strict
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h hq
+  have hpneg :
+      (((vertexDeg (pachner23 T a b c p q) p - 6)^2 : Int) - (vertexDeg T p - 6)^2) < 0 := by
+    omega
+  have hqneg :
+      (((vertexDeg (pachner23 T a b c p q) q - 6)^2 : Int) - (vertexDeg T q - 6)^2) < 0 := by
+    omega
+  have hverts :
+      (((vertexDeg (pachner23 T a b c p q) p - 6)^2 : Int) - (vertexDeg T p - 6)^2) +
+      (((vertexDeg (pachner23 T a b c p q) q - 6)^2 : Int) - (vertexDeg T q - 6)^2) < 0 := by
+    omega
+  have hweighted :
+      (lam : Int) *
+      ((((vertexDeg (pachner23 T a b c p q) p - 6)^2 : Int) - (vertexDeg T p - 6)^2) +
+       (((vertexDeg (pachner23 T a b c p q) q - 6)^2 : Int) - (vertexDeg T q - 6)^2)) < 0 := by
+    omega
+  have hsub : ((theta (pachner23 T a b c p q) lam : Nat) : Int) - theta T lam < 0 := by
+    rw [hdelta]
+    rw [hnew]
+    omega
+  omega
+
 theorem Valid23.newEdgeAbsent
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
