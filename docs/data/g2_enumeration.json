@@ -8,18 +8,18 @@
   ],
   "cycles_found": {
     "4": 0,
-    "5": 1,
+    "5": {
+      "known_minimal_candidate": "pentagon",
+      "count_verified": null
+    },
     "6": 13,
     "7": 41
   },
   "generated_by_candidate_G2": {
     "4": true,
     "5": {
-      "full_coverage_verified": true,
-      "generator_family": [
-        "pentagon"
-      ],
-      "reason": "F5 exact graph has cycle rank 1 and is a single pentagon"
+      "pentagon_present": true,
+      "full_coverage_verified": null
     },
     "6": null,
     "7": null
@@ -30,9 +30,8 @@
       "reason": "single flip edge, no nontrivial closed cycles"
     },
     "5": {
-      "type": "exact",
-      "graph_artifact": "docs/data/f5_exact_graph.json",
-      "status_note": "unique rank-1 cycle identified with pentagon generator"
+      "candidate_cycle": "5-cycle associahedron pentagon",
+      "status": "partial seed only"
     },
     "6": {
       "type": "pending",
