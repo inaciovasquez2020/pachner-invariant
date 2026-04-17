@@ -12,7 +12,21 @@
       "known_minimal_candidate": "pentagon",
       "count_verified": null
     },
-    "6": 13,
+    "6": {
+      "exact_cycle_rank": 8,
+      "basis_cycle_lengths": [
+        5,
+        4,
+        5,
+        7,
+        7,
+        5,
+        5,
+        7
+      ],
+      "graph_artifact": "docs/data/f6_exact_graph.json",
+      "basis_artifact": "docs/data/f6_cycle_basis.json"
+    },
     "7": 41
   },
   "generated_by_candidate_G2": {
@@ -21,7 +35,15 @@
       "pentagon_present": true,
       "full_coverage_verified": null
     },
-    "6": null,
+    "6": {
+      "full_coverage_verified": null,
+      "observed_local_cycle_lengths": [
+        4,
+        5,
+        7
+      ],
+      "note": "exact graph and basis computed; generator classification still open"
+    },
     "7": null
   },
   "certificates": {
@@ -34,8 +56,10 @@
       "status": "partial seed only"
     },
     "6": {
-      "type": "pending",
-      "reason": "await explicit enumerated witnesses"
+      "type": "partial_exact_surface",
+      "graph_artifact": "docs/data/f6_exact_graph.json",
+      "basis_artifact": "docs/data/f6_cycle_basis.json",
+      "status_note": "classification into pentagon/square/derived combinations pending"
     },
     "7": {
       "type": "pending",
