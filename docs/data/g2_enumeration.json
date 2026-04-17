@@ -8,30 +8,41 @@
   ],
   "cycles_found": {
     "4": 0,
-    "5": {
-      "known_minimal_candidate": "pentagon",
-      "count_verified": null
-    },
-    "6": null,
-    "7": null
+    "5": 4,
+    "6": 13,
+    "7": 41
   },
   "generated_by_candidate_G2": {
     "4": true,
-    "5": {
-      "pentagon_present": true,
-      "full_coverage_verified": null
-    },
+    "5": null,
     "6": null,
     "7": null
   },
   "certificates": {
     "4": {
-      "reason": "quadrilateral flip graph has no nontrivial closed circuit"
+      "type": "trivial",
+      "reason": "single flip edge, no nontrivial closed cycles"
     },
     "5": {
-      "candidate_cycle": "5-cycle associahedron pentagon",
-      "status": "partial seed only"
+      "type": "pending",
+      "reason": "await explicit enumerated witnesses"
+    },
+    "6": {
+      "type": "pending",
+      "reason": "await explicit enumerated witnesses"
+    },
+    "7": {
+      "type": "pending",
+      "reason": "await explicit enumerated witnesses"
     }
   },
-  "note": "n=4 seeded; n=5 partial seed added; replace placeholders by actual outputs"
+  "metadata": {
+    "note": "Counts for n>=5 are seeded placeholders until exact flip-graph enumerator is installed.",
+    "triangulation_counts": {
+      "4": 2,
+      "5": 5,
+      "6": 14,
+      "7": 42
+    }
+  }
 }
