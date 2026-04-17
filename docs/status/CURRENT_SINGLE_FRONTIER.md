@@ -4,6 +4,8 @@ Status: Conditional
 
 The only remaining first-class frontier is:
 
-conditional general descent theorem under <=5 vertex hypotheses
+unconditional general descent theorem
+
+All conditional <=10 vertex-sum cases are closed.
 
 All other repository layers are executable and locked.
