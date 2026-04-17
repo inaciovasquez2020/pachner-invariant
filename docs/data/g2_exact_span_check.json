@@ -1,0 +1,14 @@
+{
+  "status": "conditional",
+  "field": "F2",
+  "F6": {
+    "rank": 8,
+    "cycle_rank_target": 8,
+    "rank_equality_passed": true
+  },
+  "F7": {
+    "rank": 43,
+    "cycle_rank_target": 43,
+    "rank_equality_passed": true
+  }
+}
