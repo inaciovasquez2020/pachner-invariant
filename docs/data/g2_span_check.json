@@ -1,0 +1,21 @@
+{
+  "status": "conditional",
+  "field": "F2",
+  "generator_family": [
+    "square_commutation",
+    "pentagon"
+  ],
+  "F6": {
+    "cycle_rank": 8,
+    "local_basis_cycles_detected": 5,
+    "pending_long_cycles": 3,
+    "conditional_span_statement": "If each pending 7-cycle decomposes into local generators, then full span holds."
+  },
+  "F7": {
+    "cycle_rank": 43,
+    "visible_local_basis_cycles": 18,
+    "visible_long_basis_cycles": 25,
+    "conditional_span_statement": "If each long basis cycle decomposes into local generators, then full span holds."
+  },
+  "next_exact_input_needed": "Edge-incidence vectors for every square and pentagon generator."
+}
