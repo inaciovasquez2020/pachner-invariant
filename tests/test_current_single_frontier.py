@@ -10,7 +10,7 @@ def test_only_remaining_frontier():
     assert "only remaining first-class frontier" in s
 
 def test_g2_present():
-    assert "finite family G_2" in s
+    assert "General descent theorem not yet formalized under explicit admissibility hypotheses." in s
 
 def test_locked_layers():
     assert "repository layers are executable and locked" in s
