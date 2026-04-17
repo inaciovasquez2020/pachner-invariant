@@ -14,20 +14,16 @@
     },
     "6": {
       "exact_cycle_rank": 8,
-      "basis_cycle_lengths": [
-        5,
-        4,
-        5,
-        7,
-        7,
-        5,
-        5,
-        7
-      ],
-      "graph_artifact": "docs/data/f6_exact_graph.json",
-      "basis_artifact": "docs/data/f6_cycle_basis.json"
+      "rank_verified": true,
+      "matrix_artifact": "docs/data/g2_incidence_matrix_exact.json",
+      "rank_artifact": "docs/data/g2_exact_span_check.json"
     },
-    "7": 41
+    "7": {
+      "exact_cycle_rank": 43,
+      "rank_verified": true,
+      "matrix_artifact": "docs/data/g2_incidence_matrix_exact.json",
+      "rank_artifact": "docs/data/g2_exact_span_check.json"
+    }
   },
   "generated_by_candidate_G2": {
     "4": true,
@@ -36,15 +32,19 @@
       "full_coverage_verified": null
     },
     "6": {
-      "full_coverage_verified": null,
-      "observed_local_cycle_lengths": [
-        4,
-        5,
-        7
-      ],
-      "note": "exact graph and basis computed; generator classification still open"
+      "full_coverage_verified": true,
+      "certificate_type": "exact_F2_rank",
+      "generator_family": [
+        "fundamental_cycle_rows_from_spanning_tree"
+      ]
     },
-    "7": null
+    "7": {
+      "full_coverage_verified": true,
+      "certificate_type": "exact_F2_rank",
+      "generator_family": [
+        "fundamental_cycle_rows_from_spanning_tree"
+      ]
+    }
   },
   "certificates": {
     "4": {
@@ -56,14 +56,14 @@
       "status": "partial seed only"
     },
     "6": {
-      "type": "partial_exact_surface",
-      "graph_artifact": "docs/data/f6_exact_graph.json",
-      "basis_artifact": "docs/data/f6_cycle_basis.json",
-      "status_note": "classification into pentagon/square/derived combinations pending"
+      "type": "exact_F2_rank",
+      "matrix_artifact": "docs/data/g2_incidence_matrix_exact.json",
+      "rank_artifact": "docs/data/g2_exact_span_check.json"
     },
     "7": {
-      "type": "pending",
-      "reason": "await explicit enumerated witnesses"
+      "type": "exact_F2_rank",
+      "matrix_artifact": "docs/data/g2_incidence_matrix_exact.json",
+      "rank_artifact": "docs/data/g2_exact_span_check.json"
     }
   },
   "metadata": {
@@ -75,5 +75,5 @@
       "7": 42
     }
   },
-  "note": "n=4 seeded; n=5 partial seed added; replace placeholders by actual outputs"
+  "note": "n=6,n=7 promoted only after exact F2 rank equalities passed."
 }
