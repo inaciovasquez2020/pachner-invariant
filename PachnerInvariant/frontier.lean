@@ -80,6 +80,14 @@ vertexDeg (pachner23 T a b c p q) q = vertexDeg T q + 1 := by
   simpa [expectedVertexDeg23Delta] using
     (vertDeg_pachner23_eq_expected (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := q) h)
 
+theorem vertDeg_pachner23_at_p_le_six
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hp : vertexDeg T p ≤ 5) :
+vertexDeg (pachner23 T a b c p q) p ≤ 6 := by
+  rw [vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
 theorem theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
