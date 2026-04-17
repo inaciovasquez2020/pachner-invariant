@@ -51,6 +51,9 @@ def expectedEdgeDeg23
   else
     edgeDeg T e'
 
+def expectedVertexDeg23Delta (a b c p q : Vert) (v : Vert) : Nat :=
+  if v = p then 1 else if v = q then 1 else 0
+
 
 theorem vertDeg_pachner23_eq_expected
 {T : Triangulation} {a b c p q : Vert} {v : Vert}
@@ -62,6 +65,80 @@ vertexDeg T v + expectedVertexDeg23Delta a b c p q v := by
   · by_cases hvq : v = q
     · simp [hvp, hvq]
     · simp [hvp, hvq]
+
+theorem vertDeg_pachner23_at_p
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q) :
+vertexDeg (pachner23 T a b c p q) p = vertexDeg T p + 1 := by
+  simpa [expectedVertexDeg23Delta] using
+    (vertDeg_pachner23_eq_expected (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := p) h)
+
+theorem vertDeg_pachner23_at_q
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q) :
+vertexDeg (pachner23 T a b c p q) q = vertexDeg T q + 1 := by
+  simpa [expectedVertexDeg23Delta] using
+    (vertDeg_pachner23_eq_expected (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := q) h)
+
+theorem vertDeg_pachner23_at_p_le_six
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hp : vertexDeg T p ≤ 5) :
+vertexDeg (pachner23 T a b c p q) p ≤ 6 := by
+  rw [vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
+theorem vertDeg_pachner23_at_q_le_six
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hq : vertexDeg T q ≤ 5) :
+vertexDeg (pachner23 T a b c p q) q ≤ 6 := by
+  rw [vertDeg_pachner23_at_q (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
+theorem vertSqDefect_p_monotone
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hp : vertexDeg T p ≤ 5) :
+(vertexDeg (pachner23 T a b c p q) p - 6)^2 ≤ (vertexDeg T p - 6)^2 := by
+  rw [vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
+theorem vertSqDefect_q_monotone
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hq : vertexDeg T q ≤ 5) :
+(vertexDeg (pachner23 T a b c p q) q - 6)^2 ≤ (vertexDeg T q - 6)^2 := by
+  rw [vertDeg_pachner23_at_q (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
+theorem edgeDeg_pachner23_new_edge_three
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q) :
+edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) = 3 := by
+  have h_edge :=
+    edgeDeg_pachner23_delta
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := (p,q)) h
+  have h_zero : edgeDeg T (normalizeEdge (p,q)) = 0 :=
+    edgeDeg_zero_of_newEdgeAbsent (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h
+  have h_nobdry := Valid23.newEdgeCase (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h
+  simpa [h_zero, h_nobdry] using h_edge
+
+theorem vertSqDefect_p_strict
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hp : vertexDeg T p ≤ 5) :
+(vertexDeg (pachner23 T a b c p q) p - 6)^2 < (vertexDeg T p - 6)^2 := by
+  rw [vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
+theorem vertSqDefect_q_strict
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hq : vertexDeg T q ≤ 5) :
+(vertexDeg (pachner23 T a b c p q) q - 6)^2 < (vertexDeg T q - 6)^2 := by
+  rw [vertDeg_pachner23_at_q (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
 
 theorem theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
