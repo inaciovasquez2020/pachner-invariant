@@ -31,3 +31,10 @@ Valid23 -> edge-degree update -> vertex-degree update -> exact Delta-Theta ident
 
 * `docs/COMBINATORIAL_FIDELITY_NOTE_2026_04.md`
 * `docs/REFINEMENT_LIFT_NOTE_2026_04.md`
+
+## Current frontier
+
+Status: Conditional.
+
+Executable closure is complete (build/tests/status surfaces locked).
+The only remaining mathematical layer is actual G_2 cycle enumeration, coverage, and certificates for n=5,6,7 in docs/data/g2_enumeration.json.
