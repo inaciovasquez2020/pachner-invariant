@@ -4,6 +4,6 @@ Status: Conditional
 
 The only remaining first-class frontier is:
 
-General descent theorem not yet formalized under explicit admissibility hypotheses.
+conditional general descent theorem under <=5 vertex hypotheses
 
 All other repository layers are executable and locked.
