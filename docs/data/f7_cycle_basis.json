@@ -1,0 +1,762 @@
+{
+  "status": "conditional",
+  "n": 7,
+  "vertices": 42,
+  "tree_edge_count": 41,
+  "non_tree_edge_count": 43,
+  "cycle_rank": 43,
+  "basis_cycle_lengths": [
+    5,
+    4,
+    5,
+    7,
+    7,
+    5,
+    5,
+    7,
+    4,
+    4,
+    4,
+    4,
+    7,
+    5,
+    6,
+    6,
+    5,
+    7,
+    7,
+    5,
+    5,
+    7,
+    9,
+    9,
+    9,
+    7,
+    7,
+    7,
+    7,
+    9,
+    5,
+    5,
+    9,
+    7,
+    5,
+    9,
+    5,
+    5,
+    9,
+    9,
+    7,
+    7,
+    9
+  ],
+  "basis_cycles": [
+    {
+      "chord": [
+        3,
+        4
+      ],
+      "cycle_vertices": [
+        3,
+        2,
+        0,
+        1,
+        4,
+        3
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        5,
+        6
+      ],
+      "cycle_vertices": [
+        5,
+        0,
+        1,
+        6,
+        5
+      ],
+      "cycle_length": 4
+    },
+    {
+      "chord": [
+        7,
+        8
+      ],
+      "cycle_vertices": [
+        7,
+        5,
+        0,
+        2,
+        8,
+        7
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        9,
+        10
+      ],
+      "cycle_vertices": [
+        9,
+        7,
+        5,
+        0,
+        1,
+        6,
+        10,
+        9
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        9,
+        11
+      ],
+      "cycle_vertices": [
+        9,
+        7,
+        5,
+        0,
+        2,
+        8,
+        11,
+        9
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        10,
+        13
+      ],
+      "cycle_vertices": [
+        10,
+        6,
+        1,
+        4,
+        13,
+        10
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        11,
+        12
+      ],
+      "cycle_vertices": [
+        11,
+        8,
+        2,
+        3,
+        12,
+        11
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        12,
+        13
+      ],
+      "cycle_vertices": [
+        12,
+        3,
+        2,
+        0,
+        1,
+        4,
+        13,
+        12
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        14,
+        15
+      ],
+      "cycle_vertices": [
+        14,
+        0,
+        1,
+        15,
+        14
+      ],
+      "cycle_length": 4
+    },
+    {
+      "chord": [
+        14,
+        16
+      ],
+      "cycle_vertices": [
+        14,
+        0,
+        2,
+        16,
+        14
+      ],
+      "cycle_length": 4
+    },
+    {
+      "chord": [
+        15,
+        18
+      ],
+      "cycle_vertices": [
+        15,
+        1,
+        4,
+        18,
+        15
+      ],
+      "cycle_length": 4
+    },
+    {
+      "chord": [
+        16,
+        17
+      ],
+      "cycle_vertices": [
+        16,
+        2,
+        3,
+        17,
+        16
+      ],
+      "cycle_length": 4
+    },
+    {
+      "chord": [
+        17,
+        18
+      ],
+      "cycle_vertices": [
+        17,
+        3,
+        2,
+        0,
+        1,
+        4,
+        18,
+        17
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        19,
+        20
+      ],
+      "cycle_vertices": [
+        19,
+        14,
+        0,
+        5,
+        20,
+        19
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        19,
+        21
+      ],
+      "cycle_vertices": [
+        19,
+        14,
+        0,
+        1,
+        15,
+        21,
+        19
+      ],
+      "cycle_length": 6
+    },
+    {
+      "chord": [
+        20,
+        22
+      ],
+      "cycle_vertices": [
+        20,
+        5,
+        0,
+        1,
+        6,
+        22,
+        20
+      ],
+      "cycle_length": 6
+    },
+    {
+      "chord": [
+        21,
+        22
+      ],
+      "cycle_vertices": [
+        21,
+        15,
+        1,
+        6,
+        22,
+        21
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        23,
+        24
+      ],
+      "cycle_vertices": [
+        23,
+        19,
+        14,
+        0,
+        2,
+        16,
+        24,
+        23
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        23,
+        25
+      ],
+      "cycle_vertices": [
+        23,
+        19,
+        14,
+        0,
+        5,
+        20,
+        25,
+        23
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        24,
+        27
+      ],
+      "cycle_vertices": [
+        24,
+        16,
+        2,
+        8,
+        27,
+        24
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        25,
+        26
+      ],
+      "cycle_vertices": [
+        25,
+        20,
+        5,
+        7,
+        26,
+        25
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        26,
+        27
+      ],
+      "cycle_vertices": [
+        26,
+        7,
+        5,
+        0,
+        2,
+        8,
+        27,
+        26
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        28,
+        29
+      ],
+      "cycle_vertices": [
+        28,
+        23,
+        19,
+        14,
+        0,
+        1,
+        15,
+        21,
+        29,
+        28
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        28,
+        30
+      ],
+      "cycle_vertices": [
+        28,
+        23,
+        19,
+        14,
+        0,
+        2,
+        16,
+        24,
+        30,
+        28
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        28,
+        33
+      ],
+      "cycle_vertices": [
+        28,
+        23,
+        19,
+        14,
+        0,
+        5,
+        20,
+        25,
+        33,
+        28
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        29,
+        32
+      ],
+      "cycle_vertices": [
+        29,
+        21,
+        15,
+        1,
+        4,
+        18,
+        32,
+        29
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        29,
+        34
+      ],
+      "cycle_vertices": [
+        29,
+        21,
+        15,
+        1,
+        6,
+        22,
+        34,
+        29
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        30,
+        31
+      ],
+      "cycle_vertices": [
+        30,
+        24,
+        16,
+        2,
+        3,
+        17,
+        31,
+        30
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        30,
+        36
+      ],
+      "cycle_vertices": [
+        30,
+        24,
+        16,
+        2,
+        8,
+        27,
+        36,
+        30
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        31,
+        32
+      ],
+      "cycle_vertices": [
+        31,
+        17,
+        3,
+        2,
+        0,
+        1,
+        4,
+        18,
+        32,
+        31
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        31,
+        40
+      ],
+      "cycle_vertices": [
+        31,
+        17,
+        3,
+        12,
+        40,
+        31
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        32,
+        41
+      ],
+      "cycle_vertices": [
+        32,
+        18,
+        4,
+        13,
+        41,
+        32
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        33,
+        34
+      ],
+      "cycle_vertices": [
+        33,
+        25,
+        20,
+        5,
+        0,
+        1,
+        6,
+        22,
+        34,
+        33
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        33,
+        35
+      ],
+      "cycle_vertices": [
+        33,
+        25,
+        20,
+        5,
+        7,
+        26,
+        35,
+        33
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        34,
+        38
+      ],
+      "cycle_vertices": [
+        34,
+        22,
+        6,
+        10,
+        38,
+        34
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        35,
+        36
+      ],
+      "cycle_vertices": [
+        35,
+        26,
+        7,
+        5,
+        0,
+        2,
+        8,
+        27,
+        36,
+        35
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        35,
+        37
+      ],
+      "cycle_vertices": [
+        35,
+        26,
+        7,
+        9,
+        37,
+        35
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        36,
+        39
+      ],
+      "cycle_vertices": [
+        36,
+        27,
+        8,
+        11,
+        39,
+        36
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        37,
+        38
+      ],
+      "cycle_vertices": [
+        37,
+        9,
+        7,
+        5,
+        0,
+        1,
+        6,
+        10,
+        38,
+        37
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        37,
+        39
+      ],
+      "cycle_vertices": [
+        37,
+        9,
+        7,
+        5,
+        0,
+        2,
+        8,
+        11,
+        39,
+        37
+      ],
+      "cycle_length": 9
+    },
+    {
+      "chord": [
+        38,
+        41
+      ],
+      "cycle_vertices": [
+        38,
+        10,
+        6,
+        1,
+        4,
+        13,
+        41,
+        38
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        39,
+        40
+      ],
+      "cycle_vertices": [
+        39,
+        11,
+        8,
+        2,
+        3,
+        12,
+        40,
+        39
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        40,
+        41
+      ],
+      "cycle_vertices": [
+        40,
+        12,
+        3,
+        2,
+        0,
+        1,
+        4,
+        13,
+        41,
+        40
+      ],
+      "cycle_length": 9
+    }
+  ],
+  "note": "Fundamental cycle basis extracted from exact F7 graph."
+}

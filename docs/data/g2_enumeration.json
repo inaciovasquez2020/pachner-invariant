@@ -27,7 +27,56 @@
       "graph_artifact": "docs/data/f6_exact_graph.json",
       "basis_artifact": "docs/data/f6_cycle_basis.json"
     },
-    "7": 41
+    "7": {
+      "exact_cycle_rank": 43,
+      "basis_cycle_lengths": [
+        5,
+        4,
+        5,
+        7,
+        7,
+        5,
+        5,
+        7,
+        4,
+        4,
+        4,
+        4,
+        7,
+        5,
+        6,
+        6,
+        5,
+        7,
+        7,
+        5,
+        5,
+        7,
+        9,
+        9,
+        9,
+        7,
+        7,
+        7,
+        7,
+        9,
+        5,
+        5,
+        9,
+        7,
+        5,
+        9,
+        5,
+        5,
+        9,
+        9,
+        7,
+        7,
+        9
+      ],
+      "graph_artifact": "docs/data/f7_exact_graph.json",
+      "basis_artifact": "docs/data/f7_cycle_basis.json"
+    }
   },
   "generated_by_candidate_G2": {
     "4": true,
@@ -44,7 +93,10 @@
       ],
       "note": "exact graph and basis computed; generator classification still open"
     },
-    "7": null
+    "7": {
+      "full_coverage_verified": null,
+      "note": "exact graph and cycle basis computed; generator classification pending"
+    }
   },
   "certificates": {
     "4": {
@@ -62,8 +114,9 @@
       "status_note": "classification into pentagon/square/derived combinations pending"
     },
     "7": {
-      "type": "pending",
-      "reason": "await explicit enumerated witnesses"
+      "type": "partial_exact_surface",
+      "graph_artifact": "docs/data/f7_exact_graph.json",
+      "basis_artifact": "docs/data/f7_cycle_basis.json"
     }
   },
   "metadata": {
