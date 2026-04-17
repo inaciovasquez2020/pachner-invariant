@@ -1,0 +1,12 @@
+{
+  "status": "conditional",
+  "tested_n": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "cycles_found": {},
+  "generated_by_candidate_G2": {},
+  "note": "stub registry awaiting actual enumerator"
+}
