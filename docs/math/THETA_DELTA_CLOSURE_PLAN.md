@@ -1,7 +1,7 @@
 # Theta Delta Closure Plan
 
 Goal:
-Replace the active dependency link `theta_pachner23_delta` by a proved lemma chain.
+Replace the active dependency link `general descent criterion` by a proved lemma.
 
 Chain:
 
