@@ -1,16 +1,15 @@
 from pathlib import Path
 
-p = Path("docs/status/CURRENT_SINGLE_FRONTIER.md")
-s = p.read_text()
+s = Path("docs/status/CURRENT_SINGLE_FRONTIER.md").read_text()
 
 def test_status():
     assert "Status: Conditional" in s
 
-def test_only_remaining_frontier():
-    assert "only remaining first-class frontier" in s
+def test_current_frontier():
+    assert "unconditional general descent theorem" in s
 
-def test_g2_present():
-    assert "conditional general descent theorem under <=5 vertex hypotheses" in s
+def test_conditional_cases_closed():
+    assert "All conditional <=10 vertex-sum cases are closed." in s
 
 def test_locked_layers():
     assert "repository layers are executable and locked" in s

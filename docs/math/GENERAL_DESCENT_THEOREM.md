@@ -2,35 +2,25 @@
 
 Status: Conditional.
 
-Target statement:
+Exact conditional criterion (integer-expanded form):
 
-For all triangulations T and vertices a b c p q and parameter lam > 0,
+For lam > 0,
 
-Valid23 T a b c p q
-and explicit admissibility hypotheses H(T,a,b,c,p,q,lam)
+theta decreases under a Valid23 move iff
 
-imply
+vertexDeg T p + vertexDeg T q <= 10.
 
-theta (pachner23 T a b c p q) lam < theta T lam
+Equivalent sharp formula:
 
-Weakest sufficient strategy:
+ΔΘ = 2 * lam * (vertexDeg T p + vertexDeg T q - 11)
 
-1. isolate exact ΔΘ formula
-2. bound new-edge contribution
-3. bound p,q vertex contribution
-4. show total ΔΘ < 0 under explicit H
-5. transfer to Lean theorem
+Hence:
 
-Conditional theorem proved in Lean:
+- if sum <= 10, strict descent
+- if sum = 11, neutral
+- if sum >= 12, increase
 
-For lam > 0, vertexDeg T p <= 5, and vertexDeg T q <= 5,
+This supersedes separate bounds:
+vertexDeg T p <= 5 and vertexDeg T q <= 5.
 
-theta (pachner23 T a b c p q) lam < theta T lam.
-
-Canonical weakest first candidate H:
-
-H1. lam > 0
-H2. vertexDeg T p <= 5
-H3. vertexDeg T q <= 5
-
-Do not promote beyond NOT FORMALIZED until theorem exists.
+No unconditional global descent is claimed.
