@@ -1,0 +1,136 @@
+{
+  "status": "conditional",
+  "n": 6,
+  "vertices": 14,
+  "tree_edge_count": 13,
+  "non_tree_edge_count": 8,
+  "cycle_rank": 8,
+  "basis_cycles": [
+    {
+      "chord": [
+        3,
+        4
+      ],
+      "cycle_vertices": [
+        3,
+        2,
+        0,
+        1,
+        4,
+        3
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        5,
+        6
+      ],
+      "cycle_vertices": [
+        5,
+        0,
+        1,
+        6,
+        5
+      ],
+      "cycle_length": 4
+    },
+    {
+      "chord": [
+        7,
+        8
+      ],
+      "cycle_vertices": [
+        7,
+        5,
+        0,
+        2,
+        8,
+        7
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        9,
+        10
+      ],
+      "cycle_vertices": [
+        9,
+        7,
+        5,
+        0,
+        1,
+        6,
+        10,
+        9
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        9,
+        11
+      ],
+      "cycle_vertices": [
+        9,
+        7,
+        5,
+        0,
+        2,
+        8,
+        11,
+        9
+      ],
+      "cycle_length": 7
+    },
+    {
+      "chord": [
+        10,
+        13
+      ],
+      "cycle_vertices": [
+        10,
+        6,
+        1,
+        4,
+        13,
+        10
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        11,
+        12
+      ],
+      "cycle_vertices": [
+        11,
+        8,
+        2,
+        3,
+        12,
+        11
+      ],
+      "cycle_length": 5
+    },
+    {
+      "chord": [
+        12,
+        13
+      ],
+      "cycle_vertices": [
+        12,
+        3,
+        2,
+        0,
+        1,
+        4,
+        13,
+        12
+      ],
+      "cycle_length": 7
+    }
+  ],
+  "note": "Fundamental cycle basis extracted from exact F6 flip graph. Classification into G2 generators remains open."
+}
