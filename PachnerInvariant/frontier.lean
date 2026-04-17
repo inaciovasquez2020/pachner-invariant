@@ -88,6 +88,14 @@ vertexDeg (pachner23 T a b c p q) p ≤ 6 := by
   rw [vertDeg_pachner23_at_p (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
   omega
 
+theorem vertDeg_pachner23_at_q_le_six
+{T : Triangulation} {a b c p q : Vert}
+(h : Valid23 T a b c p q)
+(hq : vertexDeg T q ≤ 5) :
+vertexDeg (pachner23 T a b c p q) q ≤ 6 := by
+  rw [vertDeg_pachner23_at_q (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) h]
+  omega
+
 theorem theta_pachner23_delta_expanded
     {T : Triangulation} {a b c p q : Vert} (lam : Nat)
     (h : Valid23 T a b c p q) :
