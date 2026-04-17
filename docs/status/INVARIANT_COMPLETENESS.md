@@ -11,4 +11,4 @@ Status split:
 - Definition: PROVED
 - Local computation (twoTets/threeTets): PROVED
 - General ΔΘ expansion: PROVED
-- Global descent: CONDITIONAL
+- General descent theorem: NOT FORMALIZED (sample instances proved)
