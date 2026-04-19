@@ -1,0 +1,24 @@
+{
+  "F6": {
+    "diagnosis": "Enum_k and BuildExact unresolved",
+    "k": 6,
+    "label": "F6",
+    "matrix_hash_sha256": "01e95cc39847975b0e6c2d57191520c5081846f3b03dcd03384e6a20a682ebda",
+    "n_configs": 0,
+    "n_moves": 0,
+    "observed_rank": 0,
+    "status": "OPEN",
+    "target_rank": 8
+  },
+  "F7": {
+    "diagnosis": "Enum_k and BuildExact unresolved",
+    "k": 7,
+    "label": "F7",
+    "matrix_hash_sha256": "3dc981efd9949a17016c2ed730c04a654752b1f5b5a6a571fec7417ebdaa9d80",
+    "n_configs": 0,
+    "n_moves": 0,
+    "observed_rank": 0,
+    "status": "OPEN",
+    "target_rank": 43
+  }
+}
