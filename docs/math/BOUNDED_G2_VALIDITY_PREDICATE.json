@@ -1,0 +1,11 @@
+{
+  "definition": [
+    "A configuration G is valid iff it is produced by the repository enumerator from an allowed seed under the repository move rule.",
+    "A configuration G is bounded at level k iff |G| <= k in the enumerator size metric.",
+    "A representative list S_k is admissible iff it is deduplicated up to the repository canonical hash.",
+    "Matrix construction is forbidden when |S_k| = 0."
+  ],
+  "finish_condition": "Replace this frozen repository-native predicate only when the exact G2 move semantics are upgraded.",
+  "name": "bounded_G2_configuration_validity",
+  "status": "FROZEN"
+}

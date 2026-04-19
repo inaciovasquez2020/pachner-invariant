@@ -1,0 +1,16 @@
+{
+  "k": 7,
+  "label": "F7",
+  "n_configs": 7,
+  "representatives": [
+    "49b2e2ade6feae36",
+    "59a822b885250cb0",
+    "6689c2e2832ba491",
+    "9639571346755453",
+    "b0a890863b879191",
+    "d1a4b32a36bb880d",
+    "f7c97b1f081a7f95"
+  ],
+  "seed_name": "tetrahedron_surface",
+  "status": "NONEMPTY"
+}

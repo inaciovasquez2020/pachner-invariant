@@ -1,23 +1,25 @@
 {
   "F6": {
-    "diagnosis": "Enum_k and BuildExact unresolved",
+    "diagnosis": "Enum_k nonempty; exact repository row/column semantics still weaker than target semantics",
     "k": 6,
     "label": "F6",
-    "matrix_hash_sha256": "01e95cc39847975b0e6c2d57191520c5081846f3b03dcd03384e6a20a682ebda",
-    "n_configs": 0,
-    "n_moves": 0,
-    "observed_rank": 0,
+    "matrix_hash_sha256": "cf0658a5ee51b47c8bab37284d0da1f5a40c0d996731a9f5b6a451a51e53f71d",
+    "n_configs": 4,
+    "n_moves": 3,
+    "observed_rank": 3,
+    "seed_name": "tetrahedron_surface",
     "status": "OPEN",
     "target_rank": 8
   },
   "F7": {
-    "diagnosis": "Enum_k and BuildExact unresolved",
+    "diagnosis": "Enum_k nonempty; exact repository row/column semantics still weaker than target semantics",
     "k": 7,
     "label": "F7",
-    "matrix_hash_sha256": "3dc981efd9949a17016c2ed730c04a654752b1f5b5a6a571fec7417ebdaa9d80",
-    "n_configs": 0,
-    "n_moves": 0,
-    "observed_rank": 0,
+    "matrix_hash_sha256": "1d9129266a5d2fda3c6d414c5abd67ee3a90890f1e33b23cc48330da1063e169",
+    "n_configs": 7,
+    "n_moves": 7,
+    "observed_rank": 7,
+    "seed_name": "tetrahedron_surface",
     "status": "OPEN",
     "target_rank": 43
   }
