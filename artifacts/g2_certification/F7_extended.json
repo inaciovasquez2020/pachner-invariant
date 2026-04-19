@@ -1,0 +1,11 @@
+{
+  "label": "F7",
+  "k": 7,
+  "base_rank": 25,
+  "target_rank": 43,
+  "gap_added": 18,
+  "extended_rank": 26,
+  "generator_count": 54,
+  "rows_total": 104,
+  "status": "FAIL"
+}

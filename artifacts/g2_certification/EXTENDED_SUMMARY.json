@@ -1,0 +1,24 @@
+{
+  "F6": {
+    "label": "F6",
+    "k": 6,
+    "base_rank": 5,
+    "target_rank": 8,
+    "gap_added": 3,
+    "extended_rank": 6,
+    "generator_count": 12,
+    "rows_total": 13,
+    "status": "FAIL"
+  },
+  "F7": {
+    "label": "F7",
+    "k": 7,
+    "base_rank": 25,
+    "target_rank": 43,
+    "gap_added": 18,
+    "extended_rank": 26,
+    "generator_count": 54,
+    "rows_total": 104,
+    "status": "FAIL"
+  }
+}
