@@ -1,0 +1,28 @@
+{
+  "F6": {
+    "generator_count": 12,
+    "k": 6,
+    "kernel_dim": 7,
+    "label": "F6",
+    "matrix_hash_sha256": "a2b3d502747493806d04929ee316a5181dc878e1fa924cb2ddb39d1a207f23a5",
+    "n_configs": 4,
+    "n_moves": 3,
+    "observed_rank": 5,
+    "relation_count": 10,
+    "status": "OPEN",
+    "target_rank": 8
+  },
+  "F7": {
+    "generator_count": 54,
+    "k": 7,
+    "kernel_dim": 29,
+    "label": "F7",
+    "matrix_hash_sha256": "d3d43ed69aa4afe7b92cd78d6eef40fc6b34c2320ebf3dfe8c159eaf1725e3e3",
+    "n_configs": 7,
+    "n_moves": 7,
+    "observed_rank": 25,
+    "relation_count": 86,
+    "status": "OPEN",
+    "target_rank": 43
+  }
+}
