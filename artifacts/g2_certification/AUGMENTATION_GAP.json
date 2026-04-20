@@ -1,0 +1,26 @@
+{
+  "F6": {
+    "admissible": true,
+    "kernel_dim_nonnegative": false,
+    "label": "F6",
+    "matrix_cols": 3,
+    "missing_object": "Exact repository-native dependent Pachner relation family",
+    "observed_rank": 3,
+    "required_extra_independent_rows": 5,
+    "required_kernel_dim": -5,
+    "status": "OPEN",
+    "target_rank": 8
+  },
+  "F7": {
+    "admissible": true,
+    "kernel_dim_nonnegative": false,
+    "label": "F7",
+    "matrix_cols": 7,
+    "missing_object": "Exact repository-native dependent Pachner relation family",
+    "observed_rank": 7,
+    "required_extra_independent_rows": 36,
+    "required_kernel_dim": -36,
+    "status": "OPEN",
+    "target_rank": 43
+  }
+}

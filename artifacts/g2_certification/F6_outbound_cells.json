@@ -1,0 +1,52 @@
+{
+  "E_out": [
+    {
+      "generator_index": 0,
+      "id": "F6_eout_0",
+      "index": 0,
+      "k": 6,
+      "label": "F6"
+    },
+    {
+      "generator_index": 1,
+      "id": "F6_eout_1",
+      "index": 1,
+      "k": 6,
+      "label": "F6"
+    },
+    {
+      "generator_index": 2,
+      "id": "F6_eout_2",
+      "index": 2,
+      "k": 6,
+      "label": "F6"
+    }
+  ],
+  "V_out": [
+    {
+      "id": "F6_vout_0",
+      "index": 0,
+      "k": 6,
+      "label": "F6"
+    },
+    {
+      "id": "F6_vout_1",
+      "index": 1,
+      "k": 6,
+      "label": "F6"
+    },
+    {
+      "id": "F6_vout_2",
+      "index": 2,
+      "k": 6,
+      "label": "F6"
+    }
+  ],
+  "base_rank": 5,
+  "generator_count": 12,
+  "k": 6,
+  "label": "F6",
+  "required_outbound_rank": 3,
+  "status": "FROZEN",
+  "target_rank": 8
+}
