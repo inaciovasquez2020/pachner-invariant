@@ -1,22 +1,16 @@
 {
   "status": "CONDITIONAL",
-  "structural_layer": "CLOSED",
-  "geometric_layer": "CLOSED",
-  "numerical_layer": "BENCHMARKED",
-  "terminal_gap_lower_bound": "3 * 2^(-2*C-9)",
+  "terminal_gap": "3*2^(-2C-9)",
   "benchmark": {
     "min_gamma_a": 0.22426,
-    "max_offdiag_leakage": 0.00228,
+    "max_offdiag": 0.00228,
     "delta": 0.9898,
-    "decay_A": 26.3,
-    "decay_B": 10.0,
-    "c_RA1n_benchmark": 0.222
+    "c_RA1n": 0.222
   },
-  "missing_package": [
-    "sigma_eff(xi,eta)",
-    "kappa_rank_defect(xi,eta)",
-    "D_j(xi,eta)",
-    "kappa_DDYO(xi)"
-  ],
-  "finish_condition": "Inject explicit formulas and prove uniform transverse second-derivative lower bound on Gamma_term_sharp."
+  "missing": [
+    "sigma_eff",
+    "kappa_rank_defect",
+    "D_j",
+    "kappa_DDYO"
+  ]
 }

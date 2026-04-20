@@ -63,7 +63,6 @@ c_{\mathrm{RA1n}}^{\mathrm{bench}} \approx 0.222.
 \]
 
 ## Exact-symbol nondegeneracy package
-The only remaining missing object is the explicit package
 \[
 \mathcal S_{\mathrm{DDYO}}^{\mathrm{explicit}}
 =
@@ -74,7 +73,7 @@ D_j(\xi,\eta),
 \kappa^{\mathrm{DDYO}}(\xi)
 \right)
 \]
-satisfying
+with bounds
 \[
 0<\underline{\sigma}\le \sigma_{\mathrm{eff}}(\xi,\eta)\le \overline{\sigma}<\infty,
 \]
@@ -97,23 +96,5 @@ and
 \ge a_{\mathrm{curv}}>0.
 \]
 
-## Weakest sufficient closure lemma
-\[
-\inf_{\Gamma_{\mathrm{term}}^{\sharp}}
-\left|
-\partial_{\theta}^2
-\left[
-\chi_k(\xi+\eta)
-\cdot
-\frac{\xi\cdot\eta}{|\xi||\eta|}
-\cdot
-\frac{\kappa_{\mathrm{rank\_defect}}(\xi,\eta)}{3+\sigma_{\mathrm{eff}}(\xi,\eta)}
-\cdot
-\sum_{j\ge k+1}2^{d(k-j)}D_j(\xi,\eta)
-\right]
-\right|
->0.
-\]
-
 ## Finish condition
-Replace the symbolic package above by explicit formulas and derive the stated lower bound.
+Replace symbolic package by explicit formulas and prove transverse nondegeneracy.
