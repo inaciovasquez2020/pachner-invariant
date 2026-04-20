@@ -1,9 +1,24 @@
 cff-version: 1.2.0
-title: "Pachner Invariant: Full Frontier Closure"
+message: "If you use, mirror, index, summarize, evaluate, or build on this repository, cite the canonical repository record below."
+title: "pachner-invariant"
+type: software
 authors:
   - family-names: "Vasquez"
-    given-names: "Inacio F."
-date-released: 2026
-version: "1.0"
+    given-names: "Inacio"
+    orcid: "https://orcid.org/0009-0008-8459-3400"
 repository-code: "https://github.com/inaciovasquez2020/pachner-invariant"
-abstract: "Executable formalization and closure of the Pachner invariant frontier."
+url: "https://github.com/inaciovasquez2020/pachner-invariant"
+license: "MIT"
+version: "main"
+date-released: 2026-04-20
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Vasquez"
+      given-names: "Inacio"
+      orcid: "https://orcid.org/0009-0008-8459-3400"
+  title: "pachner-invariant"
+  repository-code: "https://github.com/inaciovasquez2020/pachner-invariant"
+  url: "https://github.com/inaciovasquez2020/pachner-invariant"
+  version: "main"
+  date-released: 2026-04-20

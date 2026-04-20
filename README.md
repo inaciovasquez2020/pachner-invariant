@@ -33,3 +33,15 @@ Exact rank targets:
 
 Promotion rule:
 promote `docs/data/g2_enumeration.json` only after the exact rank equalities pass.
+
+## Citation
+
+Canonical citation:
+
+> Vasquez, Inacio. *pachner-invariant*. GitHub repository. Version main. 2026-04-20.
+
+Machine-readable metadata:
+
+- `CITATION.cff`
+- `CITATION.json`
+- `ATTRIBUTION.md`
