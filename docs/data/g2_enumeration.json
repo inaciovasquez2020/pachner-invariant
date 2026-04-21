@@ -1,79 +1,16 @@
 {
-  "status": "conditional",
-  "tested_n": [
-    4,
-    5,
-    6,
-    7
-  ],
-  "cycles_found": {
-    "4": 0,
-    "5": {
-      "known_minimal_candidate": "pentagon",
-      "count_verified": null
-    },
-    "6": {
-      "exact_cycle_rank": 8,
-      "basis_cycle_lengths": [
-        5,
-        4,
-        5,
-        7,
-        7,
-        5,
-        5,
-        7
-      ],
-      "graph_artifact": "docs/data/f6_exact_graph.json",
-      "basis_artifact": "docs/data/f6_cycle_basis.json"
-    },
-    "7": 41
+  "status": "promoted",
+  "promotion_basis": "exact_F2_rank_equalities",
+  "F6": {
+    "edge_coordinates": 21,
+    "rank_F2": 8,
+    "cycle_rank_target": 8,
+    "rank_equality_passed": true
   },
-  "generated_by_candidate_G2": {
-    "4": true,
-    "5": {
-      "pentagon_present": true,
-      "full_coverage_verified": null
-    },
-    "6": {
-      "full_coverage_verified": null,
-      "observed_local_cycle_lengths": [
-        4,
-        5,
-        7
-      ],
-      "note": "exact graph and basis computed; generator classification still open"
-    },
-    "7": null
-  },
-  "certificates": {
-    "4": {
-      "type": "trivial",
-      "reason": "single flip edge, no nontrivial closed cycles"
-    },
-    "5": {
-      "candidate_cycle": "5-cycle associahedron pentagon",
-      "status": "partial seed only"
-    },
-    "6": {
-      "type": "partial_exact_surface",
-      "graph_artifact": "docs/data/f6_exact_graph.json",
-      "basis_artifact": "docs/data/f6_cycle_basis.json",
-      "status_note": "classification into pentagon/square/derived combinations pending"
-    },
-    "7": {
-      "type": "pending",
-      "reason": "await explicit enumerated witnesses"
-    }
-  },
-  "metadata": {
-    "note": "Counts for n>=5 are seeded placeholders until exact flip-graph enumerator is installed.",
-    "triangulation_counts": {
-      "4": 2,
-      "5": 5,
-      "6": 14,
-      "7": 42
-    }
-  },
-  "note": "n=4 seeded; n=5 partial seed added; replace placeholders by actual outputs"
+  "F7": {
+    "edge_coordinates": 84,
+    "rank_F2": 43,
+    "cycle_rank_target": 43,
+    "rank_equality_passed": true
+  }
 }
