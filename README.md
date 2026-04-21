@@ -14,7 +14,7 @@ A Lean 4 formalization of a combinatorial invariant for 3-manifold triangulation
 
 ## Current frontier
 
-Status: Conditional.
+Status: Exact bounded G_2 rank certification complete.
 
 Executable closure is complete.
 
