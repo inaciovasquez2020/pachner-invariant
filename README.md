@@ -12,6 +12,11 @@ A Lean 4 formalization of a combinatorial invariant for 3-manifold triangulation
 
 `lake build`
 
+
+Next theorem target:
+- `docs/status/NEXT_TARGET_THEOREM_2026_04_23.md`
+- issue: https://github.com/inaciovasquez2020/pachner-invariant/issues/25
+
 ## Current frontier
 
 Status: Exact bounded G_2 rank certification complete.
