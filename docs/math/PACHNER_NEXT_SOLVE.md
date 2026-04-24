@@ -1,15 +1,21 @@
 # PachnerInvariant next solve
+
 Status: OPEN.
-Closed objects:
-`normalizeEdge_eq_iff` and `tetToEdges_normalized_no_collision` now build in PachnerInvariant/NormalizeEdgeNoCollision.lean without importing frontier.
+
+Closed object:
+`tet_normalized_count_eq_boolToNat_any` builds in `PachnerInvariant/RawEdgesLocalNodup.lean`.
+
 Weakest sufficient next object:
-Prove the local count-to-any bridge for a single well-formed tetrahedron.
+Lift the single-tetrahedron count-to-any theorem over `T.tets`.
+
 Target theorem shape:
-theorem tet_normalized_count_eq_boolToNat_any
-    (t : Vert × Vert × Vert × Vert)
-    (ht : pairwiseDistinctTet t)
+
+```lean
+theorem rawEdges_count_eq_edgeDeg_countP
+    (T : Triangulation)
+    (hT : WellFormedTets T)
     (e : Vert × Vert) :
-    ((tetToEdges t).map normalizeEdge).count (normalizeEdge e) =
-      Bool.toNat ((tetToEdges t).any (edgeEq (normalizeEdge e)))
+    (rawEdges T).count (normalizeEdge e) =
+      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
 Boundary:
-No multiplicity-count closure is claimed.
+No global multiplicity-count closure is claimed until the fold/flatMap lift builds.

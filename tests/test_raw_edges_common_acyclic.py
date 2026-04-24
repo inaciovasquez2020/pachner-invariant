@@ -14,13 +14,13 @@ def test_raw_edges_common_exports_shared_objects():
 def test_raw_edges_count_imports_common():
     assert "import PachnerInvariant.RawEdgesCommon" in COUNT
 
-def test_local_nodup_is_acyclic_over_common():
+def test_local_count_to_any_is_acyclic_over_common():
     assert "import PachnerInvariant.RawEdgesCommon" in LOCAL
     assert "import PachnerInvariant.RawEdgesCount" not in LOCAL
     assert "import PachnerInvariant.frontier" not in LOCAL
 
 def test_next_solve_open_without_multiplicity_claim():
     assert "Status: OPEN." in DOC
-    assert "`tetToEdges_normalized_no_collision` now build" in DOC
-    assert "local count-to-any bridge" in DOC
-    assert "No multiplicity-count closure is claimed." in DOC
+    assert "`tet_normalized_count_eq_boolToNat_any` builds" in DOC
+    assert "rawEdges_count_eq_edgeDeg_countP" in DOC
+    assert "No global multiplicity-count closure is claimed" in DOC
