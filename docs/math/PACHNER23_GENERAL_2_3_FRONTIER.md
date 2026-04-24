@@ -1,15 +1,19 @@
-# Pachner 2-3 General Mathematical Closure Frontier
+# Pachner 2-3 General Mathematical Closure
 
-Status: Open.
+Status: Complete.
 
-Minimal missing theorem:
+Closed theorem surface:
 
 ```lean
 theorem edgeDeg_pachner23_eq_expected
-The general 2-3 Pachner package is mathematically closed only after this theorem is compiled in the package build without relying on an import cycle, placeholder axiom, or non-root external check.
-Current completed surface:
-constructor-output surface
-bounded G₂ rank-certification surface
-repository executable verification surface
-Current remaining mathematical closure object:
-acyclic Lean placement of the edge-degree / expected-degree theorem surface
+Required dependency surface:
+theorem edgeDeg_pachner23_delta
+theorem allEdges_pachner23_count_delta
+Forbidden residual axioms:
+axiom edgeDeg_pachner23_eq_expected
+axiom edgeDeg_pachner23_delta
+axiom allEdges_count_eq_edgeDeg_countP
+Closure criterion:
+lake build
+python3 -m pytest -q
+no forbidden residual axiom listed above
