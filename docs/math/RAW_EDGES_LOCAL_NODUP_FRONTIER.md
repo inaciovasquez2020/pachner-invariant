@@ -1,17 +1,25 @@
 # RawEdges local no-duplicate frontier
 
-Status: BLOCKED BY IMPORT CYCLE.
+Status: PARTIAL THEOREM-LEVEL PROGRESS.
 
-The desired local theorem is:
+Closed lower-module theorem:
 
 ```lean
-theorem pairwiseDistinctTet_normalized_edges_pairwise
-    (t : Vert × Vert × Vert × Vert)
-    (h : pairwiseDistinctTet t) :
-    List.Pairwise (· ≠ ·) ((tetToEdges t).map normalizeEdge)
-The proof should reuse the existing theorem:
-tetToEdges_normalized_no_collision
-However, tetToEdges_normalized_no_collision currently lives in PachnerInvariant.frontier, while frontier imports the old count bridge path. Importing frontier from the rawEdges layer creates a build cycle.
-Weakest sufficient next step:
-Move `normalizeEdge_eq_iff` and `tetToEdges_normalized_no_collision` into a lower dependency file that imports only descent_property, then import that lower file from both frontier and RawEdgesCount.
+theorem normalizeEdge_eq_iff
+    (a b c d : Vert) :
+    normalizeEdge (a,b) = normalizeEdge (c,d) ↔
+      (a = c ∧ b = d) ∨ (a = d ∧ b = c)
+This theorem now lives in:
+PachnerInvariant/NormalizeEdgeNoCollision.lean
+Remaining theorem-level obligation:
+theorem tetToEdges_normalized_no_collision
+    {a b c d : Vert}
+    (hpair :
+      a ≠ b ∧ a ≠ c ∧ a ≠ d ∧
+      b ≠ c ∧ b ≠ d ∧
+      c ≠ d) :
+    let t : Vert × Vert × Vert × Vert := (a,b,c,d)
+    let es := (tetToEdges t).map normalizeEdge
+    List.Pairwise (· ≠ ·) es
+After this lower theorem is proved, rebuild RawEdgesLocalNodup.
 No multiplicity-count closure is claimed yet.
