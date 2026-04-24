@@ -1,17 +1,10 @@
-# RawEdges local no-duplicate frontier
+# RawEdges local no-duplicate theorem
 
-Status: PARTIAL THEOREM-LEVEL PROGRESS.
+Status: THEOREM-LEVEL LOCAL NODUP CLOSED.
 
 Closed lower-module theorem:
 
 ```lean
-theorem normalizeEdge_eq_iff
-    (a b c d : Vert) :
-    normalizeEdge (a,b) = normalizeEdge (c,d) ↔
-      (a = c ∧ b = d) ∨ (a = d ∧ b = c)
-This theorem now lives in:
-PachnerInvariant/NormalizeEdgeNoCollision.lean
-Remaining theorem-level obligation:
 theorem tetToEdges_normalized_no_collision
     {a b c d : Vert}
     (hpair :
@@ -21,5 +14,16 @@ theorem tetToEdges_normalized_no_collision
     let t : Vert × Vert × Vert × Vert := (a,b,c,d)
     let es := (tetToEdges t).map normalizeEdge
     List.Pairwise (· ≠ ·) es
-After this lower theorem is proved, rebuild RawEdgesLocalNodup.
+Closed adapter theorem:
+theorem pairwiseDistinctTet_normalized_edges_pairwise
+    (t : Vert × Vert × Vert × Vert)
+    (h : pairwiseDistinctTet t) :
+    List.Pairwise (· ≠ ·) ((tetToEdges t).map normalizeEdge)
+Both build without importing frontier.
+Remaining theorem-level obligation:
+(rawEdges T).count (normalizeEdge e) =
+  T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
+under WellFormedTets T, or an equivalent local count-to-any bridge.
+Both build without importing `frontier`.
+
 No multiplicity-count closure is claimed yet.
