@@ -1,0 +1,62 @@
+== pachner23 ==
+PachnerInvariant/descent_property.lean-64-  tetContainsVert t2 t1.2.2.1 && tetContainsVert t2 t1.2.2.2
+PachnerInvariant/descent_property.lean-65-
+PachnerInvariant/descent_property.lean:66:def pachner23 (T : Triangulation) (a b c p q : Vert) : Triangulation :=
+PachnerInvariant/descent_property.lean-67-  let remove := [(a, b, c, p), (a, b, c, q)]
+PachnerInvariant/descent_property.lean-68-  let add    := [(a, b, p, q), (a, c, p, q), (b, c, p, q)]
+
+== WellFormedTets ==
+PachnerInvariant/RawEdgesCommon.lean-14-  t.2.2.1 ≠ t.2.2.2
+PachnerInvariant/RawEdgesCommon.lean-15-
+PachnerInvariant/RawEdgesCommon.lean:16:def WellFormedTets (T : Triangulation) : Prop :=
+PachnerInvariant/RawEdgesCommon.lean-17-  ∀ t ∈ T.tets, pairwiseDistinctTet t
+PachnerInvariant/RawEdgesCommon.lean-18-
+
+== inserted tetrahedra registry ==
+docs/math/WELLFORMED_TETS_PACHNER23_FRONTIER.md-15-    WellFormedTets (pachner23 T a b c p q)
+docs/math/WELLFORMED_TETS_PACHNER23_FRONTIER.md-16-Required proof ingredient:
+docs/math/WELLFORMED_TETS_PACHNER23_FRONTIER.md:17:Identify the exact tetrahedra inserted and removed by `pachner23`, then prove each inserted tetrahedron satisfies pairwiseDistinctTet.
+docs/math/WELLFORMED_TETS_PACHNER23_FRONTIER.md-18-Boundary:
+docs/math/WELLFORMED_TETS_PACHNER23_FRONTIER.md-19-No unconditional Pachner 2--3 delta theorem is claimed here.
+--
+tests/test_pachner23_inserted_tet_registry.py-2-
+tests/test_pachner23_inserted_tet_registry.py-3-DOC = Path("docs/math/PACHNER23_INSERTED_TET_REGISTRY.md").read_text()
+tests/test_pachner23_inserted_tet_registry.py:4:ART = Path("artifacts/pachner23_inserted_tet_registry.txt").read_text()
+tests/test_pachner23_inserted_tet_registry.py-5-
+tests/test_pachner23_inserted_tet_registry.py:6:def test_pachner23_inserted_tet_registry_locked():
+tests/test_pachner23_inserted_tet_registry.py-7-    assert "Status: REGISTRY LOCK." in DOC
+tests/test_pachner23_inserted_tet_registry.py:8:    assert "pachner23_inserted_tets_pairwiseDistinct" in DOC
+tests/test_pachner23_inserted_tet_registry.py-9-    assert "The exact inserted tetrahedron list must be selected" in DOC
+tests/test_pachner23_inserted_tet_registry.py-10-    assert "No theorem-level closure is claimed." in DOC
+tests/test_pachner23_inserted_tet_registry.py-11-    assert "No false `allEdges` multiplicity bridge is restored." in DOC
+tests/test_pachner23_inserted_tet_registry.py-12-
+tests/test_pachner23_inserted_tet_registry.py:13:def test_pachner23_inserted_tet_registry_has_candidates():
+tests/test_pachner23_inserted_tet_registry.py-14-    assert "pachner23" in DOC
+tests/test_pachner23_inserted_tet_registry.py-15-    assert len(ART.strip()) > 0
+--
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md-197-
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md-198-```lean
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md:199:theorem pachner23_inserted_tets_pairwiseDistinct
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md-200-    (a b c p q : Vert)
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md-201-    (h : <explicit distinctness assumptions>) :
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md:202:    <each inserted tetrahedron satisfies pairwiseDistinctTet>
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md-203-```
+docs/math/PACHNER23_INSERTED_TET_REGISTRY.md-204-
+--
+docs/math/PACHNER_NEXT_SOLVE.md-7-
+docs/math/PACHNER_NEXT_SOLVE.md-8-Constructor connection:
+docs/math/PACHNER_NEXT_SOLVE.md:9:Connect the repository-level `pachner23` constructor to the inserted tetrahedra:
+docs/math/PACHNER_NEXT_SOLVE.md-10-(a,b,p,q), (a,c,p,q), (b,c,p,q)
+docs/math/PACHNER_NEXT_SOLVE.md-11-Target theorem shape:
+--
+docs/math/PACHNER23_SHAPE_EXTRACTION.md-3-Status: INSPECTION LOCK.
+docs/math/PACHNER23_SHAPE_EXTRACTION.md-4-
+docs/math/PACHNER23_SHAPE_EXTRACTION.md:5:Purpose: identify the exact tetrahedra inserted and removed by `pachner23` before attempting `WellFormedTets_pachner23`.
+docs/math/PACHNER23_SHAPE_EXTRACTION.md-6-
+docs/math/PACHNER23_SHAPE_EXTRACTION.md-7-Search target: `pachner23` across `PachnerInvariant/*.lean`.
+--
+docs/math/PACHNER23_SHAPE_SUMMARY.md-262-
+docs/math/PACHNER23_SHAPE_SUMMARY.md-263-Required next proof ingredient:
+docs/math/PACHNER23_SHAPE_SUMMARY.md:264:Extract the exact inserted tetrahedron list from the candidate definition lines, then prove each inserted tetrahedron satisfies `pairwiseDistinctTet`.
+docs/math/PACHNER23_SHAPE_SUMMARY.md-265-
+docs/math/PACHNER23_SHAPE_SUMMARY.md-266-Boundary:

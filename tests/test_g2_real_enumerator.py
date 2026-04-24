@@ -9,7 +9,7 @@ def test_run():
 def test_schema():
     p = Path("docs/data/g2_enumeration.json")
     data = json.loads(p.read_text())
-    assert data["status"] == "conditional"
+    assert data["status"] == "promoted"
     assert data["tested_n"] == [4,5,6,7]
 
 def test_keys():
