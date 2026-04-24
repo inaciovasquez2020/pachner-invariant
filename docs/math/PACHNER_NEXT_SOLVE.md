@@ -1,21 +1,14 @@
-# PachnerInvariant next solve
-
+PachnerInvariant next solve
 Status: OPEN.
-
 Closed object:
-`tet_normalized_count_eq_boolToNat_any` builds in `PachnerInvariant/RawEdgesLocalNodup.lean`.
-
+`rawEdges_count_eq_edgeDeg_countP` now builds in PachnerInvariant/RawEdgesFlatMapLift.lean.
 Weakest sufficient next object:
-Lift the single-tetrahedron count-to-any theorem over `T.tets`.
-
+Propagate `WellFormedTets` through the Pachner 2--3 move layer.
 Target theorem shape:
-
-```lean
-theorem rawEdges_count_eq_edgeDeg_countP
+theorem WellFormedTets_pachner23
     (T : Triangulation)
     (hT : WellFormedTets T)
-    (e : Vert × Vert) :
-    (rawEdges T).count (normalizeEdge e) =
-      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
+    (a b c p q : Vert) :
+    WellFormedTets (pachner23 T a b c p q)
 Boundary:
-No global multiplicity-count closure is claimed until the fold/flatMap lift builds.
+No false `allEdges` multiplicity bridge is claimed.

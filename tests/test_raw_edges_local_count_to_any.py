@@ -14,8 +14,8 @@ def test_local_count_to_any_status_closed():
     assert "tet_normalized_count_eq_boolToNat_any" in DOC
     assert "No global multiplicity-count closure is claimed yet" in DOC
 
-def test_next_solve_is_global_flatmap_lift():
+def test_next_solve_is_wellformed_propagation_after_global_lift():
     assert "Status: OPEN." in NEXT
-    assert "Lift the single-tetrahedron count-to-any theorem over `T.tets`" in NEXT
-    assert "rawEdges_count_eq_edgeDeg_countP" in NEXT
-    assert "No global multiplicity-count closure is claimed" in NEXT
+    assert "`rawEdges_count_eq_edgeDeg_countP` now builds" in NEXT
+    assert "Propagate `WellFormedTets` through the Pachner 2--3 move layer." in NEXT
+    assert "theorem WellFormedTets_pachner23" in NEXT
