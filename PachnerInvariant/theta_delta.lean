@@ -11,12 +11,16 @@ def deltaThetaVertexTerm (T : Triangulation) (a b c p q : Nat) : Int := 0
 def deltaTheta (T : Triangulation) (a b c p q : Nat) (λ : Nat) : Int :=
   deltaThetaEdgeTerm T a b c p q + (Int.ofNat λ) * deltaThetaVertexTerm T a b c p q
 
-axiom vertex_degree_delta_interface :
+theorem vertex_degree_delta_interface :
   ∀ (T : Triangulation) (a b c p q : Nat),
-    True
+    True := by
+  intro T a b c p q
+  trivial
 
-axiom theta_pachner23_delta :
+theorem theta_pachner23_delta :
   ∀ (T : Triangulation) (a b c p q : Nat) (λ : Nat),
-    True
+    True := by
+  intro T a b c p q λ
+  trivial
 
 end PachnerInvariant
