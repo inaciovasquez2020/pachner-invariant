@@ -1,9 +1,0 @@
-{"plugins": [],
- "package": "pachner_invariant",
- "options": {},
- "name": "PachnerInvariant.lambda_optimization",
- "isModule": false,
- "importArts":
- {"PachnerInvariant.descent_property":
-  ["/Users/inaciof.vasquez/github-audit/pachner-invariant/.lake/build/lib/lean/PachnerInvariant/descent_property.olean"]},
- "dynlibs": []}
