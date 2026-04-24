@@ -15,5 +15,6 @@ def test_raw_edges_count_imports_common():
 
 def test_next_solve_open_without_multiplicity_claim():
     assert "Status: OPEN." in DOC
-    assert "Prove `normalizeEdge_eq_iff`" in DOC
+    assert "`normalizeEdge_eq_iff` now builds" in DOC
+    assert "Prove `tetToEdges_normalized_no_collision`" in DOC
     assert "No multiplicity-count closure is claimed." in DOC
