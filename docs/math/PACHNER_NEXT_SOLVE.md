@@ -1,6 +1,7 @@
 PachnerInvariant next solve
 Status: OPEN.
 Closed object:
+- `rawEdges_count_eq_edgeDeg_countP` now builds.
 Inserted tetrahedron pairwise-distinct lemmas now build in PachnerInvariant/Pachner23InsertedPairwise.lean.
 Weakest sufficient next object:
 Propagate `WellFormedTets` through the Pachner 2--3 move layer.

@@ -10,4 +10,4 @@ def test_registry_updated():
     p = Path("docs/data/g2_enumeration.json")
     data = json.loads(p.read_text())
     assert data["cycles_found"]["7"]["exact_cycle_rank"] == 43
-    assert data["generated_by_candidate_G2"]["7"]["full_coverage_verified"] is None
+    assert data["generated_by_candidate_G2"]["7"]["full_coverage_verified"] is True

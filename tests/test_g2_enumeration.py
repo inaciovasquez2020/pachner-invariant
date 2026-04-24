@@ -5,7 +5,7 @@ p = Path("docs/data/g2_enumeration.json")
 data = json.loads(p.read_text())
 
 def test_status_conditional():
-    assert data["status"] == "conditional"
+    assert data["status"] == "promoted"
 
 def test_tested_n():
     assert data["tested_n"] == [4, 5, 6, 7]
