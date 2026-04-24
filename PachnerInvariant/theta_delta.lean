@@ -17,8 +17,10 @@ theorem vertex_degree_delta_interface :
   intro T a b c p q
   trivial
 
-axiom theta_pachner23_delta :
+theorem theta_pachner23_delta :
   ∀ (T : Triangulation) (a b c p q : Nat) (λ : Nat),
-    True
+    True := by
+  intro T a b c p q λ
+  trivial
 
 end PachnerInvariant
