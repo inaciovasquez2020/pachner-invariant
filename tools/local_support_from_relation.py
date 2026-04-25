@@ -169,15 +169,72 @@ def first_valid_witness(cert: dict[str, Any]) -> dict[str, Any]:
     )
 
 
+
+def all_valid_witnesses(cert: dict[str, Any]) -> dict[str, Any]:
+    relations = cert.get("relations")
+    if not isinstance(relations, list):
+        raise SystemExit("HALT: certificate relations field is not a list")
+
+    witnesses: list[dict[str, Any]] = []
+    failures: list[dict[str, Any]] = []
+
+    for rel in relations:
+        try:
+            witness = local_support_from_relation(cert, rel)
+        except Exception as exc:
+            failures.append(
+                {
+                    "relation_id": rel.get("relation_id"),
+                    "witness_id": rel.get("witness_id"),
+                    "error": str(exc),
+                }
+            )
+            continue
+
+        if witness is None:
+            failures.append(
+                {
+                    "relation_id": rel.get("relation_id"),
+                    "witness_id": rel.get("witness_id"),
+                    "error": "relation is not a simple local 4- or 5-cycle in the endpoint graph",
+                }
+            )
+            continue
+
+        witnesses.append(witness)
+
+    report = {
+        "schema": "BoundedG2AllLocalSupportWitnesses",
+        "field": "F2",
+        "n": cert.get("n"),
+        "relation_count": len(relations),
+        "witness_count": len(witnesses),
+        "failure_count": len(failures),
+        "witnesses": witnesses,
+        "failures": failures[:20],
+        "status": "PASS" if not failures and len(witnesses) == len(relations) else "HALT",
+        "scope": "all exported candidate relations must reconstruct as graph-local square/pentagon witnesses",
+    }
+
+    if report["status"] != "PASS":
+        raise SystemExit(json.dumps(report, indent=2, sort_keys=True))
+
+    return report
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", default=None)
     parser.add_argument("--n", type=int, default=None)
     parser.add_argument("--output", default=None)
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="require every exported candidate relation to reconstruct as a local witness",
+    )
     args = parser.parse_args()
 
     cert = candidate_from_args(args)
-    report = first_valid_witness(cert)
+    report = all_valid_witnesses(cert) if args.all else first_valid_witness(cert)
 
     if args.output:
         write_json(Path(args.output), report)
