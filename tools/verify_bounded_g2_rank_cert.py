@@ -7,6 +7,13 @@ from pathlib import Path
 from typing import Any
 
 
+
+def popcount(x: int) -> int:
+    x = int(x)
+    if hasattr(x, "bit_count"):
+        return x.bit_count()
+    return bin(x).count("1")
+
 def gf2_rank(rows: list[int]) -> int:
     rows = [r for r in rows if r]
     rank = 0
@@ -75,7 +82,7 @@ def boundary_rows(vertices: list[Any], edges: list[dict[str, Any]]) -> list[int]
 def transpose_product_zero(boundary: list[int], gen_rows: list[int]) -> bool:
     for b in boundary:
         for g in gen_rows:
-            if (b & g).bit_count() % 2:
+            if popcount(b & g) % 2:
                 return False
     return True
 
