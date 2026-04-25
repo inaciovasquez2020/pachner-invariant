@@ -1,0 +1,764 @@
+{
+  "certificate_schema": "BoundedG2RankCert",
+  "edges": [
+    {
+      "edge_id": 0,
+      "move_token": "adjacency-0-1",
+      "source": 0,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 1
+    },
+    {
+      "edge_id": 1,
+      "move_token": "adjacency-0-2",
+      "source": 0,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 2
+    },
+    {
+      "edge_id": 2,
+      "move_token": "adjacency-0-5",
+      "source": 0,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 5
+    },
+    {
+      "edge_id": 3,
+      "move_token": "adjacency-1-4",
+      "source": 1,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 4
+    },
+    {
+      "edge_id": 4,
+      "move_token": "adjacency-1-6",
+      "source": 1,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 6
+    },
+    {
+      "edge_id": 5,
+      "move_token": "adjacency-2-3",
+      "source": 2,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 3
+    },
+    {
+      "edge_id": 6,
+      "move_token": "adjacency-2-8",
+      "source": 2,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 8
+    },
+    {
+      "edge_id": 7,
+      "move_token": "adjacency-3-4",
+      "source": 3,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 4
+    },
+    {
+      "edge_id": 8,
+      "move_token": "adjacency-3-12",
+      "source": 3,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 12
+    },
+    {
+      "edge_id": 9,
+      "move_token": "adjacency-4-13",
+      "source": 4,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 13
+    },
+    {
+      "edge_id": 10,
+      "move_token": "adjacency-5-6",
+      "source": 5,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 6
+    },
+    {
+      "edge_id": 11,
+      "move_token": "adjacency-5-7",
+      "source": 5,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 7
+    },
+    {
+      "edge_id": 12,
+      "move_token": "adjacency-6-10",
+      "source": 6,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 10
+    },
+    {
+      "edge_id": 13,
+      "move_token": "adjacency-7-8",
+      "source": 7,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 8
+    },
+    {
+      "edge_id": 14,
+      "move_token": "adjacency-7-9",
+      "source": 7,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 9
+    },
+    {
+      "edge_id": 15,
+      "move_token": "adjacency-8-11",
+      "source": 8,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 11
+    },
+    {
+      "edge_id": 16,
+      "move_token": "adjacency-9-10",
+      "source": 9,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 10
+    },
+    {
+      "edge_id": 17,
+      "move_token": "adjacency-9-11",
+      "source": 9,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 11
+    },
+    {
+      "edge_id": 18,
+      "move_token": "adjacency-10-13",
+      "source": 10,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 13
+    },
+    {
+      "edge_id": 19,
+      "move_token": "adjacency-11-12",
+      "source": 11,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 12
+    },
+    {
+      "edge_id": 20,
+      "move_token": "adjacency-12-13",
+      "source": 12,
+      "source_artifact": "f_exact_graph.adjacency",
+      "target": 13
+    }
+  ],
+  "expected_rank": 8,
+  "field": "F2",
+  "n": 6,
+  "promotion_scope": "F6 candidate plus all local/decomposed bounded-G2 witnesses",
+  "relation_witnesses": [
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "edge_indices_mod2": [
+        0,
+        1,
+        3,
+        5,
+        7
+      ],
+      "local_support": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "relation_id": 0,
+      "relation_rule": "bounded_G2_pentagon",
+      "scope": "valid for the current checkable predicate; not a proof that every candidate relation is classified",
+      "source": "local_support_from_relation",
+      "status": "first_valid_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_0"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "edge_indices_mod2": [
+        0,
+        2,
+        4,
+        10
+      ],
+      "local_support": [
+        0,
+        1,
+        5,
+        6
+      ],
+      "relation_id": 1,
+      "relation_rule": "bounded_G2_square",
+      "scope": "valid for the current checkable predicate; not a proof that every candidate relation is classified",
+      "source": "local_support_from_relation",
+      "status": "first_valid_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_1"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "edge_indices_mod2": [
+        1,
+        2,
+        6,
+        11,
+        13
+      ],
+      "local_support": [
+        0,
+        2,
+        5,
+        7,
+        8
+      ],
+      "relation_id": 2,
+      "relation_rule": "bounded_G2_pentagon",
+      "scope": "valid for the current checkable predicate; not a proof that every candidate relation is classified",
+      "source": "local_support_from_relation",
+      "status": "first_valid_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_2"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "decomposes_over_F2_into_square_pentagon": true,
+      "decomposition": [
+        {
+          "edge_indices_mod2": [
+            0,
+            2,
+            4,
+            10
+          ],
+          "relation_rule": "bounded_G2_square",
+          "summand_index": 1
+        },
+        {
+          "edge_indices_mod2": [
+            10,
+            11,
+            12,
+            14,
+            16
+          ],
+          "relation_rule": "bounded_G2_pentagon",
+          "summand_index": 6
+        }
+      ],
+      "edge_indices_mod2": [
+        0,
+        2,
+        4,
+        11,
+        12,
+        14,
+        16
+      ],
+      "local_support": [
+        0,
+        1,
+        5,
+        6,
+        7,
+        9,
+        10
+      ],
+      "relation_id": 3,
+      "relation_rule": "bounded_G2_decomposed_heptagon",
+      "scope": "7-cycle accepted only through explicit F2 decomposition into graph-local square/pentagon cycles",
+      "source": "local_support_from_relation:decomposed_support_from_relation",
+      "status": "valid_decomposed_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_3"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "decomposes_over_F2_into_square_pentagon": true,
+      "decomposition": [
+        {
+          "edge_indices_mod2": [
+            1,
+            2,
+            6,
+            11,
+            13
+          ],
+          "relation_rule": "bounded_G2_pentagon",
+          "summand_index": 2
+        },
+        {
+          "edge_indices_mod2": [
+            13,
+            14,
+            15,
+            17
+          ],
+          "relation_rule": "bounded_G2_square",
+          "summand_index": 7
+        }
+      ],
+      "edge_indices_mod2": [
+        1,
+        2,
+        6,
+        11,
+        14,
+        15,
+        17
+      ],
+      "local_support": [
+        0,
+        2,
+        5,
+        7,
+        8,
+        9,
+        11
+      ],
+      "relation_id": 4,
+      "relation_rule": "bounded_G2_decomposed_heptagon",
+      "scope": "7-cycle accepted only through explicit F2 decomposition into graph-local square/pentagon cycles",
+      "source": "local_support_from_relation:decomposed_support_from_relation",
+      "status": "valid_decomposed_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_4"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "edge_indices_mod2": [
+        3,
+        4,
+        9,
+        12,
+        18
+      ],
+      "local_support": [
+        1,
+        4,
+        6,
+        10,
+        13
+      ],
+      "relation_id": 5,
+      "relation_rule": "bounded_G2_pentagon",
+      "scope": "valid for the current checkable predicate; not a proof that every candidate relation is classified",
+      "source": "local_support_from_relation",
+      "status": "first_valid_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_5"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "edge_indices_mod2": [
+        5,
+        6,
+        8,
+        15,
+        19
+      ],
+      "local_support": [
+        2,
+        3,
+        8,
+        11,
+        12
+      ],
+      "relation_id": 6,
+      "relation_rule": "bounded_G2_pentagon",
+      "scope": "valid for the current checkable predicate; not a proof that every candidate relation is classified",
+      "source": "local_support_from_relation",
+      "status": "first_valid_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_6"
+    },
+    {
+      "admissible_bounded_G2": true,
+      "bounded_G2_layer": true,
+      "closed_local_loop": true,
+      "decomposes_over_F2_into_square_pentagon": true,
+      "decomposition": [
+        {
+          "edge_indices_mod2": [
+            0,
+            1,
+            3,
+            5,
+            7
+          ],
+          "relation_rule": "bounded_G2_pentagon",
+          "summand_index": 0
+        },
+        {
+          "edge_indices_mod2": [
+            7,
+            8,
+            9,
+            20
+          ],
+          "relation_rule": "bounded_G2_square",
+          "summand_index": 5
+        }
+      ],
+      "edge_indices_mod2": [
+        0,
+        1,
+        3,
+        5,
+        8,
+        9,
+        20
+      ],
+      "local_support": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        12,
+        13
+      ],
+      "relation_id": 7,
+      "relation_rule": "bounded_G2_decomposed_heptagon",
+      "scope": "7-cycle accepted only through explicit F2 decomposition into graph-local square/pentagon cycles",
+      "source": "local_support_from_relation:decomposed_support_from_relation",
+      "status": "valid_decomposed_local_graph_witness",
+      "uses_only_local_flips": true,
+      "witness_id": "candidate_relation_witness_7"
+    }
+  ],
+  "relations": [
+    {
+      "edge_indices_mod2": [
+        0,
+        1,
+        3,
+        5,
+        7
+      ],
+      "relation_id": 0,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_0"
+    },
+    {
+      "edge_indices_mod2": [
+        0,
+        2,
+        4,
+        10
+      ],
+      "relation_id": 1,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_1"
+    },
+    {
+      "edge_indices_mod2": [
+        1,
+        2,
+        6,
+        11,
+        13
+      ],
+      "relation_id": 2,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_2"
+    },
+    {
+      "edge_indices_mod2": [
+        0,
+        2,
+        4,
+        11,
+        12,
+        14,
+        16
+      ],
+      "relation_id": 3,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_3"
+    },
+    {
+      "edge_indices_mod2": [
+        1,
+        2,
+        6,
+        11,
+        14,
+        15,
+        17
+      ],
+      "relation_id": 4,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_4"
+    },
+    {
+      "edge_indices_mod2": [
+        3,
+        4,
+        9,
+        12,
+        18
+      ],
+      "relation_id": 5,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_5"
+    },
+    {
+      "edge_indices_mod2": [
+        5,
+        6,
+        8,
+        15,
+        19
+      ],
+      "relation_id": 6,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_6"
+    },
+    {
+      "edge_indices_mod2": [
+        0,
+        1,
+        3,
+        5,
+        8,
+        9,
+        20
+      ],
+      "relation_id": 7,
+      "relation_type": "cycle_basis_candidate",
+      "source_artifact": "f_cycle_basis.basis_cycles",
+      "witness_id": "candidate_relation_witness_7"
+    }
+  ],
+  "source_artifacts": [
+    "docs/data/f6_exact_graph.json",
+    "docs/data/f6_cycle_basis.json"
+  ],
+  "source_witness_report": "/tmp/pachner_g2_promote_f6/all_witnesses_n6.json",
+  "status": "raw_with_witnesses_unverified_rank",
+  "vertices": [
+    [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    [
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    [
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ]
+    ],
+    [
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        5
+      ]
+    ]
+  ],
+  "warning": "This is exported finite data from existing artifacts, not a certified bounded-G2 relation certificate."
+}
