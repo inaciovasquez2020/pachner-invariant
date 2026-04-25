@@ -53,7 +53,12 @@ def test_local_support_all_relations_mode_runs_and_reports_complete_or_halt(tmp_
         assert report["witnesses"]
         assert all(w["admissible_bounded_G2"] is True for w in report["witnesses"])
         assert all(
-            w["relation_rule"] in {"bounded_G2_square", "bounded_G2_pentagon"}
+            w["relation_rule"]
+                in {
+                    "bounded_G2_square",
+                    "bounded_G2_pentagon",
+                    "bounded_G2_decomposed_heptagon",
+                }
             for w in report["witnesses"]
         )
     else:

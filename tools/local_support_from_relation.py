@@ -11,6 +11,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from create_bounded_g2_cert_data import build_candidate  # noqa: E402
+from generate_bounded_g2_witness_data import enumerate_simple_cycles_4_5  # noqa: E402
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -119,6 +120,110 @@ def candidate_from_args(args: argparse.Namespace) -> dict[str, Any]:
     return build_candidate(args.n)
 
 
+
+def row_bits(indices: list[int]) -> int:
+    out = 0
+    for i in indices:
+        out ^= 1 << int(i)
+    return out
+
+
+def solve_subset_xor(target: int, generators: list[int]) -> list[int] | None:
+    basis: dict[int, tuple[int, int]] = {}
+
+    for i, g in enumerate(generators):
+        x = g
+        mask = 1 << i
+
+        while x:
+            p = x.bit_length() - 1
+            if p not in basis:
+                basis[p] = (x, mask)
+                break
+            bx, bm = basis[p]
+            x ^= bx
+            mask ^= bm
+
+    x = target
+    mask = 0
+
+    while x:
+        p = x.bit_length() - 1
+        if p not in basis:
+            return None
+        bx, bm = basis[p]
+        x ^= bx
+        mask ^= bm
+
+    return [i for i in range(len(generators)) if (mask >> i) & 1]
+
+
+def decomposed_support_from_relation(cert: dict[str, Any], rel: dict[str, Any]) -> dict[str, Any] | None:
+    idxs = relation_indices(rel)
+
+    if len(idxs) != 7:
+        return None
+
+    simple = enumerate_simple_cycles_4_5(cert["edges"])
+    if simple.get("status") != "generated":
+        return None
+
+    simple_cycles = [list(map(int, xs)) for xs in simple.get("edge_sets", [])]
+    simple_bits = [row_bits(xs) for xs in simple_cycles]
+
+    target = row_bits(idxs)
+    solution = solve_subset_xor(target, simple_bits)
+
+    if solution is None:
+        return None
+
+    decomposition = []
+    xor_check = 0
+
+    for i in solution:
+        edge_set = sorted(simple_cycles[i])
+        xor_check ^= row_bits(edge_set)
+        decomposition.append(
+            {
+                "summand_index": i,
+                "edge_indices_mod2": edge_set,
+                "relation_rule": "bounded_G2_square"
+                if len(edge_set) == 4
+                else "bounded_G2_pentagon",
+            }
+        )
+
+    if xor_check != target:
+        return None
+
+    support = sorted(
+        {
+            int(cert["edges"][idx]["source"])
+            for idx in idxs
+        }
+        | {
+            int(cert["edges"][idx]["target"])
+            for idx in idxs
+        }
+    )
+
+    return {
+        "witness_id": rel.get("witness_id", f"decomposed_support_witness_{rel.get('relation_id')}"),
+        "relation_id": rel.get("relation_id"),
+        "admissible_bounded_G2": True,
+        "relation_rule": "bounded_G2_decomposed_heptagon",
+        "local_support": support,
+        "bounded_G2_layer": True,
+        "uses_only_local_flips": True,
+        "closed_local_loop": True,
+        "edge_indices_mod2": idxs,
+        "decomposes_over_F2_into_square_pentagon": True,
+        "decomposition": decomposition,
+        "source": "local_support_from_relation:decomposed_support_from_relation",
+        "status": "valid_decomposed_local_graph_witness",
+        "scope": "7-cycle accepted only through explicit F2 decomposition into graph-local square/pentagon cycles",
+    }
+
 def first_valid_witness(cert: dict[str, Any]) -> dict[str, Any]:
     relations = cert.get("relations")
     if not isinstance(relations, list):
@@ -192,11 +297,14 @@ def all_valid_witnesses(cert: dict[str, Any]) -> dict[str, Any]:
             continue
 
         if witness is None:
+            witness = decomposed_support_from_relation(cert, rel)
+
+        if witness is None:
             failures.append(
                 {
                     "relation_id": rel.get("relation_id"),
                     "witness_id": rel.get("witness_id"),
-                    "error": "relation is not a simple local 4- or 5-cycle in the endpoint graph",
+                    "error": "relation is neither a simple local 4/5-cycle nor a decomposed 7-cycle over square/pentagon relations",
                 }
             )
             continue
