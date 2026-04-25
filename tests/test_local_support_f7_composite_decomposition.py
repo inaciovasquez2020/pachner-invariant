@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 
-def test_local_support_all_relations_accepts_f6_decomposed_heptagons(tmp_path):
+def test_local_support_all_relations_accepts_f7_composite_decompositions(tmp_path):
     create_script = Path("tools/create_bounded_g2_cert_data.py")
     local_script = Path("tools/local_support_from_relation.py")
 
@@ -13,7 +13,7 @@ def test_local_support_all_relations_accepts_f6_decomposed_heptagons(tmp_path):
             sys.executable,
             str(create_script),
             "--n",
-            "6",
+            "7",
             "--output-dir",
             str(tmp_path),
         ],
@@ -22,8 +22,8 @@ def test_local_support_all_relations_accepts_f6_decomposed_heptagons(tmp_path):
         check=True,
     )
 
-    candidate = tmp_path / "Cert_6.candidate.json"
-    output = tmp_path / "all_witnesses_n6.json"
+    candidate = tmp_path / "Cert_7.candidate.json"
+    output = tmp_path / "all_witnesses_n7.json"
 
     result = subprocess.run(
         [
@@ -44,36 +44,31 @@ def test_local_support_all_relations_accepts_f6_decomposed_heptagons(tmp_path):
 
     assert report["schema"] == "BoundedG2AllLocalSupportWitnesses"
     assert report["field"] == "F2"
-    assert report["n"] == 6
+    assert report["n"] == 7
     assert report["status"] == "PASS"
-    assert report["relation_count"] == 8
-    assert report["witness_count"] == 8
+    assert report["relation_count"] == 43
+    assert report["witness_count"] == 43
     assert report["failure_count"] == 0
 
-    witnesses = report["witnesses"]
-    by_id = {w["relation_id"]: w for w in witnesses}
+    residual_ids = {14, 15, 22, 23, 24, 29, 32, 35, 38, 39, 42}
+    by_id = {w["relation_id"]: w for w in report["witnesses"]}
 
-    assert set(by_id) == set(range(8))
+    assert residual_ids.issubset(by_id)
 
-    for rid in {3, 4, 7}:
+    for rid in residual_ids:
         witness = by_id[rid]
         assert witness["admissible_bounded_G2"] is True
-        assert witness["relation_rule"] in {
-            "bounded_G2_decomposed_heptagon",
-            "bounded_G2_decomposed_composite",
-        }
+        assert witness["relation_rule"] == "bounded_G2_decomposed_composite"
         assert witness["decomposes_over_F2_into_square_pentagon"] is True
         assert witness["decomposition"]
+        assert witness["composite_edge_count"] in {6, 9}
         assert all(
             s["relation_rule"] in {"bounded_G2_square", "bounded_G2_pentagon"}
             for s in witness["decomposition"]
         )
 
-    for rid in {0, 1, 2, 5, 6}:
-        assert by_id[rid]["relation_rule"] in {"bounded_G2_square", "bounded_G2_pentagon"}
 
-
-def test_admissible_predicate_accepts_all_f6_decomposed_witnesses_after_merge(tmp_path):
+def test_admissible_predicate_accepts_f7_composite_decompositions_after_merge(tmp_path):
     create_script = Path("tools/create_bounded_g2_cert_data.py")
     local_script = Path("tools/local_support_from_relation.py")
     predicate_script = Path("tools/verify_admissible_bounded_g2_predicate.py")
@@ -83,7 +78,7 @@ def test_admissible_predicate_accepts_all_f6_decomposed_witnesses_after_merge(tm
             sys.executable,
             str(create_script),
             "--n",
-            "6",
+            "7",
             "--output-dir",
             str(tmp_path),
         ],
@@ -92,9 +87,9 @@ def test_admissible_predicate_accepts_all_f6_decomposed_witnesses_after_merge(tm
         check=True,
     )
 
-    candidate = tmp_path / "Cert_6.candidate.json"
-    witnesses_path = tmp_path / "all_witnesses_n6.json"
-    merged = tmp_path / "Cert_6.with_witnesses.json"
+    candidate = tmp_path / "Cert_7.candidate.json"
+    witnesses_path = tmp_path / "all_witnesses_n7.json"
+    merged = tmp_path / "Cert_7.with_witnesses.json"
 
     subprocess.run(
         [

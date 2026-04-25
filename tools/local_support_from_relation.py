@@ -161,7 +161,7 @@ def solve_subset_xor(target: int, generators: list[int]) -> list[int] | None:
 def decomposed_support_from_relation(cert: dict[str, Any], rel: dict[str, Any]) -> dict[str, Any] | None:
     idxs = relation_indices(rel)
 
-    if len(idxs) != 7:
+    if len(idxs) <= 5:
         return None
 
     simple = enumerate_simple_cycles_4_5(cert["edges"])
@@ -211,17 +211,18 @@ def decomposed_support_from_relation(cert: dict[str, Any], rel: dict[str, Any]) 
         "witness_id": rel.get("witness_id", f"decomposed_support_witness_{rel.get('relation_id')}"),
         "relation_id": rel.get("relation_id"),
         "admissible_bounded_G2": True,
-        "relation_rule": "bounded_G2_decomposed_heptagon",
+        "relation_rule": "bounded_G2_decomposed_composite",
         "local_support": support,
         "bounded_G2_layer": True,
         "uses_only_local_flips": True,
         "closed_local_loop": True,
         "edge_indices_mod2": idxs,
         "decomposes_over_F2_into_square_pentagon": True,
+        "composite_edge_count": len(idxs),
         "decomposition": decomposition,
         "source": "local_support_from_relation:decomposed_support_from_relation",
         "status": "valid_decomposed_local_graph_witness",
-        "scope": "7-cycle accepted only through explicit F2 decomposition into graph-local square/pentagon cycles",
+        "scope": "composite cycle accepted only through explicit F2 decomposition into graph-local square/pentagon cycles",
     }
 
 def first_valid_witness(cert: dict[str, Any]) -> dict[str, Any]:

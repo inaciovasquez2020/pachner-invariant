@@ -11,6 +11,7 @@ ALLOWED_RULES = {
     "bounded_G2_square",
     "bounded_G2_pentagon",
     "bounded_G2_decomposed_heptagon",
+    "bounded_G2_decomposed_composite",
 }
 
 

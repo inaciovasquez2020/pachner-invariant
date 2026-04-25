@@ -58,6 +58,7 @@ def test_local_support_all_relations_mode_runs_and_reports_complete_or_halt(tmp_
                     "bounded_G2_square",
                     "bounded_G2_pentagon",
                     "bounded_G2_decomposed_heptagon",
+                    "bounded_G2_decomposed_composite",
                 }
             for w in report["witnesses"]
         )
