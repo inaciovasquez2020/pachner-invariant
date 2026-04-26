@@ -1,0 +1,41 @@
+{
+  "certificate": "Pachner certified frontier registry",
+  "status": "PENDING_DESCENT_CERTIFICATE_EVALUATION",
+  "repository": "inaciovasquez2020/pachner-invariant",
+  "count_bridge": {
+    "allEdges_count_eq_edgeDeg_countP": {
+      "theorem_level_present": true,
+      "lean_file": "PachnerInvariant/allEdges_count_eq_edgeDeg_countP.lean"
+    }
+  },
+  "edge_degree_chain": {
+    "allEdges_pachner23_count_delta": {
+      "theorem_level_present": true
+    },
+    "edgeDeg_pachner23_delta": {
+      "theorem_level_present": true
+    },
+    "edgeDeg_pachner23_eq_expected": {
+      "theorem_level_present": true
+    }
+  },
+  "pending_certificates": {
+    "theta_delta_closure": {
+      "verified": false,
+      "description": "Theta/descent closure downstream of the theorem-level 2--3 edge-degree chain."
+    },
+    "penalty_control": {
+      "verified": false,
+      "description": "Certified local penalty control or equivalent descent condition."
+    },
+    "global_descent_gate": {
+      "verified": false,
+      "description": "No global Pachner descent theorem may be claimed without this certificate."
+    }
+  },
+  "locked_theorem": {
+    "claim": "Count bridge and 2--3 edge-degree chain are theorem-level present; downstream theta/descent closure remains pending.",
+    "global_descent_claim": false,
+    "topological_invariant_claim": false
+  }
+}
