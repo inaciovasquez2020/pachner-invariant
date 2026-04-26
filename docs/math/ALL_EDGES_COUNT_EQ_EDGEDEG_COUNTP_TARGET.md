@@ -1,4 +1,4 @@
-# allEdges_count_eq_edgeDeg_countP Target
+# allEdges_count_eq_edgeDeg_countP Status
 
 ## Status
 
@@ -10,7 +10,7 @@ OPEN
 
 ## Canonical role
 
-This is the next axiom target in the Pachner 2--3 frontier.
+This bridge is theorem-level present in the Pachner 2--3 frontier.
 It is the edge-count / edge-degree bridge immediately upstream of:
 
 - `allEdges_pachner23_count_delta`
@@ -20,6 +20,6 @@ It is the edge-count / edge-degree bridge immediately upstream of:
 
 ## Proof obligation policy
 
-Replace the live axiom with a proved theorem of the same interface before claiming downstream closure.
+Do not treat this bridge as a live axiom target; downstream closure now depends on theta/descent frontier objects.
 
 No unconditional closure is claimed in the current repository state.

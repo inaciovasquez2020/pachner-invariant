@@ -1,19 +1,19 @@
-# Next Axiom Target
+# Next Frontier Target
 
 ## Selected target
 
-`allEdges_count_eq_edgeDeg_countP`
+`theta_pachner23_delta` / downstream theta-descent closure
 
 ## Reason
 
-This is the count-bridge converting `allEdges` multiplicity into `countP` over tetrahedra.
+`allEdges_count_eq_edgeDeg_countP` is theorem-level present. The remaining target is downstream theta/descent closure using the proved count bridge.
 
 ## Exact statement
 
 ```lean
-axiom allEdges_count_eq_edgeDeg_countP
+theorem allEdges_count_eq_edgeDeg_countP
     (T : Triangulation) (e : Vert × Vert) :
     List.count (normalizeEdge e) (allEdges T) =
       T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
 Immediate closure objective
-Replace allEdges_count_eq_edgeDeg_countP by a proved theorem with the identical statement.
+Do not relabel `allEdges_count_eq_edgeDeg_countP` as a live axiom; it is already theorem-level present.

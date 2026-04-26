@@ -6,4 +6,4 @@ def test_allEdges_count_eq_edgeDeg_countP_target_doc():
     assert "`allEdges_count_eq_edgeDeg_countP`" in s
     assert "edge-count / edge-degree bridge" in s
     assert "`edgeDeg_pachner23_eq_expected`" in s
-    assert "Replace the live axiom with a proved theorem" in s
+    assert "Do not treat this bridge as a live axiom target" in s
