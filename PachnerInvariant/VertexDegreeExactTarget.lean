@@ -36,4 +36,29 @@ def vertexDegreeExactTargetStatement : Prop :=
     vertexDeg (pachner23 T a b c p q) v =
       vertexDeg T v + expectedVertexDeg23ExactDelta a b c p q v
 
+
+def vertexIncidence (v : Vert) (t : Tet) : Bool :=
+  (tetToVerts t).contains v
+
+/--
+Open local-count target.
+
+This isolates the real combinatorial lemma behind the vertex-degree update:
+the 2→3 move changes the count of tetrahedra incident to `v` by exactly the
+expected vertex delta.
+-/
+def vertexIncidenceDeltaTargetStatement : Prop :=
+  ∀ {T : Triangulation} {a b c p q v : Vert},
+    Valid23Exact T a b c p q →
+    (pachner23 T a b c p q).tets.countP (vertexIncidence v) =
+      T.tets.countP (vertexIncidence v) + expectedVertexDeg23ExactDelta a b c p q v
+
+theorem vertexDegreeExactTarget_of_incidenceDelta
+    (hdelta : vertexIncidenceDeltaTargetStatement) :
+    vertexDegreeExactTargetStatement := by
+  intro T a b c p q v h
+  unfold vertexDeg vertDeg
+  exact hdelta h
+
+
 end PachnerInvariant
