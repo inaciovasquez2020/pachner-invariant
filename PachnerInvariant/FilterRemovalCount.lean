@@ -24,4 +24,10 @@ theorem filter_removal_count_delta {α : Type u} [DecidableEq α]
         have hih := ih hxys
         simp [List.erase, hxy, hih]
 
+theorem erase_length_strictly_smaller {α : Type u} [DecidableEq α]
+    (xs : List α) (x : α) (h : x ∈ xs) :
+    (xs.erase x).length < xs.length := by
+  have hlen := filter_removal_count_delta xs x h
+  omega
+
 end PachnerInvariant
