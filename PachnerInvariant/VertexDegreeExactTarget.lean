@@ -101,6 +101,52 @@ def removedAddedIncidenceContributionTargetStatement : Prop :=
       (removedTets23 a b c p q).countP (vertexIncidence v) +
         expectedVertexDeg23ExactDelta a b c p q v
 
+
+theorem removedAddedIncidenceContribution
+    {a b c p q v : Vert}
+    (h : pairwiseDistinct5 a b c p q) :
+    (addedTets23 a b c p q).countP (vertexIncidence v) =
+      (removedTets23 a b c p q).countP (vertexIncidence v) +
+        expectedVertexDeg23ExactDelta a b c p q v := by
+  rcases h with ⟨hab, hac, hap, haq, hbc, hbp, hbq, hcp, hcq, hpq⟩
+  have hba : b ≠ a := Ne.symm hab
+  have hca : c ≠ a := Ne.symm hac
+  have hpa : p ≠ a := Ne.symm hap
+  have hqa : q ≠ a := Ne.symm haq
+  have hcb : c ≠ b := Ne.symm hbc
+  have hpb : p ≠ b := Ne.symm hbp
+  have hqb : q ≠ b := Ne.symm hbq
+  have hpc : p ≠ c := Ne.symm hcp
+  have hqc : q ≠ c := Ne.symm hcq
+  have hqp : q ≠ p := Ne.symm hpq
+  by_cases hvp : v = p
+  · subst v
+    simp [addedTets23, removedTets23, vertexIncidence, tetToVerts,
+      expectedVertexDeg23ExactDelta, hpa, hpb, hpc, hpq]
+  · by_cases hvq : v = q
+    · subst v
+      simp [addedTets23, removedTets23, vertexIncidence, tetToVerts,
+        expectedVertexDeg23ExactDelta, hvp, hqa, hqb, hqc]
+    · by_cases hva : v = a
+      · subst v
+        simp [addedTets23, removedTets23, vertexIncidence, tetToVerts,
+          expectedVertexDeg23ExactDelta, hvp, hvq, hab, hac]
+      · by_cases hvb : v = b
+        · subst v
+          simp [addedTets23, removedTets23, vertexIncidence, tetToVerts,
+            expectedVertexDeg23ExactDelta, hvp, hvq, hba, hbc]
+        · by_cases hvc : v = c
+          · subst v
+            simp [addedTets23, removedTets23, vertexIncidence, tetToVerts,
+              expectedVertexDeg23ExactDelta, hvp, hvq, hca, hcb]
+          · simp [addedTets23, removedTets23, vertexIncidence, tetToVerts,
+              expectedVertexDeg23ExactDelta, hvp, hvq, hva, hvb, hvc]
+
+theorem removedAddedIncidenceContributionTarget :
+    removedAddedIncidenceContributionTargetStatement := by
+  intro a b c p q v h
+  exact removedAddedIncidenceContribution (a := a) (b := b) (c := c) (p := p) (q := q) (v := v) h
+
 /--
 Open kept/removal target.
 
