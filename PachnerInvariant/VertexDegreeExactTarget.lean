@@ -77,6 +77,15 @@ theorem pachner23_tets_eq_kept_append_added
       keptTets23 T a b c p q ++ addedTets23 a b c p q := by
   rfl
 
+
+theorem keptAdded_countP_split
+    {T : Triangulation} {a b c p q v : Vert} :
+    (keptTets23 T a b c p q ++ addedTets23 a b c p q).countP
+        (vertexIncidence v) =
+      (keptTets23 T a b c p q).countP (vertexIncidence v) +
+      (addedTets23 a b c p q).countP (vertexIncidence v) := by
+  simp [List.countP_append]
+
 /--
 Open finite-list count target.
 
