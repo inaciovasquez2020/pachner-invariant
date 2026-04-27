@@ -2,7 +2,7 @@ import PachnerInvariant.Valid23Exact
 
 namespace PachnerInvariant
 
-def expectedVertexDeg23ExactDelta (a b c p q : Vert) (v : Vert) : Nat :=
+def expectedVertexDeg23ExactDelta (_a _b _c p q : Vert) (v : Vert) : Nat :=
   if v = p then 2 else if v = q then 2 else 0
 
 /--
