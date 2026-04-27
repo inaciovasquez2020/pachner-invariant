@@ -43,6 +43,9 @@ def allFaces (T : Triangulation) : List (Vert × Vert × Vert) :=
 def vertDeg (T : Triangulation) (v : Vert) : Nat :=
   T.tets.countP (fun t => (tetToVerts t).contains v)
 
+abbrev vertexDeg (T : Triangulation) (v : Vert) : Nat :=
+  vertDeg T v
+
 def edgeDeg (T : Triangulation) (e : Vert × Vert) : Nat :=
   T.tets.countP (fun t => (tetToEdges t).any (edgeEq e))
 
