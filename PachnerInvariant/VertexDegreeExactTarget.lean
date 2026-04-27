@@ -86,6 +86,34 @@ theorem keptAdded_countP_split
       (addedTets23 a b c p q).countP (vertexIncidence v) := by
   simp [List.countP_append]
 
+
+/--
+Open removed/added contribution target.
+
+This isolates the local arithmetic needed after the append split:
+the added tetrahedra contribute exactly the removed tetrahedra contribution
+plus the expected vertex-degree delta.
+-/
+def removedAddedIncidenceContributionTargetStatement : Prop :=
+  ∀ {a b c p q v : Vert},
+    pairwiseDistinct5 a b c p q →
+    (addedTets23 a b c p q).countP (vertexIncidence v) =
+      (removedTets23 a b c p q).countP (vertexIncidence v) +
+        expectedVertexDeg23ExactDelta a b c p q v
+
+/--
+Open kept/removal target.
+
+This is the remaining global-list fact: filtering out the exact removed
+tetrahedra subtracts precisely the removed local incidence contribution.
+-/
+def keptRemovesExactIncidenceTargetStatement : Prop :=
+  ∀ {T : Triangulation} {a b c p q v : Vert},
+    Valid23Exact T a b c p q →
+    (keptTets23 T a b c p q).countP (vertexIncidence v) +
+      (removedTets23 a b c p q).countP (vertexIncidence v) =
+        T.tets.countP (vertexIncidence v)
+
 /--
 Open finite-list count target.
 
