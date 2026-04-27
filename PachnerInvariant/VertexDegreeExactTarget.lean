@@ -147,6 +147,34 @@ theorem removedAddedIncidenceContributionTarget :
   intro a b c p q v h
   exact removedAddedIncidenceContribution (a := a) (b := b) (c := c) (p := p) (q := q) (v := v) h
 
+
+def removedContribution23 (a b c p q v : Vert) : Nat :=
+  (removedTets23 a b c p q).countP (vertexIncidence v)
+
+def addedContribution23 (a b c p q v : Vert) : Nat :=
+  (addedTets23 a b c p q).countP (vertexIncidence v)
+
+theorem removedContribution23_eq_countP
+    (a b c p q v : Vert) :
+    removedContribution23 a b c p q v =
+      (removedTets23 a b c p q).countP (vertexIncidence v) := by
+  rfl
+
+theorem addedContribution23_eq_countP
+    (a b c p q v : Vert) :
+    addedContribution23 a b c p q v =
+      (addedTets23 a b c p q).countP (vertexIncidence v) := by
+  rfl
+
+theorem removedAddedIncidenceContribution_named
+    {a b c p q v : Vert}
+    (h : pairwiseDistinct5 a b c p q) :
+    addedContribution23 a b c p q v =
+      removedContribution23 a b c p q v +
+        expectedVertexDeg23ExactDelta a b c p q v := by
+  unfold addedContribution23 removedContribution23
+  exact removedAddedIncidenceContribution (a := a) (b := b) (c := c) (p := p) (q := q) (v := v) h
+
 /--
 Open kept/removal target.
 
