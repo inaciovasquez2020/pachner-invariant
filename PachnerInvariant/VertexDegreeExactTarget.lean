@@ -61,4 +61,40 @@ theorem vertexDegreeExactTarget_of_incidenceDelta
   exact hdelta h
 
 
+
+def removedTets23 (a b c p q : Vert) : List Tet :=
+  [(a,b,c,p), (a,b,c,q)]
+
+def addedTets23 (a b c p q : Vert) : List Tet :=
+  [(a,b,p,q), (a,c,p,q), (b,c,p,q)]
+
+def keptTets23 (T : Triangulation) (a b c p q : Vert) : List Tet :=
+  T.tets.filter (fun t => !(removedTets23 a b c p q).any (tetEq t))
+
+theorem pachner23_tets_eq_kept_append_added
+    (T : Triangulation) (a b c p q : Vert) :
+    (pachner23 T a b c p q).tets =
+      keptTets23 T a b c p q ++ addedTets23 a b c p q := by
+  rfl
+
+/--
+Open finite-list count target.
+
+This is the exact list-count lemma needed to prove the incidence delta.
+-/
+def vertexIncidenceKeptAddedCountTargetStatement : Prop :=
+  ∀ {T : Triangulation} {a b c p q v : Vert},
+    Valid23Exact T a b c p q →
+    (keptTets23 T a b c p q ++ addedTets23 a b c p q).countP
+        (vertexIncidence v) =
+      T.tets.countP (vertexIncidence v) + expectedVertexDeg23ExactDelta a b c p q v
+
+theorem vertexIncidenceDeltaTarget_of_keptAddedCount
+    (h : vertexIncidenceKeptAddedCountTargetStatement) :
+    vertexIncidenceDeltaTargetStatement := by
+  intro T a b c p q v hv
+  rw [pachner23_tets_eq_kept_append_added]
+  exact h hv
+
+
 end PachnerInvariant
