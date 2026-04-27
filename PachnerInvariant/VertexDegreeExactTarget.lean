@@ -5,6 +5,25 @@ namespace PachnerInvariant
 def expectedVertexDeg23ExactDelta (_a _b _c p q : Vert) (v : Vert) : Nat :=
   if v = p then 2 else if v = q then 2 else 0
 
+
+theorem expectedVertexDeg23ExactDelta_at_p
+    (a b c p q : Vert) :
+    expectedVertexDeg23ExactDelta a b c p q p = 2 := by
+  simp [expectedVertexDeg23ExactDelta]
+
+theorem expectedVertexDeg23ExactDelta_at_q
+    (a b c p q : Vert) :
+    expectedVertexDeg23ExactDelta a b c p q q = 2 := by
+  by_cases hpq : q = p
+  · simp [expectedVertexDeg23ExactDelta, hpq]
+  · simp [expectedVertexDeg23ExactDelta, hpq]
+
+theorem expectedVertexDeg23ExactDelta_of_ne
+    {a b c p q v : Vert}
+    (hvp : v ≠ p) (hvq : v ≠ q) :
+    expectedVertexDeg23ExactDelta a b c p q v = 0 := by
+  simp [expectedVertexDeg23ExactDelta, hvp, hvq]
+
 /--
 Open target.
 
