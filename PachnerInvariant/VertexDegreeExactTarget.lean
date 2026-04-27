@@ -229,4 +229,30 @@ theorem vertexIncidenceDeltaTarget_of_keptAddedCount
   exact h hv
 
 
+
+/--
+Open primitive list-filter count lemma.
+
+This is the exact finite-list theorem behind `filterRemovesExactTwoTetsTargetStatement`.
+It says that if two removed tet classes occur with exact multiplicity one, then
+filtering them out plus their removed contribution recovers the original
+vertex-incidence count.
+-/
+def filterRemovesExactTwoTetsPrimitiveTargetStatement : Prop :=
+  ∀ {T : Triangulation} {a b c p q v : Vert},
+    countTetMod (a,b,c,p) T.tets = 1 →
+    countTetMod (a,b,c,q) T.tets = 1 →
+    (keptTets23 T a b c p q).countP (vertexIncidence v) +
+      removedContribution23 a b c p q v =
+        T.tets.countP (vertexIncidence v)
+
+theorem filterRemovesExactTwoTetsTarget_of_primitive
+    (h : filterRemovesExactTwoTetsPrimitiveTargetStatement) :
+    filterRemovesExactTwoTetsTargetStatement := by
+  intro T a b c p q v hv
+  exact h
+    (Valid23Exact_removed_p_count (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) hv)
+    (Valid23Exact_removed_q_count (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) hv)
+
+
 end PachnerInvariant
