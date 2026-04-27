@@ -23,6 +23,12 @@ if "theorem erase_length_strictly_smaller" not in proof_text:
 if "have hlen := filter_removal_count_delta xs x h" not in proof_text:
     raise SystemExit("erase_length_strictly_smaller is not gated by filter_removal_count_delta")
 
+if "theorem erase_length_ne_length" not in proof_text:
+    raise SystemExit("missing theorem erase_length_ne_length")
+
+if "have hlt := erase_length_strictly_smaller xs x h" not in proof_text:
+    raise SystemExit("erase_length_ne_length is not gated by erase_length_strictly_smaller")
+
 if "import PachnerInvariant.FilterRemovalCount" not in main_text:
     raise SystemExit("main build does not import PachnerInvariant.FilterRemovalCount")
 
