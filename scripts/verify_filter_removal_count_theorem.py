@@ -17,6 +17,12 @@ main_text = main.read_text(encoding="utf-8")
 if "theorem filter_removal_count_delta" not in proof_text:
     raise SystemExit("missing theorem filter_removal_count_delta")
 
+if "theorem erase_length_strictly_smaller" not in proof_text:
+    raise SystemExit("missing theorem erase_length_strictly_smaller")
+
+if "have hlen := filter_removal_count_delta xs x h" not in proof_text:
+    raise SystemExit("erase_length_strictly_smaller is not gated by filter_removal_count_delta")
+
 if "import PachnerInvariant.FilterRemovalCount" not in main_text:
     raise SystemExit("main build does not import PachnerInvariant.FilterRemovalCount")
 
