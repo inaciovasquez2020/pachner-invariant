@@ -188,6 +188,27 @@ def keptRemovesExactIncidenceTargetStatement : Prop :=
       (removedTets23 a b c p q).countP (vertexIncidence v) =
         T.tets.countP (vertexIncidence v)
 
+
+/--
+Open filter-removal target.
+
+This is the exact remaining finite-list theorem: if the two removed
+tetrahedron classes occur exactly once, then filtering out those classes
+subtracts exactly their vertex-incidence contribution.
+-/
+def filterRemovesExactTwoTetsTargetStatement : Prop :=
+  ∀ {T : Triangulation} {a b c p q v : Vert},
+    Valid23Exact T a b c p q →
+    (keptTets23 T a b c p q).countP (vertexIncidence v) +
+      removedContribution23 a b c p q v =
+        T.tets.countP (vertexIncidence v)
+
+theorem keptRemovesExactIncidenceTarget_of_filterRemovesExactTwoTets
+    (h : filterRemovesExactTwoTetsTargetStatement) :
+    keptRemovesExactIncidenceTargetStatement := by
+  intro T a b c p q v hv
+  exact h hv
+
 /--
 Open finite-list count target.
 
