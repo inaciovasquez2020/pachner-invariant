@@ -29,6 +29,12 @@ if "theorem erase_length_ne_length" not in proof_text:
 if "have hlt := erase_length_strictly_smaller xs x h" not in proof_text:
     raise SystemExit("erase_length_ne_length is not gated by erase_length_strictly_smaller")
 
+if "theorem erase_ne_self_of_mem" not in proof_text:
+    raise SystemExit("missing theorem erase_ne_self_of_mem")
+
+if "exact erase_length_ne_length xs x h hlen" not in proof_text:
+    raise SystemExit("erase_ne_self_of_mem is not gated by erase_length_ne_length")
+
 if "import PachnerInvariant.FilterRemovalCount" not in main_text:
     raise SystemExit("main build does not import PachnerInvariant.FilterRemovalCount")
 

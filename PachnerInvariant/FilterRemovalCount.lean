@@ -36,4 +36,12 @@ theorem erase_length_ne_length {α : Type u} [DecidableEq α]
   have hlt := erase_length_strictly_smaller xs x h
   omega
 
+theorem erase_ne_self_of_mem {α : Type u} [DecidableEq α]
+    (xs : List α) (x : α) (h : x ∈ xs) :
+    xs.erase x ≠ xs := by
+  intro hxs
+  have hlen : (xs.erase x).length = xs.length := by
+    exact congrArg List.length hxs
+  exact erase_length_ne_length xs x h hlen
+
 end PachnerInvariant
