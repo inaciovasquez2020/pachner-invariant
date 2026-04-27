@@ -44,4 +44,13 @@ theorem erase_ne_self_of_mem {α : Type u} [DecidableEq α]
     exact congrArg List.length hxs
   exact erase_length_ne_length xs x h hlen
 
+theorem erase_eq_self_iff_not_mem {α : Type u} [DecidableEq α]
+    (xs : List α) (x : α) :
+    xs.erase x = xs ↔ x ∉ xs := by
+  constructor
+  · intro h hx
+    exact erase_ne_self_of_mem xs x hx h
+  · intro hx
+    exact List.erase_of_not_mem hx
+
 end PachnerInvariant
