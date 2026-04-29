@@ -64,6 +64,14 @@ lemma count_allEdges_eq_filter_tets_len
   rw [count_bind_edgesOfTet_eq_sum_indicators]
   exact sum_indicators_eq_filter_length (L := allTets T) (e := e)
 
+lemma edgeDeg_eq_filter_tets_len
+    (T : Triangulation) (e : Edge) :
+    edgeDeg T e =
+      (List.filter (fun t => e ∈ edgesOfTet t) (allTets T)).length := by
+  classical
+  simpa using edgeDeg_eq_incidence_count (T := T) (e := e)
+
+
 lemma count_eq_edgeDeg
   (T : Triangulation) (e : Edge) :
   (allEdges T).count e = edgeDeg T e := by
