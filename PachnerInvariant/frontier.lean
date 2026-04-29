@@ -427,6 +427,24 @@ def Valid23RawReady (T : Triangulation) (a b c p q : Vert) : Prop :=
   WellFormedTets (pachner23 T a b c p q)
 
 
+
+theorem rawEdges_count_eq_edgeDeg_countP_of_Valid23RawReady
+    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+    (h : Valid23RawReady T a b c p q) :
+    (rawEdges T).count (normalizeEdge e) =
+      T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+  exact rawEdges_count_eq_edgeDeg_countP T h.2.1 e
+
+theorem rawEdges_count_eq_edgeDeg_countP_pachner23_of_Valid23RawReady
+    {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+    (h : Valid23RawReady T a b c p q) :
+    (rawEdges (pachner23 T a b c p q)).count (normalizeEdge e) =
+      (pachner23 T a b c p q).tets.countP
+        (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e))) := by
+  exact rawEdges_count_eq_edgeDeg_countP
+    (pachner23 T a b c p q) h.2.2 e
+
+
 theorem expectedEdgeDeg23_delta_normal_form
 {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
 (h : Valid23 T a b c p q) :
