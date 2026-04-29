@@ -75,6 +75,17 @@ theorem countP_filter_not_add_countP_filter {α : Type u}
         simp [List.filter, hq, hp, ih, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
 
 
+theorem countP_filter_not_eq_countP_sub_countP_filter {α : Type u}
+    (xs : List α) (p q : α → Bool) :
+    (xs.filter (fun x => !q x)).countP p =
+      xs.countP p - (xs.filter q).countP p := by
+  have h := countP_filter_not_add_countP_filter (xs := xs) (p := p) (q := q)
+  rw [← h]
+  exact (Nat.add_sub_cancel_right
+    ((xs.filter (fun x => !q x)).countP p)
+    ((xs.filter q).countP p)).symm
+
+
 variable [DecidableEq Edge]
 
 lemma edgesOfTet_count_eq_boole
