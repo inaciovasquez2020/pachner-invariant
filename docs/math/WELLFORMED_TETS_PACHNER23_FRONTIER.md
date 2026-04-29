@@ -16,5 +16,7 @@ theorem WellFormedTets_pachner23
 Required proof ingredient:
 Identify the exact tetrahedra inserted and removed by `pachner23`, then prove each inserted tetrahedron satisfies pairwiseDistinctTet.
 Boundary:
-No unconditional Pachner 2--3 delta theorem is claimed here.
+Valid23 now carries the source well-formedness condition needed by the raw-edge chain.
 No false `allEdges` multiplicity bridge is restored.
+
+No unconditional Pachner 2--3 delta theorem is claimed here.

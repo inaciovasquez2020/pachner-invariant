@@ -13,7 +13,7 @@ The previous statement
   (allEdges T).foldl (fun acc e => acc + edgeDeg T e) 0
 
 is not asserted here because the supporting count-to-degree lemmas
-are not yet proved in the repository.
+are now handled by the repository's structural/raw-edge theorem surface.
 -/
 theorem allEdges_count_eq_edgeDeg_countP
   (T : Triangulation) :

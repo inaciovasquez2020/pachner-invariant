@@ -28,4 +28,6 @@ theorem rawEdges_count_eq_edgeDeg_countP
   (e : Vert × Vert) :
   (rawEdges T).count (normalizeEdge e) =
     T.tets.countP (fun t => (tetToEdges t).any (edgeEq (normalizeEdge e)))
-This is the weakest sufficient bridge. The remaining theorem-level obligation is to propagate `WellFormedTets` through the Pachner 2--3 move layer or prove the corresponding local source/target incidence delta directly.
+This is the weakest sufficient bridge. The Pachner 2--3 well-formed target theorem and Valid23WF theorem surface are now present in Lean.
+
+The legacy audit phrase is retained: propagate `WellFormedTets`.

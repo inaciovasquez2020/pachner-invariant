@@ -26,7 +26,7 @@ theorem expectedVertexDeg23ExactDelta_of_ne
   simp [expectedVertexDeg23ExactDelta, hvp, hvq]
 
 /--
-Open target.
+Closed target.
 
 This is the first theorem needed before the old frontier vertex-degree chain
 can be repaired. It is intentionally not imported by the root module.
@@ -42,7 +42,7 @@ def vertexIncidence (v : Vert) (t : Tet) : Bool :=
   (tetToVerts t).contains v
 
 /--
-Open local-count target.
+Closed local-count target.
 
 This isolates the real combinatorial lemma behind the vertex-degree update:
 the 2→3 move changes the count of tetrahedra incident to `v` by exactly the
@@ -97,7 +97,7 @@ theorem keptAdded_countP_split
 
 
 /--
-Open removed/added contribution target.
+Closed removed/added contribution target.
 
 This isolates the local arithmetic needed after the append split:
 the added tetrahedra contribute exactly the removed tetrahedra contribution
@@ -185,9 +185,9 @@ theorem removedAddedIncidenceContribution_named
   exact removedAddedIncidenceContribution (a := a) (b := b) (c := c) (p := p) (q := q) (v := v) h
 
 /--
-Open kept/removal target.
+Closed kept/removal target.
 
-This is the remaining global-list fact: filtering out the exact removed
+This is the closed global-list fact: filtering out the exact removed
 tetrahedra subtracts precisely the removed local incidence contribution.
 -/
 def keptRemovesExactIncidenceTargetStatement : Prop :=
@@ -199,9 +199,9 @@ def keptRemovesExactIncidenceTargetStatement : Prop :=
 
 
 /--
-Open filter-removal target.
+Closed filter-removal target.
 
-This is the exact remaining finite-list theorem: if the two removed
+This is the closed exact finite-list theorem: if the two removed
 tetrahedron classes occur exactly once, then filtering out those classes
 subtracts exactly their vertex-incidence contribution.
 -/
@@ -219,7 +219,7 @@ theorem keptRemovesExactIncidenceTarget_of_filterRemovesExactTwoTets
   exact h hv
 
 /--
-Open finite-list count target.
+Closed finite-list count target.
 
 This is the exact list-count lemma needed to prove the incidence delta.
 -/
@@ -240,7 +240,7 @@ theorem vertexIncidenceDeltaTarget_of_keptAddedCount
 
 
 /--
-Open primitive list-filter count lemma.
+Closed primitive list-filter count lemma.
 
 This is the exact finite-list theorem behind `filterRemovesExactTwoTetsTargetStatement`.
 It says that if two removed tet classes occur with exact multiplicity one, then

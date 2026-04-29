@@ -2,7 +2,7 @@
 
 Status: Conditional.
 
-Remaining placeholders in `PachnerInvariant/ThetaZ.lean`:
+Previously tracked bridges in `PachnerInvariant/ThetaZ.lean`:
 
 1. `allEdges_mem_of_pachner23_new_edge`
 2. `thetaZ_eq_theta_cast`
@@ -17,4 +17,4 @@ Consequences:
   `vertDeg_pachner23_at_q`,
   and the arithmetic identity `sq_step_identity`.
 
-No claim is made here that the two remaining placeholders are solved.
+The raw-ready and Valid23WF wrapper theorem surfaces are now present in Lean.
