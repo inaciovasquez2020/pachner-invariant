@@ -124,4 +124,25 @@ theorem pachner23_descent_of_vertex_sum_of_valid23_wellFormedT
     (frontier.valid23RawReady_of_valid23_wellFormedT hvalid hT) hlam hsum
 
 
+theorem thetaZ_pachner23_delta_expanded_of_valid23WF
+    {T : Triangulation} {a b c p q : Vert} {lam : Nat}
+    (h : frontier.Valid23WF T a b c p q) :
+    thetaZ (pachner23 T a b c p q) lam - thetaZ T lam =
+      ((edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) - 3)^2 : Int) +
+      lam * ((((vertexDeg (pachner23 T a b c p q) p - 6)^2 : Int) - (vertexDeg T p - 6)^2) +
+             (((vertexDeg (pachner23 T a b c p q) q - 6)^2 : Int) - (vertexDeg T q - 6)^2)) := by
+  exact thetaZ_pachner23_delta_expanded_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (lam := lam)
+    (frontier.valid23RawReady_of_valid23WF h)
+
+theorem pachner23_descent_of_vertex_sum_of_valid23WF
+    {T : Triangulation} {a b c p q : Vert} {lam : Int}
+    (h : frontier.Valid23WF T a b c p q)
+    (hlam : 0 < lam)
+    (hsum : vertexDeg T p + vertexDeg T q ≤ 10) :
+    thetaZ (pachner23 T a b c p q) lam < thetaZ T lam := by
+  exact pachner23_descent_of_vertex_sum_of_Valid23RawReady
+    (frontier.valid23RawReady_of_valid23WF h) hlam hsum
+
+
 end PachnerInvariant
