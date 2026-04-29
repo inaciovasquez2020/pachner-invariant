@@ -48,6 +48,14 @@ This isolates the real combinatorial lemma behind the vertex-degree update:
 the 2→3 move changes the count of tetrahedra incident to `v` by exactly the
 expected vertex delta.
 -/
+
+theorem keptRemovesExactIncidenceTarget :
+    keptRemovesExactIncidenceTargetStatement := by
+  exact keptRemovesExactIncidenceTarget_of_filterRemovesExactTwoTets
+    (filterRemovesExactTwoTetsTarget_of_primitive
+      filterRemovesExactTwoTetsPrimitiveTarget)
+
+
 def vertexIncidenceDeltaTargetStatement : Prop :=
   ∀ {T : Triangulation} {a b c p q v : Vert},
     Valid23Exact T a b c p q →
