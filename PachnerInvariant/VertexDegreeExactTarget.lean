@@ -256,6 +256,20 @@ def filterRemovesExactTwoTetsPrimitiveTargetStatement : Prop :=
         T.tets.countP (vertexIncidence v)
 
 
+
+theorem keptAddedCountTarget :
+    keptAddedCountTargetStatement := by
+  intro T a b c p q v h
+  rw [keptAdded_countP_split]
+  rw [removedAddedIncidenceContributionTarget (a := a) (b := b) (c := c) (p := p) (q := q) (v := v) h]
+  rw [← Nat.add_assoc]
+  rw [keptRemovesExactIncidenceTarget (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := v) h]
+
+theorem vertexIncidenceDeltaTarget :
+    vertexIncidenceDeltaTargetStatement := by
+  exact vertexIncidenceDeltaTarget_of_keptAddedCount keptAddedCountTarget
+
+
 theorem filterRemovesExactTwoTetsPrimitiveTarget :
     filterRemovesExactTwoTetsPrimitiveTargetStatement := by
   intro T a b c p q v hp hq
