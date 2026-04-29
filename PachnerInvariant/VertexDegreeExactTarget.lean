@@ -293,4 +293,9 @@ theorem filterRemovesExactTwoTetsTarget_of_primitive
     (Valid23Exact_removed_q_count (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) hv)
 
 
+theorem vertexDegreeExactTarget :
+    vertexDegreeExactTargetStatement := by
+  exact vertexDegreeExactTarget_of_incidenceDelta vertexIncidenceDeltaTarget
+
+
 end PachnerInvariant
