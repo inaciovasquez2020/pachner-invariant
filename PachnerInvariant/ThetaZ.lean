@@ -73,6 +73,19 @@ theorem pachner23_descent_iff_vertex_sum_le_ten
   rw [sq_step_identity, sq_step_identity]
   omega
 
+
+theorem thetaZ_pachner23_delta_expanded_of_Valid23RawReady
+    {T : Triangulation} {a b c p q : Vert} {lam : Nat}
+    (h : frontier.Valid23RawReady T a b c p q) :
+    thetaZ (pachner23 T a b c p q) lam - thetaZ T lam =
+      ((edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) - 3)^2 : Int) +
+      lam * ((((vertexDeg (pachner23 T a b c p q) p - 6)^2 : Int) - (vertexDeg T p - 6)^2) +
+             (((vertexDeg (pachner23 T a b c p q) q - 6)^2 : Int) - (vertexDeg T q - 6)^2)) := by
+  rw [thetaZ_eq_theta_cast, thetaZ_eq_theta_cast]
+  rw [frontier.theta_pachner23_delta_expanded_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (lam := lam) h]
+
+
 theorem pachner23_descent_of_vertex_sum
     {T : Triangulation} {a b c p q : Vert} {lam : Int}
     (h : Valid23 T a b c p q) (hlam : 0 < lam)
