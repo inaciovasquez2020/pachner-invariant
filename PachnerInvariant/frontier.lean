@@ -420,6 +420,13 @@ theorem Valid23.ready
   exact ⟨Valid23.vertexBounds h, Valid23.distinctPairs h, Valid23.patchReady h⟩
 
 
+
+def Valid23RawReady (T : Triangulation) (a b c p q : Vert) : Prop :=
+  Valid23 T a b c p q ∧
+  WellFormedTets T ∧
+  WellFormedTets (pachner23 T a b c p q)
+
+
 theorem expectedEdgeDeg23_delta_normal_form
 {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
 (h : Valid23 T a b c p q) :
