@@ -525,6 +525,20 @@ theorem edgeDeg_pachner23_eq_expected
       (p := p) (q := q) (e := e) h
 
 
+
+theorem edgeDeg_pachner23_eq_expected_of_Valid23RawReady
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (h : Valid23RawReady T a b c p q) :
+  edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+    expectedEdgeDeg23 T a b c p q e := by
+  rw [edgeDeg_pachner23_delta_of_Valid23RawReady
+      (T := T) (a := a) (b := b) (c := c)
+      (p := p) (q := q) (e := e) h]
+  exact expectedEdgeDeg23_delta_normal_form
+      (T := T) (a := a) (b := b) (c := c)
+      (p := p) (q := q) (e := e) h.1
+
+
 theorem edgeDeg_eq_count_tets
     (T : Triangulation) (e : Vert × Vert) :
     edgeDeg T (normalizeEdge e) =
