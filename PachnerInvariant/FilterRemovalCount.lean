@@ -63,6 +63,18 @@ theorem erase_ne_self_iff_mem {α : Type u} [DecidableEq α]
   · intro hx
     exact erase_ne_self_of_mem xs x hx
 
+theorem countP_filter_not_add_countP_filter {α : Type u}
+    (xs : List α) (p q : α → Bool) :
+    (xs.filter (fun x => !q x)).countP p + (xs.filter q).countP p =
+      xs.countP p := by
+  induction xs with
+  | nil =>
+      simp
+  | cons x xs ih =>
+      cases hq : q x <;> cases hp : p x <;>
+        simp [List.filter, hq, hp, ih, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+
+
 variable [DecidableEq Edge]
 
 lemma edgesOfTet_count_eq_boole
