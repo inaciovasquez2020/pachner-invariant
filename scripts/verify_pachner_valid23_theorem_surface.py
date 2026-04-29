@@ -21,6 +21,7 @@ required_frontier_tokens = [
 required_thetaz_tokens = [
     "theorem thetaZ_pachner23_delta_expanded_of_valid23WF",
     "theorem pachner23_descent_of_vertex_sum_of_valid23WF",
+    "theorem thetaZ_pachner23_lt_of_valid23_vertex_sum",
 ]
 
 for token in required_frontier_tokens:
