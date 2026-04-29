@@ -482,6 +482,16 @@ theorem valid23RawReady_of_valid23_wellFormed
   exact ⟨hvalid, hT, h23⟩
 
 
+
+theorem valid23RawReady_of_valid23_wellFormedT
+    {T : Triangulation} {a b c p q : Vert}
+    (hvalid : Valid23 T a b c p q)
+    (hT : WellFormedTets T) :
+    Valid23RawReady T a b c p q := by
+  exact valid23RawReady_of_valid23_wellFormed
+    hvalid hT (wellFormedTets_pachner23_of_valid23 hT hvalid)
+
+
 theorem rawEdges_count_eq_edgeDeg_countP_of_Valid23RawReady
     {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
     (h : Valid23RawReady T a b c p q) :
