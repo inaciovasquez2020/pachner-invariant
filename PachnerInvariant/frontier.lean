@@ -539,6 +539,26 @@ theorem edgeDeg_pachner23_eq_expected_of_Valid23RawReady
       (p := p) (q := q) (e := e) h.1
 
 
+
+theorem theta_pachner23_delta_expanded_of_Valid23RawReady
+    {T : Triangulation} {a b c p q : Vert} (lam : Nat)
+    (h : Valid23RawReady T a b c p q) :
+    theta (pachner23 T a b c p q) lam - theta T lam =
+      ((edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) - 3)^2 - (0 : Int)) +
+      lam * (((vertexDeg (pachner23 T a b c p q) p - 6)^2 - (vertexDeg T p - 6)^2) +
+             ((vertexDeg (pachner23 T a b c p q) q - 6)^2 - (vertexDeg T q - 6)^2)) := by
+  have h_edge :=
+    edgeDeg_pachner23_delta_of_Valid23RawReady
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := (p,q)) h
+  have h_vert_p :=
+    vertDeg_pachner23_eq_expected
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := p) h.1
+  have h_vert_q :=
+    vertDeg_pachner23_eq_expected
+      (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (v := q) h.1
+  simp [theta, h_edge, h_vert_p, h_vert_q]
+
+
 theorem edgeDeg_eq_count_tets
     (T : Triangulation) (e : Vert × Vert) :
     edgeDeg T (normalizeEdge e) =
