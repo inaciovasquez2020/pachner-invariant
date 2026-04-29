@@ -93,4 +93,12 @@ theorem pachner23_descent_of_vertex_sum
     thetaZ (pachner23 T a b c p q) lam < thetaZ T lam := by
   exact (pachner23_descent_iff_vertex_sum_le_ten h hlam).2 hsum
 
+theorem pachner23_descent_of_vertex_sum_of_Valid23RawReady
+    {T : Triangulation} {a b c p q : Vert} {lam : Int}
+    (h : frontier.Valid23RawReady T a b c p q) (hlam : 0 < lam)
+    (hsum : vertexDeg T p + vertexDeg T q ≤ 10) :
+    thetaZ (pachner23 T a b c p q) lam < thetaZ T lam := by
+  exact pachner23_descent_of_vertex_sum h.1 hlam hsum
+
+
 end PachnerInvariant
