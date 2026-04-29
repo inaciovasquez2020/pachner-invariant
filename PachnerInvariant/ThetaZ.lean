@@ -145,4 +145,19 @@ theorem pachner23_descent_of_vertex_sum_of_valid23WF
     (frontier.valid23RawReady_of_valid23WF h) hlam hsum
 
 
+/--
+Final local-global 2→3 thetaZ descent theorem.
+
+A valid 2→3 Pachner move strictly decreases thetaZ whenever the two
+new-edge endpoints satisfy the sharp vertex-sum bound.
+-/
+theorem thetaZ_pachner23_lt_of_valid23_vertex_sum
+    {T : Triangulation} {a b c p q : Vert} {lam : Int}
+    (h : frontier.Valid23 T a b c p q)
+    (hlam : 0 < lam)
+    (hsum : vertexDeg T p + vertexDeg T q ≤ 10) :
+    thetaZ (pachner23 T a b c p q) lam < thetaZ T lam := by
+  exact pachner23_descent_of_vertex_sum h hlam hsum
+
+
 end PachnerInvariant
