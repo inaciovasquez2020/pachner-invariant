@@ -38,7 +38,8 @@ def Valid23 (T : Triangulation) (a b c p q : Vert) : Prop :=
   ¬ tetMemMod (a,b,p,q) T.tets ∧
   ¬ tetMemMod (a,c,p,q) T.tets ∧
   ¬ tetMemMod (b,c,p,q) T.tets ∧
-  ¬ edgeMemNorm (p,q) (allEdges T)
+  ¬ edgeMemNorm (p,q) (allEdges T) ∧
+  WellFormedTets T
 
 def expectedEdgeDeg23
     (T : Triangulation) (a b c p q : Vert) (e : Vert × Vert) : Nat :=
@@ -400,6 +401,14 @@ theorem Valid23.distinctPairs
     ⟨Valid23.c_ne_p h, Valid23.c_ne_q h⟩,
     Valid23.p_ne_q h⟩
 
+
+theorem Valid23.wellFormedTets
+    {T : Triangulation} {a b c p q : Vert}
+    (h : Valid23 T a b c p q) :
+    WellFormedTets T := by
+  exact h.2.2.2.2.2.2.2.2.2.2.2.2
+
+
 theorem Valid23.ready
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23 T a b c p q) :
@@ -664,13 +673,13 @@ theorem theta_pachner23_delta_expanded_of_valid23_wellFormedT
 
 
 def Valid23WF (T : Triangulation) (a b c p q : Vert) : Prop :=
-  Valid23 T a b c p q ∧ WellFormedTets T
+  Valid23 T a b c p q
 
 theorem valid23RawReady_of_valid23WF
     {T : Triangulation} {a b c p q : Vert}
     (h : Valid23WF T a b c p q) :
     Valid23RawReady T a b c p q := by
-  exact valid23RawReady_of_valid23_wellFormedT h.1 h.2
+  exact valid23RawReady_of_valid23_wellFormedT h (Valid23.wellFormedTets h)
 
 theorem edgeDeg_pachner23_delta_of_valid23WF
   {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
