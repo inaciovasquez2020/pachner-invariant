@@ -63,4 +63,30 @@ theorem erase_ne_self_iff_mem {α : Type u} [DecidableEq α]
   · intro hx
     exact erase_ne_self_of_mem xs x hx
 
+variable [DecidableEq Edge]
+
+lemma edgesOfTet_count_eq_boole
+    (T : Tetrahedron) (e : Edge)
+    (hnd : (edgesOfTet T).Nodup) :
+    (edgesOfTet T).count e = if e ∈ edgesOfTet T then 1 else 0 := by
+  by_cases h : e ∈ edgesOfTet T
+  · rw [if_pos h]
+    exact hnd.count_eq_one h
+  · rw [if_neg h]
+    exact List.count_eq_zero.mpr h
+
+theorem allEdges_count_eq_filter_tets_length
+    (hnd : ∀ T : Tetrahedron, (edgesOfTet T).Nodup)
+    (tets : List Tetrahedron) (e : Edge) :
+    (allEdges tets).count e =
+      (tets.filter (fun T => e ∈ edgesOfTet T)).length := by
+  induction tets with
+  | nil =>
+      simp [allEdges]
+  | cons T ts ih =>
+      simp only [allEdges, List.bind_cons, List.count_append, List.filter_cons, ih]
+      rw [edgesOfTet_count_eq_boole T e (hnd T)]
+      split_ifs <;> simp
+
+
 end PachnerInvariant
