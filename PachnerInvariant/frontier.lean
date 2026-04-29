@@ -445,6 +445,26 @@ theorem rawEdges_count_eq_edgeDeg_countP_pachner23_of_Valid23RawReady
     (pachner23 T a b c p q) h.2.2 e
 
 
+
+theorem rawEdges_pachner23_count_delta_of_Valid23RawReady
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (h : Valid23RawReady T a b c p q) :
+  let e' := normalizeEdge e
+  (rawEdges (pachner23 T a b c p q)).count e' =
+    (rawEdges T).count e' +
+    (if e' = normalizeEdge (p,q) then 3
+     else if (crossEdges23 a b c p q).contains e' then 1
+     else 0) -
+    (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  dsimp
+  rw [rawEdges_count_eq_edgeDeg_countP_pachner23_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
+  rw [rawEdges_count_eq_edgeDeg_countP_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h]
+  exact tetIncidence_pachner23_delta
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e) h.1
+
+
 theorem expectedEdgeDeg23_delta_normal_form
 {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
 (h : Valid23 T a b c p q) :
