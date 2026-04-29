@@ -623,6 +623,45 @@ theorem theta_pachner23_delta_expanded_of_Valid23RawReady
   simp [theta, h_edge, h_vert_p, h_vert_q]
 
 
+
+theorem edgeDeg_pachner23_delta_of_valid23_wellFormedT
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (hvalid : Valid23 T a b c p q)
+  (hT : WellFormedTets T) :
+  let e' := normalizeEdge e
+  edgeDeg (pachner23 T a b c p q) e' =
+    edgeDeg T e' +
+    (if e' = normalizeEdge (p,q) then 3
+     else if (crossEdges23 a b c p q).contains e' then 1
+     else 0) -
+    (if (boundaryEdges23 a b c).contains e' then 1 else 0) := by
+  exact edgeDeg_pachner23_delta_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e)
+    (valid23RawReady_of_valid23_wellFormedT hvalid hT)
+
+theorem edgeDeg_pachner23_eq_expected_of_valid23_wellFormedT
+  {T : Triangulation} {a b c p q : Vert} {e : Vert × Vert}
+  (hvalid : Valid23 T a b c p q)
+  (hT : WellFormedTets T) :
+  edgeDeg (pachner23 T a b c p q) (normalizeEdge e) =
+    expectedEdgeDeg23 T a b c p q e := by
+  exact edgeDeg_pachner23_eq_expected_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (e := e)
+    (valid23RawReady_of_valid23_wellFormedT hvalid hT)
+
+theorem theta_pachner23_delta_expanded_of_valid23_wellFormedT
+    {T : Triangulation} {a b c p q : Vert} (lam : Nat)
+    (hvalid : Valid23 T a b c p q)
+    (hT : WellFormedTets T) :
+    theta (pachner23 T a b c p q) lam - theta T lam =
+      ((edgeDeg (pachner23 T a b c p q) (normalizeEdge (p,q)) - 3)^2 - (0 : Int)) +
+      lam * (((vertexDeg (pachner23 T a b c p q) p - 6)^2 - (vertexDeg T p - 6)^2) +
+             ((vertexDeg (pachner23 T a b c p q) q - 6)^2 - (vertexDeg T q - 6)^2)) := by
+  exact theta_pachner23_delta_expanded_of_Valid23RawReady
+    (T := T) (a := a) (b := b) (c := c) (p := p) (q := q) (lam := lam)
+    (valid23RawReady_of_valid23_wellFormedT hvalid hT)
+
+
 theorem edgeDeg_eq_count_tets
     (T : Triangulation) (e : Vert × Vert) :
     edgeDeg T (normalizeEdge e) =
