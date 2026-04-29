@@ -429,6 +429,50 @@ def Valid23RawReady (T : Triangulation) (a b c p q : Vert) : Prop :=
 
 
 
+
+theorem pairwiseDistinctTet_abpq_of_pairwiseDistinct5
+    {a b c p q : Vert}
+    (h : pairwiseDistinct5 a b c p q) :
+    pairwiseDistinctTet (a,b,p,q) := by
+  unfold pairwiseDistinctTet pairwiseDistinct5 at *
+  omega
+
+theorem pairwiseDistinctTet_acpq_of_pairwiseDistinct5
+    {a b c p q : Vert}
+    (h : pairwiseDistinct5 a b c p q) :
+    pairwiseDistinctTet (a,c,p,q) := by
+  unfold pairwiseDistinctTet pairwiseDistinct5 at *
+  omega
+
+theorem pairwiseDistinctTet_bcpq_of_pairwiseDistinct5
+    {a b c p q : Vert}
+    (h : pairwiseDistinct5 a b c p q) :
+    pairwiseDistinctTet (b,c,p,q) := by
+  unfold pairwiseDistinctTet pairwiseDistinct5 at *
+  omega
+
+theorem wellFormedTets_pachner23_of_valid23
+    {T : Triangulation} {a b c p q : Vert}
+    (hT : WellFormedTets T)
+    (h : Valid23 T a b c p q) :
+    WellFormedTets (pachner23 T a b c p q) := by
+  intro t ht
+  unfold pachner23 at ht
+  simp only at ht
+  rcases List.mem_append.mp ht with hkept | hadd
+  · exact hT t (by
+      exact (List.mem_filter.mp hkept).1)
+  · have hd : pairwiseDistinct5 a b c p q := Valid23.distinctPairs h
+    simp only [List.mem_cons, List.mem_singleton] at hadd
+    rcases hadd with h1 | h2 | h3
+    · subst t
+      exact pairwiseDistinctTet_abpq_of_pairwiseDistinct5 hd
+    · subst t
+      exact pairwiseDistinctTet_acpq_of_pairwiseDistinct5 hd
+    · subst t
+      exact pairwiseDistinctTet_bcpq_of_pairwiseDistinct5 hd
+
+
 theorem valid23RawReady_of_valid23_wellFormed
     {T : Triangulation} {a b c p q : Vert}
     (hvalid : Valid23 T a b c p q)
