@@ -1,4 +1,5 @@
 import PachnerInvariant.Valid23Exact
+import PachnerInvariant.FilterRemovalCount
 
 namespace PachnerInvariant
 
@@ -245,6 +246,21 @@ def filterRemovesExactTwoTetsPrimitiveTargetStatement : Prop :=
     (keptTets23 T a b c p q).countP (vertexIncidence v) +
       removedContribution23 a b c p q v =
         T.tets.countP (vertexIncidence v)
+
+
+theorem filterRemovesExactTwoTetsPrimitiveTarget :
+    filterRemovesExactTwoTetsPrimitiveTargetStatement := by
+  intro T a b c p q v hp hq
+  unfold keptTets23 removedContribution23
+  exact countP_filter_not_add_of_filter_countP_eq
+    (xs := T.tets)
+    (p := vertexIncidence v)
+    (q := fun t => (removedTets23 a b c p q).any (tetEq t))
+    (removed := (removedTets23 a b c p q).countP (vertexIncidence v))
+    (by
+      simp [removedTets23, vertexIncidence, tetToVerts, hp, hq,
+        Bool.or_eq_true, List.any_eq_true])
+
 
 theorem filterRemovesExactTwoTetsTarget_of_primitive
     (h : filterRemovesExactTwoTetsPrimitiveTargetStatement) :
